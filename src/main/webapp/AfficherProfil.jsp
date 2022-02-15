@@ -8,6 +8,7 @@
 </head>
 <body>
 <h1>ENI - Enchères</h1>
+<h3>Mon profil</h3>
 <p>Pseudo :</p>
 <p>Nom :</p>
 <p>Prénom :</p>
