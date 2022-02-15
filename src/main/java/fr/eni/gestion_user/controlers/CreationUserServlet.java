@@ -59,6 +59,62 @@ public class CreationUserServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/Inscription.jsp");
 			rd.forward(request, response);
 		}
+			else if (nom == null || nom.equals("")) {
+				String message = "nom ne doit pas etre vide";
+				request.setAttribute("message", message);
+				System.out.println(message);
+				RequestDispatcher rd = request.getRequestDispatcher("/Inscription.jsp");
+				rd.forward(request, response);
+			} 	
+			else if (prenom == null || prenom.equals("")) {
+				String message = "prenom ne doit pas etre vide";
+				request.setAttribute("message", message);
+				System.out.println(message);
+				RequestDispatcher rd = request.getRequestDispatcher("/Inscription.jsp");
+				rd.forward(request, response);
+			}
+			else if (email == null || email.equals("")) {
+				String message = "email ne doit pas etre vide";
+				request.setAttribute("message", message);
+				System.out.println(message);
+				RequestDispatcher rd = request.getRequestDispatcher("/Inscription.jsp");
+				rd.forward(request, response);
+			}
+			else if (telephone == null || telephone.equals("")) {
+				String message = "telephone ne doit pas etre vide";
+				request.setAttribute("message", message);
+				System.out.println(message);
+				RequestDispatcher rd = request.getRequestDispatcher("/Inscription.jsp");
+				rd.forward(request, response);
+			}
+			else if (rue == null || rue.equals("")) {
+				String message = "rue ne doit pas etre vide";
+				request.setAttribute("message", message);
+				System.out.println(message);
+				RequestDispatcher rd = request.getRequestDispatcher("/Inscription.jsp");
+				rd.forward(request, response);
+			}
+			else if (rue == null || rue.equals("")) {
+				String message = "rue ne doit pas etre vide";
+				request.setAttribute("message", message);
+				System.out.println(message);
+				RequestDispatcher rd = request.getRequestDispatcher("/Inscription.jsp");
+				rd.forward(request, response);
+			}
+			else if (cp == null || cp.equals("")) {
+				String message = "Code postal ne doit pas etre vide";
+				request.setAttribute("message", message);
+				System.out.println(message);
+				RequestDispatcher rd = request.getRequestDispatcher("/Inscription.jsp");
+				rd.forward(request, response);
+			}
+			else if (ville == null || ville.equals("")) {
+				String message = "ville ne doit pas etre vide";
+				request.setAttribute("message", message);
+				System.out.println(message);
+				RequestDispatcher rd = request.getRequestDispatcher("/Inscription.jsp");
+				rd.forward(request, response);
+			}
 		
 		// creer un message si les mdp snt différent
 		if (mdpconf.equals(mdp)) {
