@@ -11,7 +11,7 @@
 
 	<h1>Se connecter</h1>
 	
-	<form action="" method="post">
+	<form action="./AccueilServlet.java" method="post">
 		<input type="text" placeholder ="Entrer votre pseudonyme ici" name="Pseudonyme" required>
 		
 		<input type="password" placeholder ="Entrer votre mot de passe ici" name="Mot de passe" required>
@@ -21,6 +21,8 @@
 	
 	
 	</form>
+	
+	
 
 </body>
 </html>

@@ -11,7 +11,8 @@
 
 <div>
 <p>ENI - Enchere</p>
-<a href="./Inscription.jsp">S'incrire - Se connecter</a>
+<a href="./Inscription.jsp">S'incrire</a>
+<a href="./SeConnecter.jsp">Se connecter</a>
 </div>
 
 <h1> Liste des enchères</h1>
