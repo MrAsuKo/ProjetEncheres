@@ -2,6 +2,7 @@ package fr.eni.gestion_user.bo;
 
 public class User {
 
+	private int id;
 	private String pseudo;
 	private String nom;
 	private String prenom;
@@ -34,6 +35,19 @@ public class User {
 		this.cp = cp;
 		this.ville = ville;
 		this.mdp = mdp;
+	}
+	
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	/**

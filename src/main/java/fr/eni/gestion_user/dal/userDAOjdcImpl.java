@@ -1,23 +1,43 @@
 package fr.eni.gestion_user.dal;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import fr.eni.gestion_user.dal.ConnectionProvider;
 import fr.eni.gestion_user.bo.User;
 
 public class userDAOjdcImpl {
 
-	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email,telephone,rue,code_postal,ville, mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?)";
+	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?)";
 	
-	public void insert(User user) {
+	public User insert(User user) throws Exception {
 		Connection cnx = null;
 		try {
 			cnx = ConnectionProvider.getConnection();
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
+			cnx.setAutoCommit(false);
+			PreparedStatement rqt = cnx.prepareStatement(INSERT_USER, PreparedStatement.RETURN_GENERATED_KEYS);
+			rqt.setString(1, user.getPseudo());
+			rqt.setString(2, user.getNom());
+			rqt.setString(3, user.getPrenom());
+			rqt.setString(4, user.getEmail());
+			rqt.setString(5, user.getTelephone());
+			rqt.setString(6, user.getRue());
+			rqt.setString(7, user.getCp());
+			rqt.setString(8, user.getVille());
+			rqt.setString(9, user.getMdp());
+			rqt.executeUpdate();
+			ResultSet rs = rqt.getGeneratedKeys();
+			if (rs.next()) {
+				user.setId(rs.getInt(1));
+			}
+			cnx.commit();
+		} catch (SQLException e) {
+			cnx.rollback();
 			e.printStackTrace();
 		}
-		
+		return user;
 		//crée la commande
 		
 		//valoriser les parametres
@@ -25,5 +45,4 @@ public class userDAOjdcImpl {
 		//liberer la connexion
 		
 	}
-
 }
