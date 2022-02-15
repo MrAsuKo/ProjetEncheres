@@ -11,7 +11,10 @@
 
 <div>
 <p>ENI - Enchere</p>
-<a href="">S'incrire - Se connecter</a>
+<a href="">Encheres</a>
+<a href="">Vendre un article</a>
+<a href="./AfficherProfil.jsp">Mon profil</a>
+<a href="">Deconnexion</a>
 </div>
 
 <h1> Liste des enchères</h1>
