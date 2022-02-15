@@ -16,11 +16,17 @@
 		
 		<input type="password" placeholder ="Entrer votre mot de passe ici" name="Mot de passe" required>
 		
-		<input  type="submit" submit="Valider" id='submit' >
+		<input  type="submit" submit="Valider" id="submit" >
+		
+	</form>	
+		
+	<form action="./Inscription.jsp">	
+		<button  type="submit" submit="Valider" id="submit">S'inscrire</button>
+	</form>	
 	
 	
 	
-	</form>
+	
 	
 	
 
