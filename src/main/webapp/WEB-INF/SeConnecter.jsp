@@ -18,6 +18,7 @@
 		<input  type="submit" submit="Valider" id="submit" >
 		
 	</form>	
+	
 		
 	<form action="<%=request.getContextPath()%>/Inscription" method="post">	
 		<button  type="submit" submit="Valider" id="submit">S'inscrire</button>

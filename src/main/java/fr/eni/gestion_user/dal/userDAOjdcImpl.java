@@ -42,8 +42,9 @@ public class userDAOjdcImpl {
 		}
 	}
 
-	public void verif(User user) throws Exception {
+	public boolean verif(User user) throws Exception {
 		Connection cnx = null;
+		boolean mdpEtat = false;
 		try {
 			cnx = ConnectionProvider.getConnection();		
 			Statement rqt = cnx.createStatement();
@@ -55,14 +56,13 @@ public class userDAOjdcImpl {
 				mot_de_passe = mdp;
 				System.out.println(pseudo + mdp);
 			}
-			boolean mdpEtat = false;
+			
 			if (user.getMdp().equals(mot_de_passe) ) {
 				mdpEtat = true;
-			} else {
-				String message = "Mot de passe incorrect";
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return mdpEtat;
 	}
 }
