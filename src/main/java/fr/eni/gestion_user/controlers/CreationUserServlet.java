@@ -1,4 +1,4 @@
-package fr.eni.gestion_vente.controlers;
+package fr.eni.gestion_user.controlers;
 
 import java.io.IOException;
 
@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class CreationUser
  */
 @WebServlet("/CreationUser")
-public class CreationUser extends HttpServlet {
+public class CreationUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreationUser() {
+    public CreationUserServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -47,6 +47,7 @@ public class CreationUser extends HttpServlet {
 		String mdp = request.getParameter("mdp");
 		String mdpconf = request.getParameter("mdp_conf");
 		
+		// creer un message si les mdp snt différent
 		if (mdpconf.equals(mdp)) {
 			String message = "utilisateur créer";
 			request.setAttribute("message", message);
@@ -54,6 +55,7 @@ public class CreationUser extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/AccueilConnecter.jsp");
 			rd.forward(request, response);
 		}
+		//si l'utilisateur se créer, on va sur la page d'accueil connectée
 		else {
 		String message = "les mdp ne corespondent pas";
 		request.setAttribute("message", message);
@@ -61,9 +63,6 @@ public class CreationUser extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("/Inscription.jsp");
 		rd.forward(request, response);
 		}
-
-
 		
 	}
-
 }
