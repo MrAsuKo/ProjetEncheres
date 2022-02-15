@@ -37,6 +37,11 @@ public class User {
 		this.mdp = mdp;
 	}
 	
+	public User(String pseudo, String mdp) {
+		this.pseudo = pseudo;
+		this.mdp = mdp;
+	}
+
 	/**
 	 * @return the id
 	 */

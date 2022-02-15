@@ -18,7 +18,7 @@ import fr.eni.gestion_user.bll.UserMgr;
 public class CreationUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
-	//attibut vers Manger
+	//attibut vers Manager
 	private UserMgr userMgr;
     /**
      * @see HttpServlet#HttpServlet()
@@ -50,86 +50,19 @@ public class CreationUserServlet extends HttpServlet {
 		String mdp = request.getParameter("mdp");
 		String mdpconf = request.getParameter("mdp_conf");
 
-		//controle champs vide
-		if (pseudo == null || pseudo.equals("")) {		
-			String message = "pseudo ne doit pas etre vide";
-			request.setAttribute("message", message);
-			System.out.println(message);
-			RequestDispatcher rd = request.getRequestDispatcher("/Inscription.jsp");
-			rd.forward(request, response);
-		}
-			else if (nom == null || nom.equals("")) {
-				String message = "nom ne doit pas etre vide";
-				request.setAttribute("message", message);
-				System.out.println(message);
-				RequestDispatcher rd = request.getRequestDispatcher("/Inscription.jsp");
-				rd.forward(request, response);
-			} 	
-			else if (prenom == null || prenom.equals("")) {
-				String message = "prenom ne doit pas etre vide";
-				request.setAttribute("message", message);
-				System.out.println(message);
-				RequestDispatcher rd = request.getRequestDispatcher("/Inscription.jsp");
-				rd.forward(request, response);
-			}
-			else if (email == null || email.equals("")) {
-				String message = "email ne doit pas etre vide";
-				request.setAttribute("message", message);
-				System.out.println(message);
-				RequestDispatcher rd = request.getRequestDispatcher("/Inscription.jsp");
-				rd.forward(request, response);
-			}
-			else if (telephone == null || telephone.equals("")) {
-				String message = "telephone ne doit pas etre vide";
-				request.setAttribute("message", message);
-				System.out.println(message);
-				RequestDispatcher rd = request.getRequestDispatcher("/Inscription.jsp");
-				rd.forward(request, response);
-			}
-			else if (rue == null || rue.equals("")) {
-				String message = "rue ne doit pas etre vide";
-				request.setAttribute("message", message);
-				System.out.println(message);
-				RequestDispatcher rd = request.getRequestDispatcher("/Inscription.jsp");
-				rd.forward(request, response);
-			}
-			else if (rue == null || rue.equals("")) {
-				String message = "rue ne doit pas etre vide";
-				request.setAttribute("message", message);
-				System.out.println(message);
-				RequestDispatcher rd = request.getRequestDispatcher("/Inscription.jsp");
-				rd.forward(request, response);
-			}
-			else if (cp == null || cp.equals("")) {
-				String message = "Code postal ne doit pas etre vide";
-				request.setAttribute("message", message);
-				System.out.println(message);
-				RequestDispatcher rd = request.getRequestDispatcher("/Inscription.jsp");
-				rd.forward(request, response);
-			}
-			else if (ville == null || ville.equals("")) {
-				String message = "ville ne doit pas etre vide";
-				request.setAttribute("message", message);
-				System.out.println(message);
-				RequestDispatcher rd = request.getRequestDispatcher("/Inscription.jsp");
-				rd.forward(request, response);
-			}
 		
 		// creer un message si les mdp snt différent
 		if (mdpconf.equals(mdp)) {
-			String message = "utilisateur créer";
-			request.setAttribute("message", message);
-			System.out.println(message);
 			RequestDispatcher rd = request.getRequestDispatcher("/AccueilConnecter.jsp");
 			rd.forward(request, response);
 		}
 		//si l'utilisateur se créer, on va sur la page d'accueil connectée
 		else {
-		String message = "les mdp ne corespondent pas";
-		request.setAttribute("message", message);
-		System.out.println(message);
-		RequestDispatcher rd = request.getRequestDispatcher("/Inscription.jsp");
-		rd.forward(request, response);
+			String message = "les mdp ne corespondent pas";
+			request.setAttribute("message", message);
+			System.out.println(message);
+			RequestDispatcher rd = request.getRequestDispatcher("/Inscription.jsp");
+			rd.forward(request, response);
 		}
 	
 			
