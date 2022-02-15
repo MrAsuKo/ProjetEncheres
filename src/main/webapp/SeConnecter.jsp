@@ -9,7 +9,8 @@
 </head>
 <body>
 
-	<h1>Se connecter</h1>
+	<h1>Eni-Enchères</h1>
+	<h3>Se connecter</h3>
 	
 	<form action="./AccueilServlet.java" method="post">
 		<input type="text" placeholder ="Entrer votre pseudonyme ici" name="Pseudonyme" required>
