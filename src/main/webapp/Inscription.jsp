@@ -9,7 +9,7 @@
 <body>
 <h1>ENI - Enchères</h1>
 <h3>Mon profil</h3>
-<form action="" method="post">
+<form action="<%=request.getContextPath()%>/CreationUser" method="post">
 <input type="text" name="pseudo" placeholder="Pseudo">
 <input type="text" name="nom" placeholder="Nom">
 <input type="text" name="prenom" placeholder="Prénom">
@@ -23,5 +23,11 @@
 <button type="submit">Créer</button>
 <button type="submit">Annuler</button>
 </form>
+	<%
+	 String message = null;
+	if (application.getAttribute("message") != null);
+	message = (String)application.getAttribute("message");
+	%>
+	<p><%=message %></p>
 </body>
 </html>
