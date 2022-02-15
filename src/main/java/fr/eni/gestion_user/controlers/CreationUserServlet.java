@@ -47,6 +47,7 @@ public class CreationUserServlet extends HttpServlet {
 		String mdp = request.getParameter("mdp");
 		String mdpconf = request.getParameter("mdp_conf");
 		
+		// creer un message si les mdp snt différent
 		if (mdpconf.equals(mdp)) {
 			String message = "utilisateur créer";
 			request.setAttribute("message", message);
@@ -54,6 +55,7 @@ public class CreationUserServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/AccueilConnecter.jsp");
 			rd.forward(request, response);
 		}
+		//si l'utilisateur se créer, on va sur la page d'accueil connectée
 		else {
 		String message = "les mdp ne corespondent pas";
 		request.setAttribute("message", message);
