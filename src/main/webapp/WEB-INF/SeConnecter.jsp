@@ -10,7 +10,7 @@
 <body>
 	<h1>Eni-Enchères</h1>
 	<h3>Se connecter</h3>
-	<form action="<%=request.getContextPath()%>/Connexion" method="post">
+	<form action="<%=request.getContextPath()%>/VerificationUser" method="post">
 		<input type="text" placeholder ="Entrer votre pseudonyme ici" name="pseudo" required>
 		
 		<input type="password" placeholder ="Entrer votre mot de passe ici" name="mdp" required>
@@ -18,6 +18,7 @@
 		<input  type="submit" submit="Valider" id="submit" >
 		
 	</form>	
+	
 		
 	<form action="<%=request.getContextPath()%>/Inscription" method="post">	
 		<button  type="submit" submit="Valider" id="submit">S'inscrire</button>

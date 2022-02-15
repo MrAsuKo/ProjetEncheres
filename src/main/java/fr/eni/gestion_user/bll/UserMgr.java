@@ -19,6 +19,9 @@ public class UserMgr {
 		//Deleguer à la DAL l'ajout de l'utilisateur à la BDD
 		userDAO.insert(user);
 	}
-	
-	
+
+	public void verifierUser(String pseudo, String mdp) throws Exception {
+		User user = new User(pseudo, mdp);
+		userDAO.verif(user);
+	}
 }
