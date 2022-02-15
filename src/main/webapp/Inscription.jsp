@@ -19,7 +19,7 @@
 <input type="text" name="cp" placeholder="Code postal">
 <input type="text" name="ville" placeholder="Ville">
 <input type="text" name="mdp" placeholder="Mot de passe">
-<input type="text" name="mdp_comf" placeholder="Confirmation">
+<input type="text" name="mdp_conf" placeholder="Confirmation">
 <button type="submit">Créer</button>
 <button type="submit">Annuler</button>
 </form>
