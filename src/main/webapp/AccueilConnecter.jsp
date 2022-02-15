@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Accueil</title>
+<title>Accueil Connecté</title>
+<link href="./css/style.css" rel="stylesheet">  
 </head>
 <body>
 
