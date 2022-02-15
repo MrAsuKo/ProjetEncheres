@@ -12,7 +12,7 @@
 	<h1>Eni-Enchères</h1>
 	<h3>Se connecter</h3>
 	
-	<form action="./AccueilServlet.java" method="post">
+	<form action="./ConnecterServlet.java" method="post">
 		<input type="text" placeholder ="Entrer votre pseudonyme ici" name="pseudo" required>
 		
 		<input type="password" placeholder ="Entrer votre mot de passe ici" name="mdp" required>
