@@ -1,4 +1,4 @@
-package fr.eni.gestion_vente.controlers;
+package fr.eni.gestion_user.controlers;
 
 import java.io.IOException;
 
@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class CreationUser
  */
 @WebServlet("/CreationUser")
-public class CreationUser extends HttpServlet {
+public class CreationUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreationUser() {
+    public CreationUserServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
