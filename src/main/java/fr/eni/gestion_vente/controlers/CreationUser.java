@@ -61,9 +61,6 @@ public class CreationUser extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("/Inscription.jsp");
 		rd.forward(request, response);
 		}
-
-
 		
 	}
-
 }
