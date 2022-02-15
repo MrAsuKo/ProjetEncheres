@@ -11,6 +11,7 @@
 
 <div>
 <p>ENI - Enchere</p>
+<p>Bienvenue (User a definir)</p>
 <a href="">Encheres</a>
 <a href="">Vendre un article</a>
 <a href="./AfficherProfil.jsp">Mon profil</a>

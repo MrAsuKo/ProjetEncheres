@@ -9,19 +9,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.gestion_user.bll.UserMgr;
+
 /**
  * Servlet implementation class CreationUser
  */
 @WebServlet("/CreationUser")
 public class CreationUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
+	//attibut vers Manger
+	private UserMgr userMgr;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public CreationUserServlet() {
         super();
-        // TODO Auto-generated constructor stub
+        userMgr = new UserMgr();
     }
 
 	/**
@@ -46,6 +50,15 @@ public class CreationUserServlet extends HttpServlet {
 		String ville = request.getParameter("ville");
 		String mdp = request.getParameter("mdp");
 		String mdpconf = request.getParameter("mdp_conf");
+
+		//controle champs vide
+		if (pseudo == null || pseudo.equals("")) {		
+			String message = "pseudo ne doit pas etre vide";
+			request.setAttribute("message", message);
+			System.out.println(message);
+			RequestDispatcher rd = request.getRequestDispatcher("/Inscription.jsp");
+			rd.forward(request, response);
+		}
 		
 		// creer un message si les mdp snt différent
 		if (mdpconf.equals(mdp)) {
@@ -63,6 +76,9 @@ public class CreationUserServlet extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("/Inscription.jsp");
 		rd.forward(request, response);
 		}
+	
+			
 		
+		userMgr.ajouterUser(pseudo, nom, prenom, email, telephone, rue, cp, ville, mdpconf);
 	}
 }

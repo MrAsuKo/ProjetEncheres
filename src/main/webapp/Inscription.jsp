@@ -25,10 +25,12 @@
 </form>
 	<%
 	String message = null;
-	if (application.getAttribute("message") != null) {
-	message = (String)application.getAttribute("message");
+	if (request.getAttribute("message") != null) {
+	message = (String)request.getAttribute("message");
 	}
 	%>
-	<p><%=message %></p>
+	<% if (request.getAttribute("message") != null) {%>
+	<p style="color: red"><%=message %></p>
+	<%} %>
 </body>
 </html>
