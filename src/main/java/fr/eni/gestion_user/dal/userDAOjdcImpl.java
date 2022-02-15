@@ -17,6 +17,13 @@ public class userDAOjdcImpl {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		//crée la commande
+		
+		//valoriser les parametres
+		
+		//liberer la connexion
+		
 	}
 
 }
