@@ -24,9 +24,10 @@
 <button type="submit">Annuler</button>
 </form>
 	<%
-	 String message = null;
-	if (application.getAttribute("message") != null);
+	String message = null;
+	if (application.getAttribute("message") != null) {
 	message = (String)application.getAttribute("message");
+	}
 	%>
 	<p><%=message %></p>
 </body>
