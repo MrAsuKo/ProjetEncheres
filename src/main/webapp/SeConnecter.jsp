@@ -13,9 +13,9 @@
 	<h3>Se connecter</h3>
 	
 	<form action="./AccueilServlet.java" method="post">
-		<input type="text" placeholder ="Entrer votre pseudonyme ici" name="Pseudonyme" required>
+		<input type="text" placeholder ="Entrer votre pseudonyme ici" name="pseudo" required>
 		
-		<input type="password" placeholder ="Entrer votre mot de passe ici" name="Mot de passe" required>
+		<input type="password" placeholder ="Entrer votre mot de passe ici" name="mdp" required>
 		
 		<input  type="submit" submit="Valider" id="submit" >
 		
