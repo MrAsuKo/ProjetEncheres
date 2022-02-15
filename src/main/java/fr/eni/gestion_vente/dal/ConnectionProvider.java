@@ -14,7 +14,7 @@ public class ConnectionProvider {
 		Connection cnx = null;
 		try {
 			Context context = new InitialContext();
-			DataSource datasource = (DataSource) context.lookup("java:comp/env/jdbc/GestionLiseCourse");
+			DataSource datasource = (DataSource) context.lookup("java:comp/env/jdbc/pool_encheres");
 			cnx = datasource.getConnection();
 		} catch (NamingException e) {
 			DALException exception = new DALException("la ressource pool de connexion est introuvable");
