@@ -20,7 +20,7 @@
 
 <h1> Liste des enchères</h1>
 
-<form action="" method="get">
+<form action="" method="post">
 <input type="text" id="nom" name ="nom" value="le nom de l'article contient">
 <select name="categories" id="categories">
 <option value="Catego">Toutes</option>
