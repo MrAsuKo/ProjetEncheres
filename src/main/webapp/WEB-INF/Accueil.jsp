@@ -12,7 +12,7 @@
 
 <%@include file="fragments/header.jspf" %>
 
-<a href="./SeConnecter">S'inscrire - Se connecter</a>
+<a href="<%=request.getContextPath()%>/SeConnecter">S'inscrire - Se connecter</a>
 
 <h3> Liste des enchères</h3>
 

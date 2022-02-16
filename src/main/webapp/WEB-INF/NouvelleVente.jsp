@@ -39,7 +39,7 @@
 	<button  type="submit" submit="Valider" id="submit" >Enregistrer</button>	
 </form>	
 	
-	<form action="./AccueilConnecter.jsp" method="post">
+	<form action="<%=request.getContextPath()%>/Accueil" method="post">
 	<button  type="submit" submit="Valider" id="submit" >Annuler</button>		
 	</form>	
 	

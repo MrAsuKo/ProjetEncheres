@@ -14,9 +14,9 @@
 <%@include file="fragments/header.jspf" %>
 <h4>Bienvenue ${sessionScope.pseudo}</h4>
 <a href="">Encheres</a>
-<a href="./NouvelleVente">Vendre un article</a>
-<a href="./AfficherProfil">Mon profil</a>
-<a href="./Deconnexion">Deconnexion</a>
+<a href="<%=request.getContextPath()%>/NouvelleVente">Vendre un article</a>
+<a href="<%=request.getContextPath()%>/AfficherProfil">Mon profil</a>
+<a href="<%=request.getContextPath()%>/Deconnexion">Deconnexion</a>
 </div>
 
 <h3> Liste des enchères</h3>
