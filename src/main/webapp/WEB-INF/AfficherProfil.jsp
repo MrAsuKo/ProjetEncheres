@@ -17,7 +17,7 @@
 <p>Rue : ${sessionScope.rue}</p>
 <p>Code postal : ${sessionScope.cp}</p>
 <p>Ville : ${sessionScope.ville}</p>
-<form action="" method="post">
+<form action="<%=request.getContextPath()%>/ModifierProfil" method="post">
 <button type="submit">Modifier</button>
 </form>
 </body>

@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class DeconnexionServlet
+ * Servlet implementation class ModifierProfilServlet
  */
-@WebServlet("/Deconnexion")
-public class DeconnexionServlet extends HttpServlet {
+@WebServlet("/ModifierProfil")
+public class ModifierProfilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeconnexionServlet() {
+    public ModifierProfilServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,8 +35,7 @@ public class DeconnexionServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession().invalidate();
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/SeConnecter.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/ModifierProfil.jsp");
 		rd.forward(request, response);
 	}
 }
