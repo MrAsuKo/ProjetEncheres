@@ -45,7 +45,7 @@ public class userDAOjdcImpl {
 		}
 	}
 
-	public boolean verif(User user) throws Exception {
+	public boolean select(User user) throws Exception {
 		Connection cnx = null;
 		boolean trouve = false;
 		try {
@@ -73,4 +73,9 @@ public class userDAOjdcImpl {
 		}
 		return trouve;
 	}
+	
+	public boolean delete(User user) throws Exception {
+		
+	}
 }
+
