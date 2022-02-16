@@ -10,6 +10,7 @@
 <body>
 	<h1>Eni-Enchères</h1>
 	<h3>Se connecter</h3>
+	<p>${sessionScope.pseudo}</p>
 	<form action="<%=request.getContextPath()%>/VerificationUser" method="post">
 		<input type="text" placeholder ="Entrer votre pseudonyme ici" name="pseudo" required>
 		

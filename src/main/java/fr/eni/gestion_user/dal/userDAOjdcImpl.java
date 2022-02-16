@@ -31,7 +31,7 @@ public class userDAOjdcImpl {
 			rqt.setString(7, user.getCp());
 			rqt.setString(8, user.getVille());
 			rqt.setString(9, user.getMdp());
-			rqt.setInt(10, 0);
+			rqt.setInt(10, 100);
 			rqt.setBoolean(11, false);
 			rqt.executeUpdate();
 			ResultSet rs = rqt.getGeneratedKeys();
