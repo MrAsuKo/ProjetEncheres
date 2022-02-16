@@ -22,7 +22,7 @@
 <option value="Catego">Toutes</option>
 <option value="Catego">--Please choose an option--</option>
 </select>
-<input type="submit" id="recherche" name ="recherche" value="recherche">
+<input type="submit" id="recherche" name ="recherche" value="Recherche">
 </form>
 
 <p>Liste enchere a prevoir</p>

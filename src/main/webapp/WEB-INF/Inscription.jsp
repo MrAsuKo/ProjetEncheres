@@ -21,10 +21,10 @@
 <p>Ville : <input type="text" id="ville" name="ville" required></p>
 <p>Mot de passe : <input type="password" id="mdp" name="mdp" required></p>
 <p>Confirmer mot de passe : <input type="password" id="mdp_conf" name="mdp_conf" required></p>
-<button type="submit">Créer</button>
+<input type="submit" id="créer" name ="créer" value="Créer">
 </form>
 <form action="<%=request.getContextPath()%>/SeConnecter" method="post">
-<button type="submit">Annuler</button>
+<input type="submit" id="annuler" name ="annuler" value="Annuler">
 </form>
 	<%
 	String message = null;
