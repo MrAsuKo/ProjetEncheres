@@ -17,7 +17,7 @@
 </form>
 </div>
 
-<h1> Liste des enchères</h1>
+<h3> Liste des enchères</h3>
 
 <form action="" method="post">
 <input type="text" id="nom" name ="nom" value="le nom de l'article contient">

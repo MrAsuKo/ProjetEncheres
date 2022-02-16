@@ -12,14 +12,14 @@
 
 <div>
 <%@include file="fragments/header.jspf" %>
-<p>Bienvenue ${sessionScope.pseudo}</p>
+<h4>Bienvenue ${sessionScope.pseudo}</h4>
 <a href="">Encheres</a>
 <a href="./NouvelleVente">Vendre un article</a>
 <a href="./AfficherProfil">Mon profil</a>
 <a href="./Deconnexion">Deconnexion</a>
 </div>
 
-<h1> Liste des enchères</h1>
+<h3> Liste des enchères</h3>
 
 <form action="" method="post">
 <input type="text" id="nom" name ="nom" value="le nom de l'article contient">
