@@ -8,7 +8,7 @@ public class Vente {
 	private String finenchere;
 	private String prixdepart;
 	private int id;
-	private Categorie categorie;
+	private int numcategorie;
 	
 	/**
 	 * @param article
@@ -16,13 +16,27 @@ public class Vente {
 	 * @param debutenchere
 	 * @param finenchere
 	 * @param prixdepart
+	 * @param numcategorie 
 	 */
-	public Vente(String article, String description, String debutenchere, String finenchere, String prixdepart) {
+	public Vente(String article, String description, String debutenchere, String finenchere, String prixdepart, int numcategorie) {
 		this.article = article;
 		this.description = description;
 		this.debutenchere = debutenchere;
 		this.finenchere = finenchere;
 		this.prixdepart = prixdepart;
+		this.numcategorie = numcategorie;
+	}
+	/**
+	 * @return the categorie
+	 */
+	public int getCategorie() {
+		return numcategorie;
+	}
+	/**
+	 * @param categorie the categorie to set
+	 */
+	public void setCategorie(int categorie) {
+		this.numcategorie = categorie;
 	}
 	/**
 	 * @return the article

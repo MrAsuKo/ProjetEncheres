@@ -42,13 +42,15 @@ public class EnregistrerNouvelleVenteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String article = request.getParameter("article");
 		String description = request.getParameter("description");
-		String catégorie = request.getParameter("catégorie");
+		String categorie = request.getParameter("categorie");
 		String prixdepart = request.getParameter("prixdepart");
 		String debutenchere = request.getParameter("debutenchere");
 		String finenchere = request.getParameter("finenchere");
+		int numcategorie = Integer.parseInt(categorie);
+		System.out.println(numcategorie);
 		
 		try {
-		venteMgr.ajoutenchere(article, description, debutenchere, finenchere, prixdepart);
+		venteMgr.ajoutenchere(article, description, debutenchere, finenchere, prixdepart,numcategorie);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

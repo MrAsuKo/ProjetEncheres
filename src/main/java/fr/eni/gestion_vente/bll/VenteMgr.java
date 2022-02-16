@@ -15,9 +15,9 @@ public class VenteMgr {
 
 
 
-	public void ajoutenchere(String article, String description, String debutenchere, String finenchere, String prixdepart) throws Exception {
+	public void ajoutenchere(String article, String description, String debutenchere, String finenchere, String prixdepart, int numcategorie) throws Exception {
 		// construire lobjet BO
-		Vente vente = new Vente(article, description, debutenchere, finenchere, prixdepart);
+		Vente vente = new Vente(article, description, debutenchere, finenchere, prixdepart, numcategorie);
 	
 		//Deleguer à la DAL l'ajout de l'utilisateur à la BDD
 		venteDAO.insert(vente);

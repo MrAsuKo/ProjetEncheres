@@ -56,8 +56,6 @@ public class NouvelleVenteServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			String catego1 = listeCategorie.get(0).toString();
-		System.out.println(catego1);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/NouvelleVente.jsp");
 		rd.forward(request, response);
 	}

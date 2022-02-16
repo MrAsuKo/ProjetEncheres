@@ -11,17 +11,16 @@ import java.util.List;
 import fr.eni.gestion_user.dal.ConnectionProvider;
 import fr.eni.gestion_user.bo.User;
 
-public class userDAOjdcImpl {
+public class userDAOjdcImpl implements UserDAO {
 
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String SELECT_USER = "SELECT pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE pseudo=? and mot_de_passe=?";
 	private static final String DELETE_USER = "DELETE FROM UTILISATEURS WHERE pseudo=?";
 	
-	public void insert(User user) throws Exception {
+	public void insert(User user) throws DALException, SQLException {
 		Connection cnx = null;
 		try {
 			cnx = ConnectionProvider.getConnection();
-			cnx.setAutoCommit(false);
 			PreparedStatement rqt = cnx.prepareStatement(INSERT_USER, PreparedStatement.RETURN_GENERATED_KEYS);
 			rqt.setString(1, user.getPseudo());
 			rqt.setString(2, user.getNom());
@@ -39,14 +38,12 @@ public class userDAOjdcImpl {
 			if (rs.next()) {
 				user.setId(rs.getInt(1));
 			}
-			cnx.commit();
 		} catch (SQLException e) {
-			cnx.rollback();
 			e.printStackTrace();
 		}
 	}
 
-	public boolean select(User user) throws Exception {
+	public boolean select(User user) throws DALException {
 		Connection cnx = null;
 		boolean trouve = false;
 		try {
@@ -75,18 +72,15 @@ public class userDAOjdcImpl {
 		return trouve;
 	}
 	
-	public void delete(User user) throws Exception {
+	public void delete(User user) throws DALException   {
 		Connection cnx = null;
 		try {
 			cnx = ConnectionProvider.getConnection();
-			cnx.setAutoCommit(false);
 			PreparedStatement rqt = cnx.prepareStatement(DELETE_USER);
 			rqt.setString(1,user.getPseudo());
 			System.out.println(user.getPseudo());
 			rqt.executeUpdate();
-			cnx.commit();
 		} catch (SQLException e) {
-			cnx.rollback();
 			e.printStackTrace();
 		}
 	}

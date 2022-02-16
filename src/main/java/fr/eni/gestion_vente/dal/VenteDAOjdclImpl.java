@@ -30,7 +30,7 @@ public class VenteDAOjdclImpl {
 			rqt.setString(5, vente.getPrixdepart());
 			rqt.setInt(6, 0);
 			rqt.setInt(7, 1);
-			rqt.setInt(8, 1);
+			rqt.setInt(8, vente.getCategorie());
 			rqt.executeUpdate();
 			ResultSet rs = rqt.getGeneratedKeys();
 			if (rs.next()) {

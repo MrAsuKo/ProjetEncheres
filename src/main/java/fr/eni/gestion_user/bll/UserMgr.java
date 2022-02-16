@@ -1,11 +1,12 @@
 package fr.eni.gestion_user.bll;
 
 import fr.eni.gestion_user.bo.User;
+import fr.eni.gestion_user.dal.UserDAO;
 import fr.eni.gestion_user.dal.userDAOjdcImpl;
 
 public class UserMgr {
 
-	private userDAOjdcImpl userDAO;
+	private UserDAO userDAO;
 	
 	public UserMgr() {
 		super();
