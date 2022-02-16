@@ -36,7 +36,7 @@ public class DeconnexionServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().invalidate();
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/SeConnecter.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");
 		rd.forward(request, response);
 	}
 }
