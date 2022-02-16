@@ -6,7 +6,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import fr.eni.gestion_user.bll.UserMgr;
 
 /**
@@ -36,7 +35,7 @@ public class SupprimerUserServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pseudo = request.getParameter("pseudo");
+		String pseudo = (String) request.getSession(false).getAttribute("pseudo");
 		try {
 			userMgr.supprimerUser(pseudo);
 		} catch (Exception e) {
