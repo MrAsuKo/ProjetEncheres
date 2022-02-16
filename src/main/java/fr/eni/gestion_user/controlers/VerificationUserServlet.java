@@ -49,6 +49,7 @@ public class VerificationUserServlet extends HttpServlet {
 			if(user.getMdp().equals(mdp)) {
 				HttpSession session = request.getSession();
 				session.setAttribute("pseudo", pseudo);
+				session.setAttribute("id", user.getId());
 				session.setAttribute("nom", user.getNom());
 				session.setAttribute("prenom", user.getPrenom());
 				session.setAttribute("email", user.getEmail());

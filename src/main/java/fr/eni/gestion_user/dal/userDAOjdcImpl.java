@@ -14,7 +14,7 @@ import fr.eni.gestion_user.bo.User;
 public class userDAOjdcImpl implements UserDAO {
 
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-	private static final String SELECT_USER = "SELECT pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE pseudo=? and mot_de_passe=?";
+	private static final String SELECT_USER = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE pseudo=? and mot_de_passe=?";
 	private static final String DELETE_USER = "DELETE FROM UTILISATEURS WHERE pseudo=?";
 	
 	public void insert(User user) throws DALException, SQLException {
@@ -54,6 +54,7 @@ public class userDAOjdcImpl implements UserDAO {
 			ResultSet rs = rqt.executeQuery();
 			if (rs.next()) {
 				trouve = true;
+				user.setId(rs.getInt("no_utilisateur"));
 				user.setNom(rs.getString("nom"));
 				user.setPrenom(rs.getString("prenom"));
 				user.setEmail(rs.getString("email"));

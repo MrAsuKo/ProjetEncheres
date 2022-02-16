@@ -11,7 +11,7 @@
 	<body>
 	<div>
 		<%@include file="fragments/header.jspf" %>
-		<h4>Bienvenue ${sessionScope.pseudo}</h4>
+		<h4>Bienvenue ${sessionScope.pseudo} - ${sessionScope.id}</h4>
 		<a href="">Encheres</a>
 		<a href="<%=request.getContextPath()%>/NouvelleVente">Vendre un article</a>
 		<a href="<%=request.getContextPath()%>/AfficherProfil">Mon profil</a>
