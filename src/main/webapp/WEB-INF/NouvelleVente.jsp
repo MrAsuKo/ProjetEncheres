@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="fr.eni.gestion_vente.bo.Categorie" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +16,14 @@
 <form action="<%=request.getContextPath()%>/EnregistrerNouvelleVente" method="post">
 		<p>Article : <input type="text" id="name" name="article" required>	</p>	
 		<p>Description : <input type="text" id="name" name="description" required>	</p>
-		<p>Catégorie : <input type="text" id="name" name="catégorie" required></p>		
+
+<p>Catégorie : <select name="categorie" id="categorie">
+    <% List<Categorie> list = (List<Categorie>)request.getAttribute("listecategorie");
+    for (Categorie cat : list){ %>
+    	<option  value="<%=cat.getNumcatego()%>"><%=cat.getLibelle()%></option>
+    <%}
+    %>
+</select></p>			
 		<p>Photo de l'article : <input type="text" id="name" name="photo">	</p>	
 		<p>Mise à prix : <input type="number" id="name" name="prixdepart" required></p>	
 		<p>Début de l'enchère : <input type="date" id="name" name="debutenchere" required>	</p>	
@@ -25,13 +34,13 @@
     	<tr>
     		<th>Retrait</th>    
     		<td><p>Rue :</p>
-				<input type="text" id="name" name="rue" required>
+				<input type="text" id="name" name="rue" placeholder=${sessionScope.rue} disabled="disabled">
 			</td>			
 			<td><p>Code Postal :</p>
-				<input type="text" id="name" name="cp" required>
+				<input type="text" id="name" name="cp" placeholder=${sessionScope.cp} disabled="disabled">
 			</td>			
 			<td><p>Ville :</p>
-				<input type="text" id="name" name="ville" required>
+				<input type="text" id="name" name="ville" placeholder=${sessionScope.ville} disabled="disabled">
 			</td>    		
     	</tr>
     </table>

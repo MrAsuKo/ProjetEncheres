@@ -82,6 +82,7 @@ public class userDAOjdcImpl {
 			cnx.setAutoCommit(false);
 			PreparedStatement rqt = cnx.prepareStatement(DELETE_USER);
 			rqt.setString(1,user.getPseudo());
+			System.out.println(user.getPseudo());
 			rqt.executeUpdate();
 			cnx.commit();
 		} catch (SQLException e) {

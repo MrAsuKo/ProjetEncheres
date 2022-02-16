@@ -48,6 +48,7 @@ public class NouvelleVenteServlet extends HttpServlet {
 			List<Categorie> listeCategorie = null;
 			try {
 				listeCategorie = categorieMgr.selectcategorie();
+				request.setAttribute("listecategorie", listeCategorie);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

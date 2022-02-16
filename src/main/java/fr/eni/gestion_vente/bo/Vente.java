@@ -8,6 +8,8 @@ public class Vente {
 	private String finenchere;
 	private String prixdepart;
 	private int id;
+	private Categorie categorie;
+	
 	/**
 	 * @param article
 	 * @param description
