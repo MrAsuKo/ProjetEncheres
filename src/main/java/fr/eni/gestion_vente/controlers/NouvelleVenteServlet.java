@@ -1,6 +1,8 @@
 package fr.eni.gestion_vente.controlers;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,13 +11,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.gestion_user.bll.UserMgr;
+import fr.eni.gestion_user.dal.DALException;
+import fr.eni.gestion_vente.bll.CategorieMgr;
+import fr.eni.gestion_vente.bo.Categorie;
+
 /**
  * Servlet implementation class NouvelleVenteServlet
  */
 @WebServlet("/NouvelleVente")
 public class NouvelleVenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+     
+	private CategorieMgr categorieMgr;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -35,6 +43,19 @@ public class NouvelleVenteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Categorie categorie = null;
+			List<Categorie> listeCategorie = null;
+			try {
+				listeCategorie = categorieMgr.selectcategorie();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		System.out.println(listeCategorie);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/NouvelleVente.jsp");
 		rd.forward(request, response);
 	}
