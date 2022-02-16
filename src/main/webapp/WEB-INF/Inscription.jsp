@@ -11,25 +11,25 @@
 <%@include file="fragments/header.jspf" %>
 <h3>Mon profil</h3>
 <form action="<%=request.getContextPath()%>/CreationUser" method="post">
-<p>Pseudo</p>
+<p>Pseudo :</p>
 <input type="text" id="pseudo" name="pseudo" required>
-<p>Nom</p>
+<p>Nom :</p>
 <input type="text" id="nom" name="nom" required>
-<p>Prenom</p>
+<p>Prenom :</p>
 <input type="text" id="prenom" name="prenom" required>
-<p>Email</p>
+<p>Email :</p>
 <input type="text" id="email" name="email" required>
-<p>Téléphone</p>
+<p>Téléphone :</p>
 <input type="text" id="telephone" name="telephone" required>
-<p>Rue</p>
+<p>Rue :</p>
 <input type="text" id="rue" name="rue" required>
-<p>Code postal</p>
+<p>Code postal :</p>
 <input type="text" id="cp" name="cp" required>
-<p>Ville</p>
+<p>Ville :</p>
 <input type="text" id="ville" name="ville" required>
-<p>Mot de passe</p>
+<p>Mot de passe :</p>
 <input type="password" id="mdp" name="mdp" required>
-<p>Confirmer mot de passe</p>
+<p>Confirmer mot de passe :</p>
 <input type="password" id="mdp_conf" name="mdp_conf" required>
 <button type="submit">Créer</button>
 <button type="submit">Annuler</button>
