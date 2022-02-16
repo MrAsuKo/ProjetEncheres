@@ -10,12 +10,9 @@
 </head>
 <body>
 
-<div>
 <%@include file="fragments/header.jspf" %>
-<form action="<%=request.getContextPath()%>/SeConnecter" method="post">
-<input type="submit" value="S'inscrire - Se connecter">
-</form>
-</div>
+
+<a href="<%=request.getContextPath()%>/SeConnecter">S'inscrire - Se connecter</a>
 
 <h3> Liste des enchères</h3>
 
@@ -25,7 +22,7 @@
 <option value="Catego">Toutes</option>
 <option value="Catego">--Please choose an option--</option>
 </select>
-<input type="submit" id="recherche" name ="recherche" value="recherche">
+<input type="submit" id="recherche" name ="recherche" value="Recherche">
 </form>
 
 <p>Liste enchere a prevoir</p>

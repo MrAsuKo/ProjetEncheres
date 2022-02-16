@@ -12,30 +12,14 @@
 	<h3>Nouvelle vente</h3>	
 
 <form action="<%=request.getContextPath()%>/EnregistrerNouvelleVente" method="post">
-		<p>Article</p>
-		<input type="text" id="name" name="article" required>		
-		<p>Description</p>
-		<input type="text" id="name" name="description" required>	
-		<p>Catégorie</p>
-		<input type="text" id="name" name="catégorie" required>		
-		<p>Photo de l'article</p>
-		<input type="text" id="name" name="photo">		
-		<p>Mise à prix</p>
-		<input type="number" id="name" name="prixdepart" required>		
-		<p>Début de l'enchère</p>
-		<input type="date" id="name" name="debutenchere" required>		
-		<p>Fin de l'enchère</p>
-		<input type="date" id="name" name="finenchere" required>
+		<p>Article : <input type="text" id="name" name="article" required>	</p>	
+		<p>Description : <input type="text" id="name" name="description" required>	</p>
+		<p>Catégorie : <input type="text" id="name" name="catégorie" required></p>		
+		<p>Photo de l'article : <input type="text" id="name" name="photo">	</p>	
+		<p>Mise à prix : <input type="number" id="name" name="prixdepart" required></p>	
+		<p>Début de l'enchère : <input type="date" id="name" name="debutenchere" required>	</p>	
+		<p>Fin de l'enchère : <input type="date" id="name" name="finenchere" required></p>
 
-	
-<!-- 	<style>
-      table,
-     {
-        padding: 10px;
-        border: 1px solid black;
-        border-collapse: collapse;
-      }
-    </style> -->
     
     <table>
     	<tr>
@@ -55,7 +39,7 @@
 	<button  type="submit" submit="Valider" id="submit" >Enregistrer</button>	
 </form>	
 	
-	<form action="./AccueilConnecter.jsp" method="post">
+	<form action="<%=request.getContextPath()%>/Accueil" method="post">
 	<button  type="submit" submit="Valider" id="submit" >Annuler</button>		
 	</form>	
 	

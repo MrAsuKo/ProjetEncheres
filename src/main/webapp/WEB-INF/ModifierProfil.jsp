@@ -11,20 +11,21 @@
 <%@include file="fragments/header.jspf" %>
 <h3>Mon profil</h3>
 <form action="" method="post">
-<input type="text" name="pseudo" placeholder="Pseudo">
-<input type="text" name="nom" placeholder="Nom">
-<input type="text" name="prenom" placeholder="Prénom">
-<input type="text" name="email" placeholder="Email">
-<input type="text" name="telephone" placeholder="Téléphone">
-<input type="text" name="rue" placeholder="Rue">
-<input type="text" name="cp" placeholder="Code postal">
-<input type="text" name="ville" placeholder="Ville">
-<input type="text" name="mdp" placeholder="Mot de passe actuel">
-<input type="text" name="mdp" placeholder="Nouveau mot de passe">
-<input type="text" name="mdp_comf" placeholder="Confirmation">
-<p>Crédit :</p>
-<button type="submit">Enregistrer</button>
-<button type="submit">Supprimer mon compte</button>
+<p>Pseudo : <input type="text" id="pseudo" name="pseudo" placeholder="${sessionScope.pseudo}"></p>
+<p>Nom : <input type="text" id="nom" name="nom" placeholder="${sessionScope.nom}"></p>
+<p>Prenom : <input type="text" id="prenom" name="prenom" placeholder="${sessionScope.prenom}"></p>
+<p>Email : <input type="text" id="email" name="email" placeholder="${sessionScope.email}"></p>
+<p>Téléphone : <input type="text" id="telephone" name="telephone" placeholder="${sessionScope.telephone}"></p>
+<p>Rue : <input type="text" id="rue" name="rue" placeholder="${sessionScope.rue}"></p>
+<p>Code postal : <input type="text" id="cp" name="cp" placeholder="${sessionScope.cp}"></p>
+<p>Ville : <input type="text" id="ville" name="ville" placeholder="${sessionScope.ville}"></p>
+<p>Mot de passe actuel : <input type="text" id="mdp" name="mdp"></p>
+<p>Nouveau mot de passe : <input type="password" id="mdp" name="mdp"></p>
+<p>Confirmer mot de passe : <input type="password" id="mdp_conf" name="mdp_conf"></p>
+<input type="submit" id="enregistrer" name ="enregistrer" value="Enregistrer">
+</form>
+<form action="<%=request.getContextPath()%>/SupprimerUser" method="post">
+<input type="submit" id="supprimer" name ="supprimer" value="Supprimer mon compte">
 </form>
 </body>
 </html>

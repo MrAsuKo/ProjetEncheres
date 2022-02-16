@@ -59,6 +59,10 @@ public class User {
 		this.administrateur = administrateur;
 	}
 
+	public User(String pseudo) {
+		this.pseudo = pseudo;
+	}
+
 	/**
 	 * @return the id
 	 */
