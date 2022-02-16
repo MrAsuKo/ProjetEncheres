@@ -11,16 +11,26 @@
 <%@include file="fragments/header.jspf" %>
 <h3>Mon profil</h3>
 <form action="<%=request.getContextPath()%>/CreationUser" method="post">
-<input type="text" name="pseudo" placeholder="Pseudo" required>
-<input type="text" name="nom" placeholder="Nom" required>
-<input type="text" name="prenom" placeholder="Prénom" required>
-<input type="text" name="email" placeholder="Email" required>
-<input type="text" name="telephone" placeholder="Téléphone" required>
-<input type="text" name="rue" placeholder="Rue" required>
-<input type="text" name="cp" placeholder="Code postal" required>
-<input type="text" name="ville" placeholder="Ville" required>
-<input type="password" name="mdp" placeholder="Mot de passe" required>
-<input type="password" name="mdp_conf" placeholder="Confirmation" required>
+<p>Pseudo</p>
+<input type="text" id="pseudo" name="pseudo" required>
+<p>Nom</p>
+<input type="text" id="nom" name="nom" required>
+<p>Prenom</p>
+<input type="text" id="prenom" name="prenom" required>
+<p>Email</p>
+<input type="text" id="email" name="email" required>
+<p>Téléphone</p>
+<input type="text" id="telephone" name="telephone" required>
+<p>Rue</p>
+<input type="text" id="rue" name="rue" required>
+<p>Code postal</p>
+<input type="text" id="cp" name="cp" required>
+<p>Ville</p>
+<input type="text" id="ville" name="ville" required>
+<p>Mot de passe</p>
+<input type="password" id="mdp" name="mdp" required>
+<p>Confirmer mot de passe</p>
+<input type="password" id="mdp_conf" name="mdp_conf" required>
 <button type="submit">Créer</button>
 <button type="submit">Annuler</button>
 </form>
