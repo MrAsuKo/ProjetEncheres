@@ -9,14 +9,14 @@
 <body>
 <h1>ENI - Enchères</h1>
 <h3>Mon profil</h3>
-<p>Pseudo : ${sessionScope.user}</p>
-<p>Nom :</p>
-<p>Prénom :</p>
-<p>Email :</p>
-<p>Téléphone :</p>
-<p>Rue :</p>
-<p>Code postal :</p>
-<p>Ville :</p>
+<p>Pseudo : ${sessionScope.pseudo}</p>
+<p>Nom : ${sessionScope.nom}</p>
+<p>Prénom : ${sessionScope.prenom}</p>
+<p>Email : ${sessionScope.email}</p>
+<p>Téléphone : ${sessionScope.telephone}</p>
+<p>Rue : ${sessionScope.rue}</p>
+<p>Code postal : ${sessionScope.cp}</p>
+<p>Ville : ${sessionScope.ville}</p>
 <form action="" method="post">
 <button type="submit">Modifier</button>
 </form>

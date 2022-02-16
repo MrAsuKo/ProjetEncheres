@@ -11,7 +11,7 @@
 
 <div>
 <p>ENI - Enchere</p>
-<p>Bienvenue ${sessionScope.user}</p>
+<p>Bienvenue ${sessionScope.pseudo}</p>
 <a href="">Encheres</a>
 <a href="./NouvelleVente.jsp">Vendre un article</a>
 <a href="./AfficherProfil.jsp">Mon profil</a>

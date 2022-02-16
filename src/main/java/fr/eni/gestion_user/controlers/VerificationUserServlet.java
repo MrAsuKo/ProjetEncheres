@@ -47,9 +47,19 @@ public class VerificationUserServlet extends HttpServlet {
 		try {
 			User user = userMgr.verifierUser(pseudo, mdp);
 			System.out.println(user);
-			if(user.getMdp.equals(mdp)) {
+			if(user.getMdp().equals(mdp)) {
 				HttpSession session = request.getSession();
-				session.setAttribute("user", pseudo);
+				session.setAttribute("pseudo", pseudo);
+				session.setAttribute("nom", user.getNom());
+				session.setAttribute("prenom", user.getPrenom());
+				session.setAttribute("email", user.getEmail());
+				session.setAttribute("telephone", user.getTelephone());
+				session.setAttribute("rue", user.getRue());
+				session.setAttribute("cp", user.getCp());
+				session.setAttribute("ville", user.getVille());
+				session.setAttribute("mdp", user.getMdp());
+				session.setAttribute("credit", user.getCredit());
+				session.setAttribute("administrateur", user.isAdministrateur());
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/AccueilConnecter.jsp");
 				rd.forward(request, response);
 			} else {
