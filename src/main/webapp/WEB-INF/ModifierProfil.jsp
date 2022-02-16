@@ -11,28 +11,17 @@
 <%@include file="fragments/header.jspf" %>
 <h3>Mon profil</h3>
 <form action="" method="post">
-<p>Pseudo : ${sessionScope.pseudo}</p>
-<input type="text" id="pseudo" name="pseudo">
-<p>Nom : ${sessionScope.nom}</p>
-<input type="text" id="nom" name="nom">
-<p>Prenom : ${sessionScope.prenom}</p>
-<input type="text" id="prenom" name="prenom">
-<p>Email : ${sessionScope.email}</p>
-<input type="text" id="email" name="email">
-<p>Téléphone : ${sessionScope.telephone}</p>
-<input type="text" id="telephone" name="telephone">
-<p>Rue : ${sessionScope.rue}</p>
-<input type="text" id="rue" name="rue">
-<p>Code postal : ${sessionScope.cp}</p>
-<input type="text" id="cp" name="cp">
-<p>Ville : ${sessionScope.ville}</p>
-<input type="text" id="ville" name="ville">
-<p>Mot de passe actuel :</p>
-<input type="text" id="mdp" name="mdp">
-<p>Nouveau mot de passe :</p>
-<input type="password" id="mdp" name="mdp">
-<p>Confirmer mot de passe :</p>
-<input type="password" id="mdp_conf" name="mdp_conf">
+<p>Pseudo : ${sessionScope.pseudo} <input type="text" id="pseudo" name="pseudo"></p>
+<p>Nom : ${sessionScope.nom} <input type="text" id="nom" name="nom"></p>
+<p>Prenom : ${sessionScope.prenom} <input type="text" id="prenom" name="prenom"></p>
+<p>Email : ${sessionScope.email} <input type="text" id="email" name="email"></p>
+<p>Téléphone : ${sessionScope.telephone} <input type="text" id="telephone" name="telephone"></p>
+<p>Rue : ${sessionScope.rue} <input type="text" id="rue" name="rue"></p>
+<p>Code postal : ${sessionScope.cp} <input type="text" id="cp" name="cp"></p>
+<p>Ville : ${sessionScope.ville} <input type="text" id="ville" name="ville"></p>
+<p>Mot de passe actuel : <input type="text" id="mdp" name="mdp"></p>
+<p>Nouveau mot de passe : <input type="password" id="mdp" name="mdp"></p>
+<p>Confirmer mot de passe : <input type="password" id="mdp_conf" name="mdp_conf"></p>
 <button type="submit">Enregistrer</button>
 <button type="submit">Supprimer mon compte</button>
 </form>

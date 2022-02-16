@@ -11,26 +11,16 @@
 <%@include file="fragments/header.jspf" %>
 <h3>Mon profil</h3>
 <form action="<%=request.getContextPath()%>/CreationUser" method="post">
-<p>Pseudo :</p>
-<input type="text" id="pseudo" name="pseudo" required>
-<p>Nom :</p>
-<input type="text" id="nom" name="nom" required>
-<p>Prenom :</p>
-<input type="text" id="prenom" name="prenom" required>
-<p>Email :</p>
-<input type="text" id="email" name="email" required>
-<p>Téléphone :</p>
-<input type="text" id="telephone" name="telephone" required>
-<p>Rue :</p>
-<input type="text" id="rue" name="rue" required>
-<p>Code postal :</p>
-<input type="text" id="cp" name="cp" required>
-<p>Ville :</p>
-<input type="text" id="ville" name="ville" required>
-<p>Mot de passe :</p>
-<input type="password" id="mdp" name="mdp" required>
-<p>Confirmer mot de passe :</p>
-<input type="password" id="mdp_conf" name="mdp_conf" required>
+<p>Pseudo : <input type="text" id="pseudo" name="pseudo" required></p>
+<p>Nom : <input type="text" id="nom" name="nom" required></p>
+<p>Prenom : <input type="text" id="prenom" name="prenom" required></p>
+<p>Email : <input type="text" id="email" name="email" required></p>
+<p>Téléphone : <input type="text" id="telephone" name="telephone" required></p>
+<p>Rue : <input type="text" id="rue" name="rue" required></p>
+<p>Code postal : <input type="text" id="cp" name="cp" required></p>
+<p>Ville : <input type="text" id="ville" name="ville" required></p>
+<p>Mot de passe : <input type="password" id="mdp" name="mdp" required></p>
+<p>Confirmer mot de passe : <input type="password" id="mdp_conf" name="mdp_conf" required></p>
 <button type="submit">Créer</button>
 <button type="submit">Annuler</button>
 </form>
