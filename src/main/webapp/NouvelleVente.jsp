@@ -1,3 +1,5 @@
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.sql.Date"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -24,7 +26,7 @@
 		<p>Mise à prix</p>
 		<input type="number" id="name" name="prixdepart" required>		
 		<p>Début de l'enchère</p>
-		<input type="date" id="name" name="debutenchere" required>		
+		<input type="date" id="name" name="debutenchere" value="" required>		
 		<p>Fin de l'enchère</p>
 		<input type="date" id="name" name="finenchere" required>
 
@@ -42,13 +44,13 @@
     	<tr>
     		<th>Retrait</th>    
     		<td><p>Rue :</p>
-				<input type="text" id="name" name="rue" required>
+				<input type="text" id="name" name="rue" placeholder="${sessionScope.rue}" disabled="disabled">
 			</td>			
 			<td><p>Code Postal :</p>
-				<input type="text" id="name" name="cp" required>
+				<input type="text" id="name" name="cp" placeholder="${sessionScope.cp}" disabled="disabled">
 			</td>			
 			<td><p>Ville :</p>
-				<input type="text" id="name" name="ville" required>
+				<input type="text" id="name" name="ville" placeholder="${sessionScope.ville}" disabled="disabled">
 			</td>    		
     	</tr>
     </table>
