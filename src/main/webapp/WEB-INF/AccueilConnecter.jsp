@@ -14,7 +14,7 @@
 <p>Bienvenue ${sessionScope.pseudo}</p>
 <a href="">Encheres</a>
 <a href="./NouvelleVente.jsp">Vendre un article</a>
-<a href="./AfficherProfil.jsp">Mon profil</a>
+<a href="./AfficherProfil">Mon profil</a>
 <a href="./Deconnexion">Deconnexion</a>
 </div>
 
