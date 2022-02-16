@@ -25,4 +25,9 @@ public class UserMgr {
 		boolean trouve = userDAO.select(user);
 		return user;
 	}
+	
+	public void supprimerUser(String pseudo) throws Exception {
+		User user = new User(pseudo);
+		userDAO.delete(user);
+	}
 }

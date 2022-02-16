@@ -24,7 +24,7 @@
 <p>Confirmer mot de passe : <input type="password" id="mdp_conf" name="mdp_conf"></p>
 <input type="submit" id="enregistrer" name ="enregistrer" value="Enregistrer">
 </form>
-<form action="" method="post">
+<form action="<%=request.getContextPath()%>/SupprimerUser" method="post">
 <input type="submit" id="supprimer" name ="supprimer" value="Supprimer mon compte">
 </form>
 </body>
