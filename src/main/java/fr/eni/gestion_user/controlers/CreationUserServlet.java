@@ -53,14 +53,14 @@ public class CreationUserServlet extends HttpServlet {
 		
 		// creer un message si les mdp snt différent
 		if (mdpconf.equals(mdp)) {
-			RequestDispatcher rd = request.getRequestDispatcher("/AccueilConnecter.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/AccueilConnecter.jsp");
 			rd.forward(request, response);
 		}
 		//si l'utilisateur se créer, on va sur la page d'accueil connectée
 		else {
 			String message = "Les mots de passe ne corespondent pas";
 			request.setAttribute("message", message);
-			RequestDispatcher rd = request.getRequestDispatcher("/Inscription.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Inscription.jsp");
 			rd.forward(request, response);
 		}
 	
