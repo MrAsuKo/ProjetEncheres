@@ -8,7 +8,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-<h1>ENI - Enchères</h1>
+<%@include file="fragments/header.jspf" %>
 <h3>Mon profil</h3>
 <p>Pseudo : ${sessionScope.pseudo}</p>
 <p>Nom : ${sessionScope.nom}</p>

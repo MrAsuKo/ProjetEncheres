@@ -11,7 +11,7 @@
 <body>
 
 <div>
-<p>ENI - Enchere</p>
+<%@include file="fragments/header.jspf" %>
 <p>Bienvenue ${sessionScope.pseudo}</p>
 <a href="">Encheres</a>
 <a href="./NouvelleVente">Vendre un article</a>
