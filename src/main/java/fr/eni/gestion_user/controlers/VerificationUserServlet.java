@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.gestion_user.bll.UserMgr;
 import fr.eni.gestion_user.bo.User;
@@ -47,6 +48,8 @@ public class VerificationUserServlet extends HttpServlet {
 			mdpEtat = userMgr.verifierUser(pseudo, mdp);
 			System.out.println(mdpEtat);
 			if(mdpEtat == true) {
+				HttpSession session = request.getSession();
+				session.setAttribute("user", pseudo);
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/AccueilConnecter.jsp");
 				rd.forward(request, response);
 			} else {
