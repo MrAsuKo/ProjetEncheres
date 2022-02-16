@@ -58,9 +58,8 @@ public class CreationUserServlet extends HttpServlet {
 		}
 		//si l'utilisateur se créer, on va sur la page d'accueil connectée
 		else {
-			String message = "les mdp ne corespondent pas";
+			String message = "Les mots de passe ne corespondent pas";
 			request.setAttribute("message", message);
-			System.out.println(message);
 			RequestDispatcher rd = request.getRequestDispatcher("/Inscription.jsp");
 			rd.forward(request, response);
 		}
