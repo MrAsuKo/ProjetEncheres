@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,15 +16,15 @@
 		<input type="text" id="name" name="article" required>		
 		<p>Description</p>
 		<input type="text" id="name" name="description" required>	
-		<p>Catégorie</p>
-		<input type="text" id="name" name="catégorie" required>		
+		<p>CatÃ©gorie</p>
+		<input type="text" id="name" name="catÃ©gorie" required>		
 		<p>Photo de l'article</p>
 		<input type="text" id="name" name="photo">		
-		<p>Mise à prix</p>
+		<p>Mise Ã  prix</p>
 		<input type="number" id="name" name="prixdepart" required>		
-		<p>Début de l'enchère</p>
+		<p>DÃ©but de l'enchÃ¨re</p>
 		<input type="date" id="name" name="debutenchere" required>		
-		<p>Fin de l'enchère</p>
+		<p>Fin de l'enchÃ¨re</p>
 		<input type="date" id="name" name="finenchere" required>
 
 	
