@@ -18,6 +18,7 @@
 		<p>Description : <input type="text" id="name" name="description" required>	</p>
 
 <p>Catégorie : <select name="categorie" id="categorie">
+    <option  value="0">---- Choisir une categorie ----</option>
     <% List<Categorie> list = (List<Categorie>)request.getAttribute("listecategorie");
     for (Categorie cat : list){ %>
     	<option  value="<%=cat.getNumcatego()%>"><%=cat.getLibelle()%></option>
