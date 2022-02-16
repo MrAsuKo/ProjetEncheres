@@ -20,15 +20,6 @@
 		<p>Début de l'enchère : <input type="date" id="name" name="debutenchere" required>	</p>	
 		<p>Fin de l'enchère : <input type="date" id="name" name="finenchere" required></p>
 
-	
-<!-- 	<style>
-      table,
-     {
-        padding: 10px;
-        border: 1px solid black;
-        border-collapse: collapse;
-      }
-    </style> -->
     
     <table>
     	<tr>
