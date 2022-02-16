@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,19 +45,27 @@ public class VenteDAOjdclImpl {
 	}
 
 	private static final String SELECTCATEGO ="SELECT no_categorie,libelle FROM CATEGORIES";
-	public List<Categorie> selectcategorie() throws SQLException, DALException {
+	public List<Categorie> selectcategorie(){
 		Connection cnx = null;
 		List<Categorie> listeCategorie = new ArrayList<Categorie>();
-			cnx = ConnectionProvider.getConnection();		
-			PreparedStatement rqt = cnx.prepareStatement(SELECTCATEGO);
-			ResultSet rs = rqt.executeQuery();
+		try{	
+		cnx = ConnectionProvider.getConnection();
+		} catch (DALException e) {
+			System.out.println(e.getMessage());
+		}
+			Statement rqt;
+			try {
+			rqt = cnx.createStatement();
+			ResultSet rs = rqt.executeQuery(SELECTCATEGO);
 			while (rs.next()) {
 				int num = (rs.getInt("no_categorie"));
 				String libelle = (rs.getString("libelle"));
 				Categorie categorie = new Categorie (num,libelle);
 				listeCategorie.add(categorie);
 			}
-			System.out.println("DAL : " + listeCategorie);
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
 			return listeCategorie;
 		
 	}

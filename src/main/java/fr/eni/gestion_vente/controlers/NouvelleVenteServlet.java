@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.catalina.tribes.util.Arrays;
+
 import fr.eni.gestion_user.bll.UserMgr;
 import fr.eni.gestion_user.dal.DALException;
 import fr.eni.gestion_vente.bll.CategorieMgr;
@@ -29,7 +31,7 @@ public class NouvelleVenteServlet extends HttpServlet {
      */
     public NouvelleVenteServlet() {
         super();
-        // TODO Auto-generated constructor stub
+        categorieMgr = new CategorieMgr();
     }
 
 	/**
@@ -43,7 +45,6 @@ public class NouvelleVenteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Categorie categorie = null;
 			List<Categorie> listeCategorie = null;
 			try {
 				listeCategorie = categorieMgr.selectcategorie();
@@ -54,8 +55,8 @@ public class NouvelleVenteServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
-		System.out.println(listeCategorie);
+			String catego1 = listeCategorie.get(0).toString();
+		System.out.println(catego1);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/NouvelleVente.jsp");
 		rd.forward(request, response);
 	}

@@ -18,7 +18,9 @@
 <a href="./AfficherProfil">Mon profil</a>
 <a href="./Deconnexion">Deconnexion</a>
 </div>
-
+<form action="<%=request.getContextPath()%>/NouvelleVente" method="post">
+<input type="submit" id="nouvelleenchere" name ="nouvelleenchere" value="nouvelle enchere">
+</form>
 <h3> Liste des enchères</h3>
 
 <form action="" method="post">

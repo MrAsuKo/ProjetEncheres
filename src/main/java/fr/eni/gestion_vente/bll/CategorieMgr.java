@@ -5,7 +5,6 @@ import java.util.List;
 
 import fr.eni.gestion_user.dal.DALException;
 import fr.eni.gestion_vente.bo.Categorie;
-import fr.eni.gestion_vente.bo.Vente;
 import fr.eni.gestion_vente.dal.VenteDAOjdclImpl;
 
 public class CategorieMgr {
@@ -18,10 +17,6 @@ public class CategorieMgr {
 	}
 	
 	public List<Categorie> selectcategorie() throws SQLException, DALException {
-		// construire lobjet BO
-	
-		//Deleguer à la DAL l'ajout de l'utilisateur à la BDD
-		List<Categorie> listeCategorie = CategoDAO.selectcategorie();
-		return listeCategorie;
+		return this.CategoDAO.selectcategorie();
 	}
 }
