@@ -12,6 +12,8 @@ public class User {
 	private String cp;
 	private String ville;
 	private String mdp;
+	private int credit;
+	private boolean administrateur;
 	
 	/**
 	 * @param pseudo
@@ -40,6 +42,21 @@ public class User {
 	public User(String pseudo, String mdp) {
 		this.pseudo = pseudo;
 		this.mdp = mdp;
+	}
+	
+	public User(String pseudo, String nom, String prenom, String email, String telephone, String rue, String cp,
+			String ville, String mdp, int credit, boolean administrateur) {
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.telephone = telephone;
+		this.rue = rue;
+		this.cp = cp;
+		this.ville = ville;
+		this.mdp = mdp;
+		this.credit = credit;
+		this.administrateur = administrateur;
 	}
 
 	/**
@@ -179,6 +196,29 @@ public class User {
 	 */
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
+	}
+
+	public int getCredit() {
+		return credit;
+	}
+
+	public void setCredit(int credit) {
+		this.credit = credit;
+	}
+
+	public boolean isAdministrateur() {
+		return administrateur;
+	}
+
+	public void setAdministrateur(boolean administrateur) {
+		this.administrateur = administrateur;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email
+				+ ", telephone=" + telephone + ", rue=" + rue + ", cp=" + cp + ", ville=" + ville + ", mdp=" + mdp
+				+ ", credit=" + credit + ", administrateur=" + administrateur + "]";
 	}
 	
 }

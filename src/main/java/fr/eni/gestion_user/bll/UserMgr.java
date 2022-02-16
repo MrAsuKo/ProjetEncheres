@@ -20,9 +20,9 @@ public class UserMgr {
 		userDAO.insert(user);
 	}
 
-	public boolean verifierUser(String pseudo, String mdp) throws Exception {
+	public User verifierUser(String pseudo, String mdp) throws Exception {
 		User user = new User(pseudo, mdp);
-		boolean mdpEtat;
-		return mdpEtat = userDAO.verif(user);
+		boolean trouve = userDAO.verif(user);
+		return user;
 	}
 }

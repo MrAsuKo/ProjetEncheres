@@ -1,6 +1,7 @@
 package fr.eni.gestion_user.controlers;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -42,22 +43,15 @@ public class VerificationUserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pseudo = request.getParameter("pseudo");
 		String mdp = request.getParameter("mdp");
-		boolean mdpEtat;
 		try {
-			mdpEtat = userMgr.verifierUser(pseudo, mdp);
-			System.out.println(mdpEtat);
-			if(mdpEtat == true) {
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/AccueilConnecter.jsp");
-				rd.forward(request, response);
-			} else {
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/SeConnecter.jsp");
-				rd.forward(request, response);
-				String message = "Mot de passe incorrect";
-				request.setAttribute("message", message);
-			}
+			User user = userMgr.verifierUser(pseudo, mdp);
+			System.out.println(user);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 }
+
+//if (user.getMdp().equals(mot_de_passe) ) {
+//	mdpEtat = true;
+//}
