@@ -9,7 +9,7 @@
 <body>
 <h1>ENI - Enchères</h1>
 <h3>Mon profil</h3>
-<p>Pseudo :</p>
+<p>Pseudo : ${sessionScope.user}</p>
 <p>Nom :</p>
 <p>Prénom :</p>
 <p>Email :</p>
