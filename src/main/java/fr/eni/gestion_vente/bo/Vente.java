@@ -94,6 +94,11 @@ public class Vente {
 	public void setId(int id) {
 		this.id = id;
 	}
+	@Override
+	public String toString() {
+		return String.format("Vente [article=%s, description=%s, debutenchere=%s, finenchere=%s, prixdepart=%s, id=%s]",
+				article, description, debutenchere, finenchere, prixdepart, id);
+	}
 
 	
 	
