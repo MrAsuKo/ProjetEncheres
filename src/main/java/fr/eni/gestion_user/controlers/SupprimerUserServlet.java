@@ -1,6 +1,8 @@
 package fr.eni.gestion_user.controlers;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,6 +40,8 @@ public class SupprimerUserServlet extends HttpServlet {
 		String pseudo = (String) request.getSession(false).getAttribute("pseudo");
 		try {
 			userMgr.supprimerUser(pseudo);
+			RequestDispatcher rd = request.getRequestDispatcher("/Accueil.jsp");
+			rd.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
