@@ -17,9 +17,6 @@
 		<a href="<%=request.getContextPath()%>/AfficherProfil">Mon profil</a>
 		<a href="<%=request.getContextPath()%>/Deconnexion">Deconnexion</a>
 	</div>
-	<form action="<%=request.getContextPath()%>/NouvelleVente" method="post">
-		" id="nouvelleenchere" name ="nouvelleenchere" value="nouvelle enchere">
-	</form>
 	<h3> Liste des enchères</h3>
 	<form action="" method="post">
 		<input type="text" id="nom" name ="nom" value="le nom de l'article contient">

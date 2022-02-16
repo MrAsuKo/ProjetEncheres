@@ -25,10 +25,10 @@
     <%}
     %>
 </select></p>			
-		<p>Photo de l'article : <input type="text" id="name" name="photo">	</p>	
-		<p>Mise à prix : <input type="number" id="name" name="prixdepart" required></p>	
-		<p>Début de l'enchère : <input type="date" id="name" name="debutenchere" required>	</p>	
-		<p>Fin de l'enchère : <input type="date" id="name" name="finenchere" required></p>
+		<p>Photo de l'article : <input type="file" id="name" name="photo"></p>	
+		<p>Mise à prix : <input type="number" id="number" name="prixdepart" required></p>	
+		<p>Début de l'enchère : <input type="date" id="date" name="debutenchere" required>	</p>	
+		<p>Fin de l'enchère : <input type="date" id="date" name="finenchere" required></p>
 
     
     <table>
