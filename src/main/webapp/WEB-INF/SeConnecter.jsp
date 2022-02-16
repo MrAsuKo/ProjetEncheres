@@ -18,7 +18,12 @@
 		<input  type="submit" submit="Valider" id="submit" >
 		
 	</form>	
-	
+	<%
+String message = null;
+if (request.getAttribute("message")!= null){
+	message = (String)request.getAttribute("message");%>
+	<p style="color: red;"><%=message %></p>
+<%}; %>	
 		
 	<form action="<%=request.getContextPath()%>/Inscription" method="post">	
 		<button  type="submit" submit="Valider" id="submit">S'inscrire</button>

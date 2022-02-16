@@ -54,12 +54,11 @@ public class userDAOjdcImpl {
 				String pseudo = rs.getString("pseudo");
 				String mdp = rs.getString("mot_de_passe");
 				mot_de_passe = mdp;
-				System.out.println(pseudo + mdp);
 			}
-			
 			if (user.getMdp().equals(mot_de_passe) ) {
 				mdpEtat = true;
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
