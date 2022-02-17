@@ -100,7 +100,6 @@ public class userDAOjdcImpl implements UserDAO {
 			cnx = ConnectionProvider.getConnection();
 			PreparedStatement rqt = cnx.prepareStatement(DELETE_USER);
 			rqt.setString(1,user.getPseudo());
-			System.out.println(user.getPseudo());
 			rqt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
