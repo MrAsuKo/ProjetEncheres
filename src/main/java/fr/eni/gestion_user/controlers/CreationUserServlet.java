@@ -83,8 +83,8 @@ public class CreationUserServlet extends HttpServlet {
 			if(mdpconf.equals(mdp) && use == false) {
 				User user = userMgr.ajouterUser(pseudo, nom, prenom, email, telephone, rue, cp, ville, mdpconf);
 				HttpSession session = request.getSession();
-				session.setAttribute("pseudo", pseudo);
 				session.setAttribute("id", user.getId());
+				session.setAttribute("pseudo", pseudo);
 				session.setAttribute("nom", user.getNom());
 				session.setAttribute("prenom", user.getPrenom());
 				session.setAttribute("email", user.getEmail());
