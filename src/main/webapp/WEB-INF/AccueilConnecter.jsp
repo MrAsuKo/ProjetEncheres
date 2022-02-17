@@ -46,13 +46,7 @@
 		<label style="border-radius: 50%" for="ventes terminées">ventes terminées</label>
 	</div>
 	
-    <% List<Vente> list = (List<Vente>)request.getAttribute("listeEnchere");
-    for (Vente art : list){ 
-    	if (list !=null) {%>
-    	<p><%=art.getArticle()%></p><p><%=art.getPrixdepart()%></p><p><%=art.getFinenchere()%></p><p><%=art.getId()%></p>
-    <%}
-    }
-    %>
+
     
 	</body>
 </html>
