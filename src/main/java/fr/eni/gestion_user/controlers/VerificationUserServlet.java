@@ -59,7 +59,6 @@ public class VerificationUserServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(listeEnchere.get(0));
 		request.setAttribute("listeEnchere", listeEnchere);
 		//fin de la creation de la liste des encheres
 		
@@ -67,7 +66,6 @@ public class VerificationUserServlet extends HttpServlet {
 		String mdp = request.getParameter("mdp");
 		try {
 			User user = userMgr.selectUser(pseudo, mdp);
-			System.out.println("test serlvet : " + user.isTrouve() );
 			if(user.isTrouve()) {
 				HttpSession session = request.getSession();
 				session.setAttribute("pseudo", pseudo);

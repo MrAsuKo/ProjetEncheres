@@ -74,7 +74,6 @@ public class userDAOjdcImpl implements UserDAO {
 			ResultSet rs = rqt.executeQuery();
 			if (rs.next()) {
 				trouve = true;
-				System.out.println("test verif : " + rs.getInt("no_utilisateur"));
 				user.setId(rs.getInt("no_utilisateur"));
 				user.setNom(rs.getString("nom"));
 				user.setPrenom(rs.getString("prenom"));
