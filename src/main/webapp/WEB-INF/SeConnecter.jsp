@@ -15,6 +15,11 @@
 		<form action="<%=request.getContextPath()%>/AccueilConnect" method="post">
 			<p>Pseudo : <input type="text" id="pseudo" name="pseudo" required></p>
 			<p>Mot de passe : <input type="password" id="mdp" name="mdp" required></p>
+			<%	String message = null;
+				if (request.getAttribute("message") != null) {
+					message = (String)request.getAttribute("message"); %>
+					<p style="color: red;"><%=message %></p>
+			<% 	}; %>
 			<input type="submit" id="valider" name ="valider" value="Valider">
 		</form>	
 		<form action="<%=request.getContextPath()%>/Inscription" method="post">	
