@@ -45,8 +45,15 @@
 		<label style="border-radius: 50%" for="ventes non debutées">ventes non debutées</label>
 		<label style="border-radius: 50%" for="ventes terminées">ventes terminées</label>
 	</div>
-	
 
-    
+<div>	
+    <% List<Vente> list = (List<Vente>)request.getAttribute("listeEnchere");
+    for (Vente art : list){ 
+    	if (list !=null) {%>
+    	<p><%=art.getArticle()%></p><p><%=art.getPrixdepart()%></p><p><%=art.getFinenchere()%></p><p><%=art.getId()%></p>
+    <%}
+    }
+    %>
+</div>   
 	</body>
 </html>

@@ -1,6 +1,9 @@
 package fr.eni.gestion_user.controlers;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +14,9 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.gestion_user.bll.UserMgr;
 import fr.eni.gestion_user.bo.User;
+import fr.eni.gestion_vente.bll.VenteMgr;
+import fr.eni.gestion_vente.bo.Vente;
+import fr.eni.gestion_vente.dal.DALException;
 
 /**
  * Servlet implementation class VerificationUserServlet
@@ -20,6 +26,7 @@ public class VerificationUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private UserMgr userMgr;
+	private VenteMgr venteMgr;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -27,6 +34,7 @@ public class VerificationUserServlet extends HttpServlet {
     public VerificationUserServlet() {
         super();
         userMgr = new UserMgr();
+        venteMgr = new VenteMgr();
     }
 
 	/**
@@ -40,6 +48,19 @@ public class VerificationUserServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Vente> listeEnchere = null;		
+		try {
+			listeEnchere = venteMgr.selectenchere();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(listeEnchere.get(0));
+		request.setAttribute("listeEnchere", listeEnchere);
+		
 		String pseudo = request.getParameter("pseudo");
 		String mdp = request.getParameter("mdp");
 		try {
