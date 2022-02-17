@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,4 +71,38 @@ public class VenteDAOjdclImpl {
 			return listeCategorie;
 		
 	}
+	
+	private static final String SELECTENCHERE ="SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie FROM ARTICLES_VENDUS";
+	public List<Vente> selectenchere(){
+		Connection cnx = null;
+		List<Vente> listeEnchere = new ArrayList<Vente>();
+		try{	
+		cnx = ConnectionProvider.getConnection();
+		} catch (DALException e) {
+			System.out.println(e.getMessage());
+		}
+			Statement rqt;
+			try {
+			rqt = cnx.createStatement();
+			ResultSet rs = rqt.executeQuery(SELECTENCHERE);
+			while (rs.next()) {
+				int idEnchere = (rs.getInt("no_article"));
+				String article = (rs.getString("nom_article"));
+				String description = (rs.getString("description"));
+				LocalDate debutEnchere = rs.getDate("date_debut_encheres").toLocalDate();
+				LocalDate finEnchere = rs.getDate("date_fin_encheres").toLocalDate();
+				int prixDepart = (rs.getInt("prix_initial"));
+				int prixVente = (rs.getInt("prix_vente"));
+				int numUser = (rs.getInt("no_utilisateur"));
+				int numCatego = (rs.getInt("no_categorie"));
+				Vente vente = new Vente (idEnchere,article,description,debutEnchere,finEnchere,prixDepart,prixVente,numUser,numCatego);
+				listeEnchere.add(vente);
+			}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			return listeEnchere;
+		
+	}
+	
 }

@@ -1,5 +1,6 @@
 package fr.eni.gestion_vente.bll;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import fr.eni.gestion_vente.bo.Vente;
@@ -27,8 +28,8 @@ public class VenteMgr {
 		
 	}
 
-	public static List<Vente> selectenchere() {		
-		venteDOA.selectionenchere();
+	public List<Vente> selectenchere() throws SQLException, DALException {		
+		return this.venteDAO.selectenchere();
 	}
 
 

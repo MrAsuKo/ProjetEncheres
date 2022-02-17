@@ -1,6 +1,7 @@
 package fr.eni.gestion_vente.controlers;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.gestion_vente.bll.CategorieMgr;
 import fr.eni.gestion_vente.bll.VenteMgr;
 import fr.eni.gestion_vente.bo.Vente;
+import fr.eni.gestion_vente.dal.DALException;
 
 /**
  * Servlet implementation class AffichageEnchereServlet
@@ -43,8 +45,17 @@ public class AffichageEnchereServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Vente> listeEnchere = null;
 		
-		listeEnchere = VenteMgr.selectenchere();
-		
+		try {
+			listeEnchere = venteMgr.selectenchere();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(listeEnchere.get(0));
+		request.setAttribute("listeEnchere", listeEnchere);
 		
 		doGet(request, response);
 	}
