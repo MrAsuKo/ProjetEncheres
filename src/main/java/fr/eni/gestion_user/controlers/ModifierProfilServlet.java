@@ -50,7 +50,7 @@ public class ModifierProfilServlet extends HttpServlet {
 		String mdp = request.getParameter("mdp");
 		
 		try {
-			userMgr.modifUser(pseudo, nom, prenom, email, telephone, rue, cp, ville);
+			userMgr.modifUser(pseudo, nom, prenom, email, telephone, rue, cp, ville, mdp);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/ModifierProfil.jsp");
 			rd.forward(request, response);
 		} catch (Exception e) {

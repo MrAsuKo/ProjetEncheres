@@ -125,6 +125,7 @@ public class userDAOjdcImpl implements UserDAO {
 				 user.setCp(rs.getString("code_postal"));
 				 user.setVille(rs.getString("ville"));
 				 //user.setMdp(rs.getString("mot_de_passe"));
+				 rqt.executeUpdate();
 			 }
 		 } catch (SQLException e) {
 			 e.printStackTrace();

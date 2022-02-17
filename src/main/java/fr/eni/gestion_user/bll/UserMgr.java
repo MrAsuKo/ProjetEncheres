@@ -42,8 +42,8 @@ public class UserMgr {
 		userDAO.delete(user);
 	}
 	
-	public void modifUser(String pseudo, String nom, String prenom, String email, String telephone, String rue, String cp, String ville) throws Exception {
-		User user = new User(pseudo, nom, prenom, email, telephone, rue, cp, ville);
+	public void modifUser(String pseudo, String nom, String prenom, String email, String telephone, String rue, String cp, String ville, String mdp) throws Exception {
+		User user = new User(pseudo, nom, prenom, email, telephone, rue, cp, ville, mdp);
 		userDAO.modif(user);
 	}
 }
