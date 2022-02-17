@@ -89,18 +89,23 @@ public class VenteDAOjdclImpl {
 				int idEnchere = (rs.getInt("no_article"));
 				String article = (rs.getString("nom_article"));
 				String description = (rs.getString("description"));
-				LocalDate debutEnchere = rs.getDate("date_debut_encheres").toLocalDate();
-				LocalDate finEnchere = rs.getDate("date_fin_encheres").toLocalDate();
+				LocalDate debutEnchereDate = rs.getDate("date_debut_encheres").toLocalDate();
+				LocalDate finEnchereDate = rs.getDate("date_fin_encheres").toLocalDate();
 				int prixDepart = (rs.getInt("prix_initial"));
 				int prixVente = (rs.getInt("prix_vente"));
 				int numUser = (rs.getInt("no_utilisateur"));
 				int numCatego = (rs.getInt("no_categorie"));
-				Vente vente = new Vente (idEnchere,article,description,debutEnchere,finEnchere,prixDepart,prixVente,numUser,numCatego);
+				String prixDepartStr = String.valueOf(prixDepart);
+				String debutEnchere = debutEnchereDate.toString();
+				String finEnchere = finEnchereDate.toString();
+				Vente vente = new Vente (idEnchere,article,description,debutEnchere,finEnchere,prixDepartStr,prixVente,numUser,numCatego);
 				listeEnchere.add(vente);
+				
 			}
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
 			}
+			System.out.println(listeEnchere.get(1));
 			return listeEnchere;
 		
 	}

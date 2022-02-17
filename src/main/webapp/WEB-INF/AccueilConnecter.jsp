@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="fr.eni.gestion_vente.bo.Vente" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -43,6 +45,14 @@
 		<label style="border-radius: 50%" for="ventes non debutées">ventes non debutées</label>
 		<label style="border-radius: 50%" for="ventes terminées">ventes terminées</label>
 	</div>
-	<p>Liste enchere a prevoir</p>
+	
+    <% List<Vente> list = (List<Vente>)request.getAttribute("listeEnchere");
+    for (Vente art : list){ 
+    	if (list !=null) {%>
+    	<p><%=art.getArticle()%></p><p><%=art.getPrixdepart()%></p><p><%=art.getFinenchere()%></p><p><%=art.getId()%></p>
+    <%}
+    }
+    %>
+    
 	</body>
 </html>
