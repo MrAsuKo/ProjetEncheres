@@ -10,5 +10,6 @@ public interface UserDAO {
 	public void insert(User user) throws DALException;	
 	public User select(User user) throws DALException;	
 	public void delete(User user) throws DALException;
+	public void modif(User user) throws DALException;;
 	
 }

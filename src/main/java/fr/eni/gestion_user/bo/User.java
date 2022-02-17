@@ -88,6 +88,18 @@ public class User {
 		this.pseudo = pseudo;
 	}
 
+	public User(String pseudo, String nom, String prenom, String email, String telephone, String rue, String cp,
+			String ville) {
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.telephone = telephone;
+		this.rue = rue;
+		this.cp = cp;
+		this.ville = ville;
+	}
+
 	/**
 	 * @return the id
 	 */
