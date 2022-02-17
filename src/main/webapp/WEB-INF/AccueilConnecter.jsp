@@ -18,14 +18,18 @@
 		<a href="<%=request.getContextPath()%>/Accueil">Deconnexion</a>
 	</div>
 	<h3> Liste des enchères</h3>
+	
 	<form action="" method="post">
 		<input type="text" id="nom" name ="nom" value="le nom de l'article contient">
 		<select name="categories" id="categories">
 			<option value="Catego">Toutes</option>
 			<option value="Catego">--Please choose an option--</option>
 		</select>
+	</form>
+	<form action="<%=request.getContextPath()%>/AffichageEnchere" method="post">
 		<input type="submit" id="recherche" name ="recherche" value="recherche">
 	</form>
+	
 	<div>
 		<input type="checkbox" id="type" name="type">
 		<label style="border-radius: 50%" for="achats">Achats</label>

@@ -1,5 +1,7 @@
 package fr.eni.gestion_vente.bo;
 
+import java.time.LocalDate;
+
 public class Vente {
 
 	private String article;
@@ -17,14 +19,20 @@ public class Vente {
 	 * @param finenchere
 	 * @param prixdepart
 	 * @param numcategorie 
+	 * @param numcategorie2 
 	 */
-	public Vente(String article, String description, String debutenchere, String finenchere, String prixdepart, int numcategorie) {
+	public Vente(String article, String description, String debutenchere, String finenchere, String prixdepart, int id, int numcategorie) {
 		this.article = article;
 		this.description = description;
 		this.debutenchere = debutenchere;
 		this.finenchere = finenchere;
 		this.prixdepart = prixdepart;
 		this.numcategorie = numcategorie;
+		this.id = id;
+	}
+	public Vente(int idEnchere, String article2, String description2, LocalDate debutEnchere2, LocalDate finEnchere2,
+			int prixDepart2, int prixVente, int numUser, int numCatego) {
+		// TODO Auto-generated constructor stub
 	}
 	/**
 	 * @return the categorie
