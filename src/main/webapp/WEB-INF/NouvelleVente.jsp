@@ -45,16 +45,10 @@
 			</td>    		
     	</tr>
     </table>
-	
-	<button  type="submit" submit="Valider" id="submit" >Enregistrer</button>	
-</form>	
-	
-	<form action="<%=request.getContextPath()%>/Accueil" method="post">
-	<button  type="submit" submit="Valider" id="submit" >Annuler</button>		
+		<input type="submit" id="enregistrer" name ="enregistrer" value="Enregistrer">
 	</form>	
-	
-	
-	
-
+	<form action="<%=request.getContextPath()%>/Accueil" method="post">
+		<input type="submit" id="annuler" name ="annuler" value="Annuler">
+	</form>	
 </body>
 </html>

@@ -8,13 +8,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.gestion_user.bll.UserMgr;
+import fr.eni.gestion_user.bo.User;
 
 /**
  * Servlet implementation class CreationUser
  */
-@WebServlet("/CreationUser")
+@WebServlet("/AccueilInscr")
 public class CreationUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -49,27 +51,32 @@ public class CreationUserServlet extends HttpServlet {
 		String ville = request.getParameter("ville");
 		String mdp = request.getParameter("mdp");
 		String mdpconf = request.getParameter("mdp_conf");
-
-		
-		// creer un message si les mdp snt différent
-		if (mdpconf.equals(mdp)) {
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/AccueilConnecter.jsp");
-			rd.forward(request, response);
-		}
-		//si l'utilisateur se créer, on va sur la page d'accueil connectée
-		else {
-			String message = "Les mots de passe ne corespondent pas";
-			request.setAttribute("message", message);
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Inscription.jsp");
-			rd.forward(request, response);
-		}
-	
-			
 		
 		try {
-			userMgr.ajouterUser(pseudo, nom, prenom, email, telephone, rue, cp, ville, mdpconf);
+			User user =userMgr.ajouterUser(pseudo, nom, prenom, email, telephone, rue, cp, ville, mdpconf);
+			if(mdpconf.equals(mdp)) {
+				HttpSession session = request.getSession();
+				session.setAttribute("pseudo", pseudo);
+				session.setAttribute("id", user.getId());
+				session.setAttribute("nom", user.getNom());
+				session.setAttribute("prenom", user.getPrenom());
+				session.setAttribute("email", user.getEmail());
+				session.setAttribute("telephone", user.getTelephone());
+				session.setAttribute("rue", user.getRue());
+				session.setAttribute("cp", user.getCp());
+				session.setAttribute("ville", user.getVille());
+				session.setAttribute("mdp", user.getMdp());
+				session.setAttribute("credit", user.getCredit());
+				session.setAttribute("administrateur", user.isAdministrateur());
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/AccueilConnecter.jsp");
+				rd.forward(request, response);
+			} else {
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Inscription.jsp");
+				rd.forward(request, response);
+				String message = "Les mots de passe ne corespondent pas";
+				request.setAttribute("message", message);
+			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

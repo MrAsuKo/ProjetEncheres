@@ -10,7 +10,7 @@
 	<body>
 		<%@include file="fragments/header.jspf" %>
 		<h3>Mon profil</h3>
-		<form action="<%=request.getContextPath()%>/CreationUser" method="post">
+		<form action="<%=request.getContextPath()%>/AccueilInscr" method="post">
 			<p>Pseudo : <input type="text" id="pseudo" name="pseudo" required></p>
 			<p>Nom : <input type="text" id="nom" name="nom" required></p>
 			<p>Prenom : <input type="text" id="prenom" name="prenom" required></p>
@@ -29,7 +29,7 @@
 			<input type="submit" id="créer" name ="créer" value="Créer">
 		</form>
 		<form action="<%=request.getContextPath()%>/SeConnecter" method="post">
-			 type="submit" id="annuler" name ="annuler" value="Annuler">
+			<input type="submit" id="annuler" name ="annuler" value="Annuler">
 		</form>
 	</body>
 </html>

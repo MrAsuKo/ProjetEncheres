@@ -13,12 +13,13 @@ public class UserMgr {
 		userDAO = new userDAOjdcImpl();
 	}
 	
-	public void ajouterUser(String pseudo, String nom, String prenom, String email, String telepone, String rue, String cp, String ville, String mdp) throws Exception {
+	public User ajouterUser(String pseudo, String nom, String prenom, String email, String telepone, String rue, String cp, String ville, String mdp) throws Exception {
 		// construire lobjet BO
 		User user = new User(pseudo, nom, prenom, email, telepone, rue, cp, ville, mdp);
 	
 		//Deleguer à la DAL l'ajout de l'utilisateur à la BDD
 		userDAO.insert(user);
+		return user;
 	}
 
 	public User verifierUser(String pseudo, String mdp) throws Exception {

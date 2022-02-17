@@ -13,7 +13,7 @@ import fr.eni.gestion_user.bll.UserMgr;
 /**
  * Servlet implementation class SupprimerUserServlet
  */
-@WebServlet("/SupprimerUser")
+@WebServlet("/Home")
 public class SupprimerUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
