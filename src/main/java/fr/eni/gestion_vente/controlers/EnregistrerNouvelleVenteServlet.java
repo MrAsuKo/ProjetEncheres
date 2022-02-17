@@ -1,6 +1,8 @@
 package fr.eni.gestion_vente.controlers;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.gestion_vente.bll.VenteMgr;
+import fr.eni.gestion_vente.bo.Vente;
+import fr.eni.gestion_vente.dal.DALException;
 
 /**
  * Servlet implementation class NouvelleVenteServlet
@@ -40,6 +44,20 @@ public class EnregistrerNouvelleVenteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+				//Creation de la liste des encheres
+				List<Vente> listeEnchere = null;		
+				try {
+					listeEnchere = venteMgr.selectenchere();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (DALException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				request.setAttribute("listeEnchere", listeEnchere);
+				//fin de la creation de la liste des encheres
+		
 		String article = request.getParameter("article");
 		String description = request.getParameter("description");
 		String categorie = request.getParameter("categorie");

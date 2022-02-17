@@ -1,7 +1,10 @@
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.time.LocalDate"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="fr.eni.gestion_vente.bo.Vente" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Date" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -30,11 +33,14 @@
 		<p>Vendeur : <%=art.getPseudo()%></p>
 		
 
-			
+		<% 
+		Date date = date.parse(art.getFinenchere());
+		if (date < LocalDate.now()) {%>
 			<p>Offre : <input type="number" id="offre" name="offre" min="<%=art.getPrixdepart()%>"></p>
 						<input id="prodId" name="noArticle" type="hidden" value="<%=art.getIdEnchere() %>">
 						<input id="prodId" name="id" type="hidden" value="${sessionScope.id}">
 			<input type="submit" id="encherir" name ="encherir" value="Enchérir">
+			<%} %>
 		</form>
 		
 				<%}
