@@ -34,7 +34,7 @@
     }
     %>
 		<form action="" method="post">
-			<p>Offre : <input type="text" id="offre" name="offre"></p>
+			<p>Offre : <input type="number" id="offre" name="offre"></p>
 			<input type="submit" id="encherir" name ="encherir" value="Enchérir">
 		</form>
 	</body>
