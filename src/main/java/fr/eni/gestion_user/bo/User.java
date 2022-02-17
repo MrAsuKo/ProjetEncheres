@@ -39,6 +39,12 @@ public class User {
 		this.mdp = mdp;
 	}
 	
+	public User(String pseudo, String email, String mdp) {
+		this.pseudo = pseudo;
+		this.email = email;
+		this.mdp = mdp;
+	}
+	
 	public User(String pseudo, String mdp) {
 		this.pseudo = pseudo;
 		this.mdp = mdp;

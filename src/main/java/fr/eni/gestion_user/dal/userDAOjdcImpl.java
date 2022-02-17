@@ -14,10 +14,35 @@ import fr.eni.gestion_user.bo.User;
 public class userDAOjdcImpl implements UserDAO {
 
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+	private static final String SELECT_USERPSEUDO = "SELECT pseudo FROM UTILISATEURS WHERE pseudo=?";
+	private static final String SELECT_USEREMAIL = "SELECT email FROM UTILISATEURS WHERE email=?";
 	private static final String SELECT_USER = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE pseudo=? and mot_de_passe=?";
 	private static final String DELETE_USER = "DELETE FROM UTILISATEURS WHERE pseudo=?";
 	
-	public void insert(User user) throws DALException, SQLException {
+	public boolean verif(User user) throws DALException {
+		Connection cnx = null;
+		boolean use = false;
+		try {
+			cnx = ConnectionProvider.getConnection();
+			PreparedStatement rqt2 = cnx.prepareStatement(SELECT_USERPSEUDO);
+			rqt2.setString(1,user.getPseudo());
+			ResultSet rs2 = rqt2.executeQuery();
+			if (rs2.next()) {
+				use = true;
+			}
+			PreparedStatement rqt3 = cnx.prepareStatement(SELECT_USEREMAIL);
+			rqt3.setString(1,user.getEmail());
+			ResultSet rs3 = rqt3.executeQuery();
+			if (rs3.next()) {
+				use = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return use;
+	}
+	
+	public void insert(User user) throws DALException {
 		Connection cnx = null;
 		try {
 			cnx = ConnectionProvider.getConnection();

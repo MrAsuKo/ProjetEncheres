@@ -11,7 +11,7 @@
 		<%@include file="fragments/header.jspf" %>
 		<h3>Mon profil</h3>
 		<form action="<%=request.getContextPath()%>/AccueilInscr" method="post">
-			<p>Pseudo : <input type="text" id="pseudo" name="pseudo" required></p>
+			<p>Pseudo : <input type="text" id="pseudo" name="pseudo" required pattern="[a-zA-Z0-9]+" required></p>
 			<p>Nom : <input type="text" id="nom" name="nom" required></p>
 			<p>Prenom : <input type="text" id="prenom" name="prenom" required></p>
 			<p>Email : <input type="text" id="email" name="email" required></p>

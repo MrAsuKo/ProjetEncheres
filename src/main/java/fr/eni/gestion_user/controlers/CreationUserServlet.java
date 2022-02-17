@@ -53,7 +53,14 @@ public class CreationUserServlet extends HttpServlet {
 		String mdpconf = request.getParameter("mdp_conf");
 		
 		try {
-			if(mdpconf.equals(mdp)) {
+			boolean use = userMgr.verifierUser(pseudo, email, mdp);
+			if (use) {
+				String message = "Pseudo et/ou email déja utilisés";
+				request.setAttribute("message", message);
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Inscription.jsp");
+				rd.forward(request, response);
+			} 
+			if(mdpconf.equals(mdp) && use == false) {
 				User user = userMgr.ajouterUser(pseudo, nom, prenom, email, telephone, rue, cp, ville, mdpconf);
 				HttpSession session = request.getSession();
 				session.setAttribute("pseudo", pseudo);
