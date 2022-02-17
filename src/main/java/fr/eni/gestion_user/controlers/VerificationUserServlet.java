@@ -1,8 +1,6 @@
 package fr.eni.gestion_user.controlers;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,7 +15,7 @@ import fr.eni.gestion_user.bo.User;
 /**
  * Servlet implementation class VerificationUserServlet
  */
-@WebServlet("/VerificationUser")
+@WebServlet("/AccueilConnect")
 public class VerificationUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

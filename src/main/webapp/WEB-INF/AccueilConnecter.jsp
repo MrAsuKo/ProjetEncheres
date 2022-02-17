@@ -15,7 +15,7 @@
 		<a href="">Encheres</a>
 		<a href="<%=request.getContextPath()%>/NouvelleVente">Vendre un article</a>
 		<a href="<%=request.getContextPath()%>/AfficherProfil">Mon profil</a>
-		<a href="<%=request.getContextPath()%>/Deconnexion">Deconnexion</a>
+		<a href="<%=request.getContextPath()%>/Accueil">Deconnexion</a>
 	</div>
 	<h3> Liste des enchères</h3>
 	<form action="" method="post">
