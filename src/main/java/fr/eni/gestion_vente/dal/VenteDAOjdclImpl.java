@@ -72,7 +72,8 @@ public class VenteDAOjdclImpl {
 		
 	}
 	
-	private static final String SELECTENCHERE ="SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie FROM ARTICLES_VENDUS";
+	private static final String SELECTENCHERE ="SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,no_categorie, pseudo FROM ARTICLES_VENDUS as av INNER JOIN UTILISATEURS as u ON u.no_utilisateur = av.no_utilisateur \r\n"
+			+ "";
 	public List<Vente> selectenchere(){
 		Connection cnx = null;
 		List<Vente> listeEnchere = new ArrayList<Vente>();
@@ -89,18 +90,24 @@ public class VenteDAOjdclImpl {
 				int idEnchere = (rs.getInt("no_article"));
 				String article = (rs.getString("nom_article"));
 				String description = (rs.getString("description"));
-				LocalDate debutEnchere = rs.getDate("date_debut_encheres").toLocalDate();
-				LocalDate finEnchere = rs.getDate("date_fin_encheres").toLocalDate();
+				LocalDate debutEnchereDate = rs.getDate("date_debut_encheres").toLocalDate();
+				LocalDate finEnchereDate = rs.getDate("date_fin_encheres").toLocalDate();
 				int prixDepart = (rs.getInt("prix_initial"));
 				int prixVente = (rs.getInt("prix_vente"));
 				int numUser = (rs.getInt("no_utilisateur"));
 				int numCatego = (rs.getInt("no_categorie"));
-				Vente vente = new Vente (idEnchere,article,description,debutEnchere,finEnchere,prixDepart,prixVente,numUser,numCatego);
+				String prixDepartStr = String.valueOf(prixDepart);
+				String debutEnchere = debutEnchereDate.toString();
+				String finEnchere = finEnchereDate.toString();
+				String pseudo = rs.getString("pseudo");
+				Vente vente = new Vente (idEnchere,article,description,debutEnchere,finEnchere,prixDepartStr,prixVente,numUser,numCatego,pseudo);
 				listeEnchere.add(vente);
+				
 			}
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
 			}
+			System.out.println(listeEnchere.get(1));
 			return listeEnchere;
 		
 	}

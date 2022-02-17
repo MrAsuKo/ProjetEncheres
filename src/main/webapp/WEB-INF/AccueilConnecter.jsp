@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="fr.eni.gestion_vente.bo.Vente" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -32,17 +34,28 @@
 	
 	<div>
 		<input type="checkbox" id="type" name="type">
-		<label style="border-radius: 50%" for="achats">Achats</label>
-		<input type="checkbox" id="typeachat" name="typeachat">
-		<label style="border-radius: 50%" for="enchères ouvertes">enchères ouvertes</label>
-		<label style="border-radius: 50%" for="mes enchères">mes enchères</label>
-		<label style="border-radius: 50%" for="mes emchères remportées">mes emchères remportées</label>
-		<label style="border-radius: 50%" for="ventes">Mes ventes</label>
-		<input type="checkbox" id="typevente" name="typevente">
-		<label style="border-radius: 50%" for="mes ventes en cours">mes ventes en cours</label>
-		<label style="border-radius: 50%" for="ventes non debutées">ventes non debutées</label>
-		<label style="border-radius: 50%" for="ventes terminées">ventes terminées</label>
+			<label style="border-radius: 50%" for="achats">Achats</label>
+			<input type="checkbox" id="typeachat" name="typeachat">
+				<label style="border-radius: 50%" for="enchères ouvertes">enchères ouvertes</label>
+				<label style="border-radius: 50%" for="mes enchères">mes enchères</label>
+				<label style="border-radius: 50%" for="mes emchères remportées">mes emchères remportées</label>
+				<label style="border-radius: 50%" for="ventes">Mes ventes</label>
+			<input type="checkbox" id="typevente" name="typevente">
+				<label style="border-radius: 50%" for="mes ventes en cours">mes ventes en cours</label>
+				<label style="border-radius: 50%" for="ventes non debutées">ventes non debutées</label>
+				<label style="border-radius: 50%" for="ventes terminées">ventes terminées</label>
 	</div>
-	<p>Liste enchere a prevoir</p>
+
+<div>	
+    <% List<Vente> list = (List<Vente>)request.getAttribute("listeEnchere");
+    for (Vente art : list){ 
+    	if (list !=null) {%>
+    	<div style="border:solid; width: 300px">
+    	<p><%=art.getArticle()%></p><p>Prix : <%=art.getPrixdepart()%></p><p>fin de l'enchère : <%=art.getFinenchere()%></p><p>Vendeur : <%=art.getPseudo()%></p>
+    	</div>
+    <%}
+    }
+    %>
+</div>   
 	</body>
 </html>
