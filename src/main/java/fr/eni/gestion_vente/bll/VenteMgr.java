@@ -44,6 +44,12 @@ public class VenteMgr {
 			e.printStackTrace();
 		}
 		
+	}
+
+
+
+	public int meilleurOffre() {
+		return this.venteDAO.meilleurOffre();
 	}	
 	
 

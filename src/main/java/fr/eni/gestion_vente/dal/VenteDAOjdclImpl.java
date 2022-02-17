@@ -139,4 +139,10 @@ public class VenteDAOjdclImpl {
 		}
 	}
 	
+	private static final String SELECT_MEILLEUR_OFFRE ="SELECT MAX(montant_enchere), e.no_utilisateur,pseudo FROM ENCHERES as e INNER JOIN UTILISATEURS as u ON u.no_utilisateur=e.no_utilisateur WHERE e.no_article=? GROUP BY e.no_utilisateur, u.pseudo;";
+	public int meilleurOffre() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 }
