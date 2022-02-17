@@ -12,7 +12,7 @@
 	<body>
 		<h1>ENI - Enchères</h1>
 		<h3>Détail vente</h3>
-	
+	<form action="<%=request.getContextPath()%>/NouvelleEnchere" method="post">	
 	<% List<Vente> list = (List<Vente>)request.getAttribute("listeEnchere");
     for (Vente art : list){ 
     	if (list !=null) {
@@ -30,8 +30,10 @@
 		<p>Vendeur : <%=art.getPseudo()%></p>
 		
 
-		<form action="" method="post">
+			
 			<p>Offre : <input type="number" id="offre" name="offre" min="<%=art.getPrixdepart()%>"></p>
+						<input id="prodId" name="noArticle" type="hidden" value="<%=art.getIdEnchere() %>">
+						<input id="prodId" name="id" type="hidden" value="${sessionScope.id}">
 			<input type="submit" id="encherir" name ="encherir" value="Enchérir">
 		</form>
 		

@@ -5,13 +5,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.gestion_user.dal.ConnectionProvider;
 import fr.eni.gestion_user.dal.DALException;
 import fr.eni.gestion_vente.bo.Categorie;
+import fr.eni.gestion_vente.bo.Enchere;
 import fr.eni.gestion_vente.bo.Vente;
 
 public class VenteDAOjdclImpl {
@@ -110,6 +114,29 @@ public class VenteDAOjdclImpl {
 			System.out.println(listeEnchere.get(1));
 			return listeEnchere;
 		
+	}
+	
+	private static final String INSERTOFFREENCHERE = "INSERT INTO ENCHERES (date_enchere, montant_enchere, no_article, no_utilisateur) VALUES (?,?,?,?)";
+	public void offreEnchere(Enchere enchere) throws DALException {
+		Connection cnx = null;
+		
+		try {
+			cnx = ConnectionProvider.getConnection();
+			PreparedStatement rqt = cnx.prepareStatement(INSERTOFFREENCHERE, PreparedStatement.RETURN_GENERATED_KEYS);
+			rqt.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
+			rqt.setInt(2, enchere.getOffre());
+			rqt.setInt(3, enchere.getNoArticle());
+			rqt.setInt(4, enchere.getId());
+			rqt.executeUpdate();
+			ResultSet rs = rqt.getGeneratedKeys();
+			if (rs.next()) {
+				enchere.setIdEnchere(rs.getInt(1));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }
