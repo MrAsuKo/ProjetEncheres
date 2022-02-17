@@ -49,9 +49,10 @@
 <div>	
     <% List<Vente> list = (List<Vente>)request.getAttribute("listeEnchere");
     for (Vente art : list){ 
-    	if (list !=null) {%>
+    	if (list !=null) {
+    	int noArticle = art.getIdEnchere();%>
     	<div style="border:solid; width: 300px">
-    	<p><%=art.getArticle()%></p><p>Prix : <%=art.getPrixdepart()%></p><p>fin de l'enchère : <%=art.getFinenchere()%></p><p>Vendeur : <%=art.getPseudo()%></p>
+    	<a href="<%=request.getContextPath()%>/DetailVente?name=<%=art.getIdEnchere()%>"><%=art.getArticle()%></a><p>Prix : <%=art.getPrixdepart()%></p><p>fin de l'enchère : <%=art.getFinenchere()%></p><p>Vendeur : <%=art.getPseudo()%></p>
     	</div>
     <%}
     }

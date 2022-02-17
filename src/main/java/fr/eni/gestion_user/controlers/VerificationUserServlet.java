@@ -48,6 +48,7 @@ public class VerificationUserServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Creation de la liste des encheres
 		List<Vente> listeEnchere = null;		
 		try {
 			listeEnchere = venteMgr.selectenchere();
@@ -60,6 +61,7 @@ public class VerificationUserServlet extends HttpServlet {
 		}
 		System.out.println(listeEnchere.get(0));
 		request.setAttribute("listeEnchere", listeEnchere);
+		//fin de la creation de la liste des encheres
 		
 		String pseudo = request.getParameter("pseudo");
 		String mdp = request.getParameter("mdp");

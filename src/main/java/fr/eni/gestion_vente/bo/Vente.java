@@ -14,8 +14,20 @@ public class Vente {
 	private int numcategorie;
 	private int prixvente;
 	private String pseudo;
-
+	private String libellecatego;
 	
+	/**
+	 * @return the libellecatego
+	 */
+	public String getLibellecatego() {
+		return libellecatego;
+	}
+	/**
+	 * @param libellecatego the libellecatego to set
+	 */
+	public void setLibellecatego(String libellecatego) {
+		this.libellecatego = libellecatego;
+	}
 	/**
 	 * @return the iduser
 	 */
@@ -94,7 +106,7 @@ public class Vente {
 		this.numcategorie = numcategorie;
 		this.iduser = iduser;
 	}
-	public Vente(int idEnchere, String article, String description, String debutenchere, String finenchere, String prixdepart,int prixvente, int iduser, int numcategorie, String pseudo) {
+	public Vente(int idEnchere, String article, String description, String debutenchere, String finenchere, String prixdepart,int prixvente, int iduser, int numcategorie, String pseudo, String libellecatego) {
 		this.idEnchere = idEnchere;
 		this.article = article;
 		this.description = description;
@@ -105,6 +117,7 @@ public class Vente {
 		this.numcategorie = numcategorie;
 		this.iduser=iduser;
 		this.pseudo=pseudo;
+		this.libellecatego = libellecatego;
 	}
 		
 	/**

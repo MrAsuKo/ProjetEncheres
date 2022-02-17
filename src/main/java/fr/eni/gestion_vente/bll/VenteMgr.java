@@ -30,10 +30,7 @@ public class VenteMgr {
 
 	public List<Vente> selectenchere() throws SQLException, DALException {		
 		return this.venteDAO.selectenchere();
-	}
-
-
-	
+	}	
 	
 
 }
