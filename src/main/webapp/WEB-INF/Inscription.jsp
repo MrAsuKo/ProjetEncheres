@@ -24,8 +24,8 @@
 			<%	String message = null;
 				if (request.getAttribute("message") != null) {
 					message = (String)request.getAttribute("message"); %>
-					<p style="color: red"><%=message %></p>
-			<% 	} %>
+					<p style="color: red;"><%=message %></p>
+			<% 	}; %>
 			<input type="submit" id="créer" name ="créer" value="Créer">
 		</form>
 		<form action="<%=request.getContextPath()%>/SeConnecter" method="post">
