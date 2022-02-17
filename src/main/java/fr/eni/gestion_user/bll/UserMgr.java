@@ -22,10 +22,10 @@ public class UserMgr {
 		return user;
 	}
 
-	public User verifierUser(String pseudo, String mdp) throws Exception {
+	public boolean verifierUser(String pseudo, String mdp) throws Exception {
 		User user = new User(pseudo, mdp);
 		boolean trouve = userDAO.select(user);
-		return user;
+		return trouve;
 	}
 	
 	public void supprimerUser(String pseudo) throws Exception {

@@ -43,10 +43,11 @@ public class VerificationUserServlet extends HttpServlet {
 		String pseudo = request.getParameter("pseudo");
 		String mdp = request.getParameter("mdp");
 		try {
-			User user = userMgr.verifierUser(pseudo, mdp);
-			System.out.println(user.getMdp());
-			System.out.println(mdp);
-			if(user.getMdp().equals(mdp)) {
+			boolean trouve = userMgr.verifierUser(pseudo, mdp);
+			User user = new User(pseudo, mdp);
+			System.out.println(user);
+			System.out.println(trouve);
+			if(trouve) {
 				HttpSession session = request.getSession();
 				session.setAttribute("pseudo", pseudo);
 				session.setAttribute("id", user.getId());
@@ -63,10 +64,10 @@ public class VerificationUserServlet extends HttpServlet {
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/AccueilConnecter.jsp");
 				rd.forward(request, response);
 			} else {
+				String message = "Pseudo ou mot de passe incorrect";
+				request.setAttribute("message", message);
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/SeConnecter.jsp");
 				rd.forward(request, response);
-				String message = "Mot de passe incorrect";
-				request.setAttribute("message", message);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

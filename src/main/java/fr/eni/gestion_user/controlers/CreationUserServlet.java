@@ -71,10 +71,10 @@ public class CreationUserServlet extends HttpServlet {
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/AccueilConnecter.jsp");
 				rd.forward(request, response);
 			} else {
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Inscription.jsp");
-				rd.forward(request, response);
 				String message = "Les mots de passe ne corespondent pas";
 				request.setAttribute("message", message);
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Inscription.jsp");
+				rd.forward(request, response);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
