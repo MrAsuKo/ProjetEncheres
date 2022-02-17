@@ -40,6 +40,7 @@ public class SupprimerUserServlet extends HttpServlet {
 		String pseudo = (String) request.getSession(false).getAttribute("pseudo");
 		try {
 			userMgr.supprimerUser(pseudo);
+			request.getSession().invalidate();
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");
 			rd.forward(request, response);
 		} catch (Exception e) {

@@ -4,11 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-
-import fr.eni.gestion_user.dal.ConnectionProvider;
 import fr.eni.gestion_user.bo.User;
 
 public class userDAOjdcImpl implements UserDAO {
@@ -79,7 +74,6 @@ public class userDAOjdcImpl implements UserDAO {
 			ResultSet rs = rqt.executeQuery();
 			if (rs.next()) {
 				trouve = true;
-				System.out.println("test verif : " + rs.getInt("no_utilisateur"));
 				user.setId(rs.getInt("no_utilisateur"));
 				user.setNom(rs.getString("nom"));
 				user.setPrenom(rs.getString("prenom"));
@@ -106,7 +100,6 @@ public class userDAOjdcImpl implements UserDAO {
 			cnx = ConnectionProvider.getConnection();
 			PreparedStatement rqt = cnx.prepareStatement(DELETE_USER);
 			rqt.setString(1,user.getPseudo());
-			System.out.println(user.getPseudo());
 			rqt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

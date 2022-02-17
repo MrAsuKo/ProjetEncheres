@@ -1,6 +1,8 @@
 package fr.eni.gestion_user.controlers;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +14,9 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.gestion_user.bll.UserMgr;
 import fr.eni.gestion_user.bo.User;
+import fr.eni.gestion_vente.bll.VenteMgr;
+import fr.eni.gestion_vente.bo.Vente;
+import fr.eni.gestion_vente.dal.DALException;
 
 /**
  * Servlet implementation class CreationUser
@@ -22,12 +27,15 @@ public class CreationUserServlet extends HttpServlet {
     
 	//attibut vers Manager
 	private UserMgr userMgr;
+	private VenteMgr venteMgr;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
     public CreationUserServlet() {
         super();
         userMgr = new UserMgr();
+        venteMgr = new VenteMgr();
     }
 
 	/**
@@ -41,6 +49,18 @@ public class CreationUserServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Creation de la liste des encheres
+		List<Vente> listeEnchere = null;		
+		try {
+			listeEnchere = venteMgr.selectenchere();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		request.setAttribute("listeEnchere", listeEnchere);
+		//fin de la creation de la liste des encheres
+		
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
@@ -63,8 +83,8 @@ public class CreationUserServlet extends HttpServlet {
 			if(mdpconf.equals(mdp) && use == false) {
 				User user = userMgr.ajouterUser(pseudo, nom, prenom, email, telephone, rue, cp, ville, mdpconf);
 				HttpSession session = request.getSession();
-				session.setAttribute("pseudo", pseudo);
 				session.setAttribute("id", user.getId());
+				session.setAttribute("pseudo", pseudo);
 				session.setAttribute("nom", user.getNom());
 				session.setAttribute("prenom", user.getPrenom());
 				session.setAttribute("email", user.getEmail());

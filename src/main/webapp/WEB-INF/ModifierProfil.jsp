@@ -19,7 +19,7 @@
 			<p>Rue : <input type="text" id="rue" name="rue" placeholder="${sessionScope.rue}"></p>
 			<p>Code postal : <input type="text" id="cp" name="cp" placeholder="${sessionScope.cp}"></p>
 			<p>Ville : <input type="text" id="ville" name="ville" placeholder="${sessionScope.ville}"></p>
-			<p>Mot de passe actuel : <input type="text" id="mdp" name="mdp"></p>
+			<p>Mot de passe actuel : <input type="password" id="mdp" name="mdp"></p>
 			<p>Nouveau mot de passe : <input type="password" id="mdp" name="mdp"></p>
 			<p>Confirmer mot de passe : <input type="password" id="mdp_conf" name="mdp_conf"></p>
 			<input type="submit" id="enregistrer" name ="enregistrer" value="Enregistrer">

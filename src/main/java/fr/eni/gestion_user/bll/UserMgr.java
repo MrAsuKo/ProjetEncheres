@@ -33,7 +33,7 @@ public class UserMgr {
 
 	public User selectUser(String pseudo, String mdp) throws Exception {
 		User user = new User(pseudo, mdp);
-		User trouve = userDAO.select(user);
+		userDAO.select(user);
 		return user;
 	}
 	
