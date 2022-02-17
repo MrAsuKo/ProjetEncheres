@@ -81,7 +81,7 @@ public class VerificationUserServlet extends HttpServlet {
 				session.setAttribute("credit", user.getCredit());
 				session.setAttribute("administrateur", user.isAdministrateur());
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/AccueilConnecter.jsp");
-				rd.forward(request, response);
+				rd.forward(request, response); 
 			} else {
 				String message = "Pseudo ou mot de passe incorrect";
 				request.setAttribute("message", message);
