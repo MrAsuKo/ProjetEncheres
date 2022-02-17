@@ -13,6 +13,15 @@ public class UserMgr {
 		userDAO = new userDAOjdcImpl();
 	}
 	
+	public boolean verifierUser(String pseudo, String email, String mdp) throws Exception {
+		// construire lobjet BO
+		User user = new User(pseudo, email, mdp);
+	
+		//Deleguer à la DAL l'ajout de l'utilisateur à la BDD
+		boolean use = userDAO.verif(user);
+		return use;
+	}
+	
 	public User ajouterUser(String pseudo, String nom, String prenom, String email, String telepone, String rue, String cp, String ville, String mdp) throws Exception {
 		// construire lobjet BO
 		User user = new User(pseudo, nom, prenom, email, telepone, rue, cp, ville, mdp);
@@ -22,7 +31,7 @@ public class UserMgr {
 		return user;
 	}
 
-	public boolean verifierUser(String pseudo, String mdp) throws Exception {
+	public boolean selectUser(String pseudo, String mdp) throws Exception {
 		User user = new User(pseudo, mdp);
 		boolean trouve = userDAO.select(user);
 		return trouve;
