@@ -31,10 +31,10 @@ public class UserMgr {
 		return user;
 	}
 
-	public boolean selectUser(String pseudo, String mdp) throws Exception {
+	public User selectUser(String pseudo, String mdp) throws Exception {
 		User user = new User(pseudo, mdp);
-		boolean trouve = userDAO.select(user);
-		return trouve;
+		User trouve = userDAO.select(user);
+		return user;
 	}
 	
 	public void supprimerUser(String pseudo) throws Exception {

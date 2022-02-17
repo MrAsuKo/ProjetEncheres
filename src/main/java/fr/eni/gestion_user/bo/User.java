@@ -14,6 +14,7 @@ public class User {
 	private String mdp;
 	private int credit;
 	private boolean administrateur;
+	private boolean trouve;
 	
 	/**
 	 * @param pseudo
@@ -63,6 +64,22 @@ public class User {
 		this.mdp = mdp;
 		this.credit = credit;
 		this.administrateur = administrateur;
+	}
+	
+	public User(String pseudo, String nom, String prenom, String email, String telephone, String rue, String cp,
+			String ville, String mdp, int credit, boolean administrateur, boolean trouve) {
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.telephone = telephone;
+		this.rue = rue;
+		this.cp = cp;
+		this.ville = ville;
+		this.mdp = mdp;
+		this.credit = credit;
+		this.administrateur = administrateur;
+		this.trouve = trouve;
 	}
 	
 	
@@ -232,5 +249,18 @@ public class User {
 				+ ", telephone=" + telephone + ", rue=" + rue + ", cp=" + cp + ", ville=" + ville + ", mdp=" + mdp
 				+ ", credit=" + credit + ", administrateur=" + administrateur + "]";
 	}
+
+	public void setTrouve(boolean trouve) {
+		this.trouve = trouve;
+		
+	}
+
+	/**
+	 * @return the trouve
+	 */
+	public boolean isTrouve() {
+		return trouve;
+	}
+	
 	
 }

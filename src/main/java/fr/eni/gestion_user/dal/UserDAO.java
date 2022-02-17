@@ -8,7 +8,7 @@ public interface UserDAO {
 	
 	public boolean verif(User user) throws DALException;
 	public void insert(User user) throws DALException;	
-	public boolean select(User user) throws DALException;	
+	public User select(User user) throws DALException;	
 	public void delete(User user) throws DALException;
 	
 }

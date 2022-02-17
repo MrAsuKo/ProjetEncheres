@@ -66,9 +66,9 @@ public class VerificationUserServlet extends HttpServlet {
 		String pseudo = request.getParameter("pseudo");
 		String mdp = request.getParameter("mdp");
 		try {
-			boolean trouve = userMgr.selectUser(pseudo, mdp);
-			User user = new User(pseudo, mdp);
-			if(trouve) {
+			User user = userMgr.selectUser(pseudo, mdp);
+			System.out.println("test serlvet : " + user.isTrouve() );
+			if(user.isTrouve()) {
 				HttpSession session = request.getSession();
 				session.setAttribute("pseudo", pseudo);
 				session.setAttribute("id", user.getId());

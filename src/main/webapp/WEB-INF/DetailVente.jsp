@@ -29,13 +29,15 @@
 		<p>Retrait :</p>
 		<p>Vendeur : <%=art.getPseudo()%></p>
 		
-		<%}
+
+		<form action="" method="post">
+			<p>Offre : <input type="number" id="offre" name="offre" min="<%=art.getPrixdepart()%>"></p>
+			<input type="submit" id="encherir" name ="encherir" value="Enchérir">
+		</form>
+		
+				<%}
     	}
     }
     %>
-		<form action="" method="post">
-			<p>Offre : <input type="number" id="offre" name="offre"></p>
-			<input type="submit" id="encherir" name ="encherir" value="Enchérir">
-		</form>
 	</body>
 </html>

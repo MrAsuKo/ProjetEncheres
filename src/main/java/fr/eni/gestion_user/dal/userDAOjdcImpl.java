@@ -68,7 +68,7 @@ public class userDAOjdcImpl implements UserDAO {
 		}
 	}
 
-	public boolean select(User user) throws DALException {
+	public User select(User user) throws DALException {
 		Connection cnx = null;
 		boolean trouve = false;
 		try {
@@ -79,6 +79,7 @@ public class userDAOjdcImpl implements UserDAO {
 			ResultSet rs = rqt.executeQuery();
 			if (rs.next()) {
 				trouve = true;
+				System.out.println("test verif : " + rs.getInt("no_utilisateur"));
 				user.setId(rs.getInt("no_utilisateur"));
 				user.setNom(rs.getString("nom"));
 				user.setPrenom(rs.getString("prenom"));
@@ -90,12 +91,13 @@ public class userDAOjdcImpl implements UserDAO {
 				user.setMdp(rs.getString("mot_de_passe"));
 				user.setCredit(rs.getInt("credit"));
 				user.setAdministrateur(rs.getBoolean("administrateur"));
+				user.setTrouve(trouve);
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return trouve;
+		return user;
 	}
 	
 	public void delete(User user) throws DALException   {
