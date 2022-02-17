@@ -51,7 +51,7 @@
     for (Vente art : list){ 
     	if (list !=null) {%>
     	<div style="border:solid; width: 300px">
-    	<p><%=art.getArticle()%></p><p>Prix : <%=art.getPrixdepart()%></p><p>fin de l'enchère : <%=art.getFinenchere()%></p><p>Vendeur : <%=art.getId()%></p>
+    	<p><%=art.getArticle()%></p><p>Prix : <%=art.getPrixdepart()%></p><p>fin de l'enchère : <%=art.getFinenchere()%></p><p>Vendeur : <%=art.getPseudo()%></p>
     	</div>
     <%}
     }

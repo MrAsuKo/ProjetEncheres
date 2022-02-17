@@ -72,7 +72,8 @@ public class VenteDAOjdclImpl {
 		
 	}
 	
-	private static final String SELECTENCHERE ="SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie FROM ARTICLES_VENDUS";
+	private static final String SELECTENCHERE ="SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,no_categorie, pseudo FROM ARTICLES_VENDUS as av INNER JOIN UTILISATEURS as u ON u.no_utilisateur = av.no_utilisateur \r\n"
+			+ "";
 	public List<Vente> selectenchere(){
 		Connection cnx = null;
 		List<Vente> listeEnchere = new ArrayList<Vente>();
@@ -98,7 +99,8 @@ public class VenteDAOjdclImpl {
 				String prixDepartStr = String.valueOf(prixDepart);
 				String debutEnchere = debutEnchereDate.toString();
 				String finEnchere = finEnchereDate.toString();
-				Vente vente = new Vente (idEnchere,article,description,debutEnchere,finEnchere,prixDepartStr,prixVente,numUser,numCatego);
+				String pseudo = rs.getString("pseudo");
+				Vente vente = new Vente (idEnchere,article,description,debutEnchere,finEnchere,prixDepartStr,prixVente,numUser,numCatego,pseudo);
 				listeEnchere.add(vente);
 				
 			}

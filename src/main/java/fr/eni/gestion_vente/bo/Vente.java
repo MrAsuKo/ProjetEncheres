@@ -9,12 +9,73 @@ public class Vente {
 	private String debutenchere;
 	private String finenchere;
 	private String prixdepart;
-	private int id;
+	private int iduser;
 	private int idEnchere;
 	private int numcategorie;
 	private int prixvente;
+	private String pseudo;
 
 	
+	/**
+	 * @return the iduser
+	 */
+	public int getIduser() {
+		return iduser;
+	}
+	/**
+	 * @param iduser the iduser to set
+	 */
+	public void setIduser(int iduser) {
+		this.iduser = iduser;
+	}
+	/**
+	 * @return the idEnchere
+	 */
+	public int getIdEnchere() {
+		return idEnchere;
+	}
+	/**
+	 * @param idEnchere the idEnchere to set
+	 */
+	public void setIdEnchere(int idEnchere) {
+		this.idEnchere = idEnchere;
+	}
+	/**
+	 * @return the numcategorie
+	 */
+	public int getNumcategorie() {
+		return numcategorie;
+	}
+	/**
+	 * @param numcategorie the numcategorie to set
+	 */
+	public void setNumcategorie(int numcategorie) {
+		this.numcategorie = numcategorie;
+	}
+	/**
+	 * @return the prixvente
+	 */
+	public int getPrixvente() {
+		return prixvente;
+	}
+	/**
+	 * @param prixvente the prixvente to set
+	 */
+	public void setPrixvente(int prixvente) {
+		this.prixvente = prixvente;
+	}
+	/**
+	 * @return the pseudo
+	 */
+	public String getPseudo() {
+		return pseudo;
+	}
+	/**
+	 * @param pseudo the pseudo to set
+	 */
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
+	}
 	/**
 	 * @param article
 	 * @param description
@@ -24,25 +85,26 @@ public class Vente {
 	 * @param numcategorie 
 	 * @param numcategorie2 
 	 */
-	public Vente(String article, String description, String debutenchere, String finenchere, String prixdepart, int id, int numcategorie) {
+	public Vente(String article, String description, String debutenchere, String finenchere, String prixdepart, int iduser, int numcategorie) {
 		this.article = article;
 		this.description = description;
 		this.debutenchere = debutenchere;
 		this.finenchere = finenchere;
 		this.prixdepart = prixdepart;
 		this.numcategorie = numcategorie;
-		this.id = id;
+		this.iduser = iduser;
 	}
-	public Vente(int idEnchere, String article, String description, String debutenchere, String finenchere, String prixdepart,int prixvente, int id, int numcategorie) {
+	public Vente(int idEnchere, String article, String description, String debutenchere, String finenchere, String prixdepart,int prixvente, int iduser, int numcategorie, String pseudo) {
+		this.idEnchere = idEnchere;
 		this.article = article;
 		this.description = description;
 		this.debutenchere = debutenchere;
 		this.finenchere = finenchere;
 		this.prixdepart = prixdepart;
-		this.numcategorie = numcategorie;
-		this.idEnchere = idEnchere;
 		this.prixvente = prixvente;
-		this.id=id;
+		this.numcategorie = numcategorie;
+		this.iduser=iduser;
+		this.pseudo=pseudo;
 	}
 		
 	/**
@@ -121,18 +183,18 @@ public class Vente {
 	 * @return the id
 	 */
 	public int getId() {
-		return id;
+		return iduser;
 	}
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(int id) {
-		this.id = id;
+		this.iduser = id;
 	}
 	@Override
 	public String toString() {
 		return String.format("Vente [article=%s, description=%s, debutenchere=%s, finenchere=%s, prixdepart=%s, id=%s]",
-				article, description, debutenchere, finenchere, prixdepart, id);
+				article, description, debutenchere, finenchere, prixdepart, iduser);
 	}
 
 	
