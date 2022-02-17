@@ -48,9 +48,10 @@ public class EnregistrerNouvelleVenteServlet extends HttpServlet {
 		String finenchere = request.getParameter("finenchere");
 		int numcategorie = Integer.parseInt(categorie);
 		System.out.println(numcategorie);
+		int id = (int) request.getSession(false).getAttribute("id");
 		
 		try {
-		venteMgr.ajoutenchere(article, description, debutenchere, finenchere, prixdepart,numcategorie);
+		venteMgr.ajoutenchere(article, description, debutenchere, finenchere, prixdepart,id,numcategorie);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

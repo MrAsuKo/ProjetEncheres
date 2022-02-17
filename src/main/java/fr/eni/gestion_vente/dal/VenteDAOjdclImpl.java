@@ -19,6 +19,7 @@ public class VenteDAOjdclImpl {
 	
 	public void insert(Vente vente) throws DALException {
 		Connection cnx = null;
+		
 		try {
 			cnx = ConnectionProvider.getConnection();
 			cnx.setAutoCommit(false);
@@ -29,7 +30,7 @@ public class VenteDAOjdclImpl {
 			rqt.setString(4, vente.getFinenchere());
 			rqt.setString(5, vente.getPrixdepart());
 			rqt.setInt(6, 0);
-			rqt.setInt(7, 1);
+			rqt.setInt(7, vente.getId());
 			rqt.setInt(8, vente.getCategorie());
 			rqt.executeUpdate();
 			ResultSet rs = rqt.getGeneratedKeys();

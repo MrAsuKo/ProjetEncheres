@@ -17,14 +17,16 @@ public class Vente {
 	 * @param finenchere
 	 * @param prixdepart
 	 * @param numcategorie 
+	 * @param numcategorie2 
 	 */
-	public Vente(String article, String description, String debutenchere, String finenchere, String prixdepart, int numcategorie) {
+	public Vente(String article, String description, String debutenchere, String finenchere, String prixdepart, int id, int numcategorie) {
 		this.article = article;
 		this.description = description;
 		this.debutenchere = debutenchere;
 		this.finenchere = finenchere;
 		this.prixdepart = prixdepart;
 		this.numcategorie = numcategorie;
+		this.id = id;
 	}
 	/**
 	 * @return the categorie
