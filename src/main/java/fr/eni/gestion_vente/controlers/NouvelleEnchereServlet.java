@@ -46,14 +46,20 @@ public class NouvelleEnchereServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("coucou");
 		String offreStr = request.getParameter("offre");
 		String noArticleStr = request.getParameter("noArticle");
 		int noArticle = Integer.parseInt(noArticleStr);
 		request.setAttribute("noArticleStr", noArticleStr);
-		//Creation de la liste des encheres
+				//Creation de la liste des encheres
 				List<Vente> listeEnchere = null;		
 				try {
-					listeEnchere = venteMgr.selectenchere();
+					try {
+						listeEnchere = venteMgr.selectenchere();
+					} catch (fr.eni.gestion_user.dal.DALException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -61,7 +67,6 @@ public class NouvelleEnchereServlet extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				System.out.println(listeEnchere.get(0));
 				request.setAttribute("listeEnchere", listeEnchere);
 				//fin de la creation de la liste des encheres
 		int offre = Integer.parseInt(offreStr);
@@ -70,8 +75,9 @@ public class NouvelleEnchereServlet extends HttpServlet {
 		//Inserer l'offre dans la BDD
 		venteMgr.offreEnchere(offre,noArticle,id);
 		//recuperer la meilleur offre
-		int meilleurOffre = venteMgr.meilleurOffre();
-		
+		int meilleurOffre = venteMgr.meilleurOffre(noArticle);
+		System.out.println(meilleurOffre);
+		request.setAttribute("meilleurOffre", meilleurOffre);
 		doGet(request, response);
 	}
 

@@ -18,22 +18,23 @@ import fr.eni.gestion_vente.bo.Vente;
 import fr.eni.gestion_vente.dal.DALException;
 
 /**
- * Servlet implementation class NouvelleVenteServlet
+ * Servlet implementation class FiltreRechercheCategoriesServlet
  */
-@WebServlet("/EnregistrerNouvelleVente")
-public class EnregistrerNouvelleVenteServlet extends HttpServlet {
+@WebServlet("/FiltreRecherche")
+public class FiltreRechercheCategoriesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-     
-	//attribu vers Manager
-	private VenteMgr venteMgr;
+      
+	
 	private CategorieMgr categorieMgr;
+	private VenteMgr venteMgr;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EnregistrerNouvelleVenteServlet() {
+    public FiltreRechercheCategoriesServlet() {
         super();
         categorieMgr = new CategorieMgr();
-        venteMgr = new VenteMgr();;
+        venteMgr = new VenteMgr();
+        
     }
 
 	/**
@@ -41,32 +42,20 @@ public class EnregistrerNouvelleVenteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/AccueilConnecter.jsp");
-		rd.forward(request, response);
+		rd.forward(request, response); 
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-				//Creation de la liste des encheres
-				List<Vente> listeEnchere = null;		
-				try {
-					try {
-						listeEnchere = venteMgr.selectenchere();
-					} catch (fr.eni.gestion_user.dal.DALException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (DALException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				request.setAttribute("listeEnchere", listeEnchere);
-				//fin de la creation de la liste des encheres
-				//liste des categoeries
+		String categStr = request.getParameter("categorie");
+		String contient = request.getParameter("contient");
+		System.out.println(categStr);
+		System.out.println(contient);
+		int categ = Integer.parseInt(categStr);
+		
+			//liste des categoeries
 				List<Categorie> listeCategorie = null;
 				try {
 					try {
@@ -81,24 +70,22 @@ public class EnregistrerNouvelleVenteServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 				//fin list des categories
+				if (!categStr.equals("0") ) {
+				//Creation de la liste des encheres par categoeries choisi
+					System.out.println("catego");
+				List<Vente> listeEnchere = null;		
+				listeEnchere = venteMgr.selectencherecateg(categ);
+				request.setAttribute("listeEnchere", listeEnchere);
+				//fin de la creation de la liste des encheres
+				} else {
+				//Creation de la liste des encheres par mot choisi
+				System.out.println("content");
+					List<Vente> listeEnchere = null;		
+				listeEnchere = venteMgr.selectencherecontient(contient);
+				request.setAttribute("listeEnchere", listeEnchere);
+				}
+				//fin de la creation de la liste des encheres
 				
-		String article = request.getParameter("article");
-		String description = request.getParameter("description");
-		String categorie = request.getParameter("categorie");
-		String prixdepart = request.getParameter("prixdepart");
-		String debutenchere = request.getParameter("debutenchere");
-		String finenchere = request.getParameter("finenchere");
-		int numcategorie = Integer.parseInt(categorie);
-		System.out.println(numcategorie);
-		int id = (int) request.getSession(false).getAttribute("id");
-		
-		try {
-		venteMgr.ajoutenchere(article, description, debutenchere, finenchere, prixdepart,id,numcategorie);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		doGet(request, response);
 	}
 
