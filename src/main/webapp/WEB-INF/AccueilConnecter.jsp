@@ -52,7 +52,7 @@
     	if (list !=null) {
     	int noArticle = art.getIdEnchere();%>
     	<div style="border:solid; width: 300px ; margin:10px">
-    	<a href="<%=request.getContextPath()%>/DetailVente?name=<%=art.getIdEnchere()%>"><%=art.getArticle()%></a><p>Prix : <%=art.getPrixdepart()%></p><p>fin de l'enchère : <%=art.getFinenchere()%></p><p>Vendeur : <%=art.getPseudo()%></p>
+    	<a href="<%=request.getContextPath()%>/DetailVente?name=<%=art.getIdEnchere()%>"><%=art.getArticle()%></a><p>Prix : <%=art.getPrixdepart()%></p><p>fin de l'enchère : <%=art.getFinenchere()%></p><p>Vendeur : <a href="./Show/Vendeur?name=<%=art.getPseudo()%>"><%=art.getPseudo()%></a></p>
     	</div>
     <%}
     }

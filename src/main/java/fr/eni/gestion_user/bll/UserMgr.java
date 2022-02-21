@@ -1,8 +1,9 @@
 package fr.eni.gestion_user.bll;
 
 import fr.eni.gestion_user.bo.User;
+import fr.eni.gestion_user.dal.DALException;
 import fr.eni.gestion_user.dal.UserDAO;
-import fr.eni.gestion_user.dal.userDAOjdcImpl;
+import fr.eni.gestion_user.dal.UserDAOjdcImpl;
 
 public class UserMgr {
 
@@ -10,7 +11,7 @@ public class UserMgr {
 	
 	public UserMgr() {
 		super();
-		userDAO = new userDAOjdcImpl();
+		userDAO = new UserDAOjdcImpl();
 	}
 	
 	public boolean verifierUser(String pseudo, String email, String mdp) throws Exception {
@@ -45,5 +46,9 @@ public class UserMgr {
 	public void modifUser(String pseudo, String nom, String prenom, String email, String telephone, String rue, String cp, String ville, String mdp) throws Exception {
 		User user = new User(pseudo, nom, prenom, email, telephone, rue, cp, ville, mdp);
 		userDAO.modif(user);
+	}
+
+	public User profilVendeur(String pseudo) throws DALException {
+		return userDAO.profilVendeur(pseudo);
 	}
 }
