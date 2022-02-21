@@ -24,19 +24,29 @@
 				<p>Nom de l'article : <%=art.getArticle()%></p>
 				<p>Description : <%=art.getDescription()%></p>
 				<p>Catégorie : <%=art.getLibellecatego()%> </p>
-<%-- 				<%	String message = null;
+				<%	String message = null;
 				if (request.getAttribute("meilleurOffre") != null) {
-					message = (String)request.getAttribute("meilleurOffre"); %>
-					<p><%=message %></p>
-				<% 	} %> --%>
-				<p>Meilleure offre : <%=art.getPrixdepart()%></p>
+					message = request.getAttribute("meilleurOffre").toString(); %>
+					<p>Meilleure offre : <%=message %></p>
+				<% 	} %>
 				
 				<p>Mise à prix : <%=art.getPrixdepart()%></p>
 				<p>Fin de l'enchère : <%=art.getFinenchere()%></p>
 				<p>Retrait :</p>
 				<p>Vendeur : <%=art.getPseudo()%></p>	
-					<form action="<%=request.getContextPath()%>/NouvelleEnchere" method="post">			
-				<p>Offre : 	<input type="number" id="offre" name="offre" min="<%=art.getPrixdepart()%>"></p>
+					<form action="<%=request.getContextPath()%>/NouvelleEnchere" method="post">
+					<% 
+					int prixdepart = Integer.parseInt(art.getPrixdepart());
+					int min = prixdepart;
+					int meilleurOffre = Integer.parseInt(message);
+						if (meilleurOffre > prixdepart) {
+							min = meilleurOffre;	
+						}
+						else {
+						min = prixdepart;
+						}
+						%>	
+				<p>Offre : 	<input type="number" id="offre" name="offre" min="<%=min%>"></p>
 							<input id="prodId" name="noArticle" type="hidden" value="<%=art.getIdEnchere() %>">
 							<input id="prodId" name="id" type="hidden" value="${sessionScope.id}">
 							<input type="submit" id="encherir" name ="encherir" value="Enchérir">
