@@ -42,9 +42,6 @@
 						if (meilleurOffre > prixdepart) {
 							min = meilleurOffre;	
 						}
-						else {
-						min = prixdepart;
-						}
 						%>	
 				<p>Offre : 	<input type="number" id="offre" name="offre" min="<%=min%>"></p>
 							<input id="prodId" name="noArticle" type="hidden" value="<%=art.getIdEnchere() %>">

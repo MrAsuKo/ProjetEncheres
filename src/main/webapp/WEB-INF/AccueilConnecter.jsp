@@ -36,23 +36,23 @@
 	
 			<form action="">
 			<div style="display: flex; flex-direction: row;">
-			<input type="checkbox" id="achat" name="achat">
-			<label style="border-radius: 50%" for="achats">Achats</label>
-			<div style="display: flex; flex-direction: column; ">
-			<div><input type="checkbox" id="enchères ouvertes" name="enchères ouvertes"><label style="border-radius: 50%" for="enchères ouvertes">enchères ouvertes</label></div>
-			<div><input type="checkbox" id="mesencheres" name="mesencheres"><label style="border-radius: 50%" for="mesencheres">mes enchères</label></div>
-			<div><input type="checkbox" id="mesemcheresremportees" name="mesemcheresremportees"><label style="border-radius: 50%" for="mesemcheresremportees">mes emchères remportées</label></div>
-			</div>
-			<input type="checkbox" id="vente" name="vente">
-			<label style="border-radius: 50%" for="achats">Mes vente</label>
-			<div style="display: flex; flex-direction: column; ">
-			<div><input type="checkbox" id="mesventesencours" name="mesventesencours"><label style="border-radius: 50%" for="mesventesencours">mes ventes en cours</label></div>
-			<div><input type="checkbox" id="ventesnondebutees" name="ventesnondebutees"><label style="border-radius: 50%" for="ventesnondebutees">ventes non debutées</label></div>
-			<div><input type="checkbox" id="ventesterminees" name="ventesterminees"><label style="border-radius: 50%" for="ventesterminees">ventes terminées</label></div>
+				<input type="checkbox" id="achat" name="achat">
+				<label style="border-radius: 50%" for="achats">Achats</label>
+					<ul style="list-style: none;">
+						<li><input type="checkbox" id="enchères ouvertes" name="enchères ouvertes"><label style="border-radius: 50%" for="enchères ouvertes">enchères ouvertes</label></li>
+						<li><input type="checkbox" id="mesencheres" name="mesencheres"><label style="border-radius: 50%" for="mesencheres">mes enchères</label></li>
+						<li><input type="checkbox" id="mesemcheresremportees" name="mesemcheresremportees"><label style="border-radius: 50%" for="mesemcheresremportees">mes emchères remportées</label></li>
+					</ul>
+				<input type="checkbox" id="vente" name="vente">
+				<label style="border-radius: 50%" for="achats">Mes vente</label>
+					<ul style="list-style: none;">
+						<li><input type="checkbox" id="mesventesencours" name="mesventesencours"><label style="border-radius: 50%" for="mesventesencours">mes ventes en cours</label></li>
+						<li><input type="checkbox" id="ventesnondebutees" name="ventesnondebutees"><label style="border-radius: 50%" for="ventesnondebutees">ventes non debutées</label></li>
+						<li><input type="checkbox" id="ventesterminees" name="ventesterminees"><label style="border-radius: 50%" for="ventesterminees">ventes terminées</label></li>
+					</ul>
 			</div>
 			</form>
-
-	</div>
+			
 
 <div>	
     <% List<Vente> list = (List<Vente>)request.getAttribute("listeEnchere");

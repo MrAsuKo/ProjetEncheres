@@ -57,6 +57,10 @@ public class DetailVenteServlet extends HttpServlet {
 //		System.out.println(listeEnchere.get(0));
 		request.setAttribute("listeEnchere", listeEnchere);
 		//fin de la creation de la liste des encheres
+		//recuperer la meilleur offre
+		int meilleurOffre = venteMgr.meilleurOffre(noArticle);
+		System.out.println(meilleurOffre);
+		request.setAttribute("meilleurOffre", meilleurOffre);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/DetailVente.jsp");
 		rd.forward(request, response);	
 	}
