@@ -100,6 +100,10 @@ public class User {
 		this.ville = ville;
 	}
 
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * @return the id
 	 */

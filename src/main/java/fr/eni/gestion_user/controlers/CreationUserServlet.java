@@ -48,6 +48,8 @@ public class CreationUserServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Creation de la liste des encheres
 		List<Vente> listeEnchere = null;		
@@ -80,36 +82,38 @@ public class CreationUserServlet extends HttpServlet {
 		try {
 			boolean use = userMgr.verifierUser(pseudo, email, mdp);
 			if (use) {
-				String message = "Pseudo et/ou email dÃ©ja utilisÃ©s";
-				request.setAttribute("message", message);
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Inscription.jsp");
-				rd.forward(request, response);
-			} 
-			if(mdpconf.equals(mdp) && use == false) {
-				User user = userMgr.ajouterUser(pseudo, nom, prenom, email, telephone, rue, cp, ville, mdpconf);
-				HttpSession session = request.getSession();
-				session.setAttribute("id", user.getId());
-				session.setAttribute("pseudo", pseudo);
-				session.setAttribute("nom", user.getNom());
-				session.setAttribute("prenom", user.getPrenom());
-				session.setAttribute("email", user.getEmail());
-				session.setAttribute("telephone", user.getTelephone());
-				session.setAttribute("rue", user.getRue());
-				session.setAttribute("cp", user.getCp());
-				session.setAttribute("ville", user.getVille());
-				session.setAttribute("mdp", user.getMdp());
-				session.setAttribute("credit", user.getCredit());
-				session.setAttribute("administrateur", user.isAdministrateur());
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/AccueilConnecter.jsp");
-				rd.forward(request, response);
-			} else {
-				String message = "Les mots de passe ne corespondent pas";
-				request.setAttribute("message", message);
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Inscription.jsp");
-				rd.forward(request, response);
+			String message = "Pseudo et/ou email déja utilisés";
+			request.setAttribute("message", message);
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Inscription.jsp");
+			rd.forward(request, response);
 			}
-		} catch (Exception e) {
+			if(mdpconf.equals(mdp) && use == false) {
+			User user = userMgr.ajouterUser(pseudo, nom, prenom, email, telephone, rue, cp, ville, mdpconf);
+			HttpSession session = request.getSession();
+			
+			session.setAttribute("id", user.getId());
+			session.setAttribute("pseudo", pseudo);
+			session.setAttribute("nom", user.getNom());
+			session.setAttribute("prenom", user.getPrenom());
+			session.setAttribute("email", user.getEmail());
+			session.setAttribute("telephone", user.getTelephone());
+			session.setAttribute("rue", user.getRue());
+			session.setAttribute("cp", user.getCp());
+			session.setAttribute("ville", user.getVille());
+			session.setAttribute("mdp", user.getMdp());
+			session.setAttribute("credit", user.getCredit());
+			session.setAttribute("administrateur", user.isAdministrateur());
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/AccueilConnecter.jsp");
+			rd.forward(request, response);
+			} else {
+			String message = "Les mots de passe ne corespondent pas";
+			request.setAttribute("message", message);
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Inscription.jsp");
+			rd.forward(request, response);
+			}
+			} catch (Exception e) {
 			e.printStackTrace();
-		}
-	}
-}
+			}
+			}
+			}
