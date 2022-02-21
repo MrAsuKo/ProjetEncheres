@@ -82,5 +82,6 @@ public class AccueilServlet extends HttpServlet {
 				//fin list des categories
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");
 		rd.forward(request, response);
+		
 	}
 }

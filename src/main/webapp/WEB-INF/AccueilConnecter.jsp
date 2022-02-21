@@ -58,11 +58,10 @@
     	if (list !=null) {
     	int noArticle = art.getIdEnchere();%>
     	<div style="border:solid; width: 300px ; margin:10px">
-<<<<<<< HEAD
-    	<a href="<%=request.getContextPath()%>/DetailVente?name=<%=art.getIdEnchere()%>datefin=<%=art.getFinenchere()%>"><%=art.getArticle()%></a><p>Prix : <%=art.getPrixdepart()%></p><p>fin de l'enchère : <%=art.getFinenchere()%></p><p>Vendeur : <%=art.getPseudo()%></p>
-=======
+
+
     	<a href="<%=request.getContextPath()%>/DetailVente?name=<%=art.getIdEnchere()%>"><%=art.getArticle()%></a><p>Prix : <%=art.getPrixdepart()%></p><p>fin de l'enchère : <%=art.getFinenchere()%></p><p>Vendeur : <a href="./Show/Vendeur?name=<%=art.getPseudo()%>"><%=art.getPseudo()%></a></p>
->>>>>>> branch 'main' of https://github.com/MrAsuKo/ProjetEncheres.git
+
     	</div>
     <%}
     }
