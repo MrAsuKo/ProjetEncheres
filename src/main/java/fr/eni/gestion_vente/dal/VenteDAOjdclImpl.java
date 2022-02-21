@@ -184,7 +184,6 @@ public class VenteDAOjdclImpl {
 	private static final String SELECTENCHERECONTIENT = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,av.no_categorie, pseudo, libelle FROM ARTICLES_VENDUS as av INNER JOIN UTILISATEURS as u ON u.no_utilisateur = av.no_utilisateur INNER JOIN CATEGORIES as c ON c.no_categorie=av.no_categorie WHERE nom_article LIKE ?";
 
 	public List<Vente> selectencherecontient(Vente vente) throws DALException {
-		System.out.println("coucou");
 		List<Vente> listeEnchere = new ArrayList<Vente>();
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement rqt = cnx.prepareStatement(SELECTENCHERECONTIENT);

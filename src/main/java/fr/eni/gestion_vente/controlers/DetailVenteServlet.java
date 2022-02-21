@@ -65,13 +65,15 @@ public class DetailVenteServlet extends HttpServlet {
 		int meilleurOffre = venteMgr.meilleurOffre(noArticle);
 		System.out.println(meilleurOffre);
 		request.setAttribute("meilleurOffre", meilleurOffre);
-		//recupere si date fin est depassé
+		
+		//remporter enchrere si date fin est depassé
 		LocalDate datefinDate = LocalDate.parse(datefin);
 		if(datefinDate.isBefore(LocalDate.now())) {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/DetailVente.jsp");
-		rd.forward(request, response);	
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/EnchereFini.jsp");
+		rd.forward(request, response);
+		// va sur la page d'enchere
 		} else {
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/EnchereFini.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/DetailVente.jsp");
 			rd.forward(request, response);
 		}
 	}
