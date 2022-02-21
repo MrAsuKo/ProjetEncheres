@@ -60,14 +60,14 @@ public class VenteMgr {
 
 
 
-	public List<Vente> selectencherecateg(int categ) {
+	public List<Vente> selectencherecateg(int categ) throws fr.eni.gestion_user.dal.DALException {
 		Vente vente = new Vente (categ);
 		return this.venteDAO.selectencherecateg(vente);
 	}
 
 
 
-	public List<Vente> selectencherecontient(String contient) {
+	public List<Vente> selectencherecontient(String contient) throws fr.eni.gestion_user.dal.DALException {
 		Vente vente = new Vente (contient);
 		return this.venteDAO.selectencherecontient(vente);
 	}	

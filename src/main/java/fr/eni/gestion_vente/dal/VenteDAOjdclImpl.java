@@ -22,10 +22,8 @@ public class VenteDAOjdclImpl {
 	private static final String INSERT_ENCHERE = "INSERT INTO ARTICLES_VENDUS(nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie)VALUES(?,?,?,?,?,?,?,?)";
 
 	public void insert(Vente vente) throws DALException {
-		Connection cnx = null;
 
-		try {
-			cnx = ConnectionProvider.getConnection();
+		try(Connection cnx = ConnectionProvider.getConnection()) {
 			cnx.setAutoCommit(false);
 			PreparedStatement rqt = cnx.prepareStatement(INSERT_ENCHERE, PreparedStatement.RETURN_GENERATED_KEYS);
 			rqt.setString(1, vente.getArticle());
@@ -76,7 +74,7 @@ public class VenteDAOjdclImpl {
 
 	public List<Vente> selectenchere() throws DALException {
 		List<Vente> listeEnchere = new ArrayList<Vente>();
-		try { Connection cnx= ConnectionProvider.getConnection();
+		try (Connection cnx= ConnectionProvider.getConnection()){
 
 			Statement rqt = cnx.createStatement();
 			ResultSet rs = rqt.executeQuery(SELECTENCHERE);
@@ -110,9 +108,8 @@ public class VenteDAOjdclImpl {
 	private static final String INSERTOFFREENCHERE = "INSERT INTO ENCHERES (date_enchere, montant_enchere, no_article, no_utilisateur) VALUES (?,?,?,?)";
 
 	public void offreEnchere(Enchere enchere) throws DALException {
-		Connection cnx = null;
-		try {
-			cnx = ConnectionProvider.getConnection();
+		try (Connection cnx = ConnectionProvider.getConnection()){ 
+			
 			PreparedStatement rqt = cnx.prepareStatement(INSERTOFFREENCHERE, PreparedStatement.RETURN_GENERATED_KEYS);
 			rqt.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
 			rqt.setInt(2, enchere.getOffre());
@@ -125,44 +122,36 @@ public class VenteDAOjdclImpl {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DALException(" erreur insert enchere -");
 		}
 	}
 
-	private static final String SELECT_MEILLEUR_OFFRE = "SELECT MAX(montant_enchere)[montant_max], e.no_utilisateur,pseudo FROM ENCHERES as e INNER JOIN UTILISATEURS as u ON u.no_utilisateur=e.no_utilisateur WHERE e.no_article=? GROUP BY e.no_utilisateur, u.pseudo;";
+	private static final String SELECT_MEILLEUR_OFFRE = "  SELECT u.no_utilisateur,montant_enchere FROM UTILISATEURS u JOIN ENCHERES e ON u.no_utilisateur = e.no_utilisateur WHERE montant_enchere = (SELECT MAX(montant_enchere) FROM ENCHERES WHERE no_article=?) AND no_article = ?";
 
 	public int meilleurOffre(Enchere enchere) throws DALException {
-		Connection cnx = null;
 		int max = 0;
-		try {
-			cnx = ConnectionProvider.getConnection();
+		try (Connection cnx = ConnectionProvider.getConnection()) { 
 			PreparedStatement rqt = cnx.prepareStatement(SELECT_MEILLEUR_OFFRE);
 			rqt.setInt(1, enchere.getNoArticle());
+			rqt.setInt(2, enchere.getNoArticle());
 			ResultSet rs = rqt.executeQuery();
 			if (rs.next()) {
-				max = rs.getInt("montant_max");
+				max = rs.getInt("montant_enchere");
 
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new DALException(" erreur meiileur offre -");
 		}
 		return max;
 	}
 
 	private static final String SELECTENCHERECATEG = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,av.no_categorie, pseudo, libelle FROM ARTICLES_VENDUS as av INNER JOIN UTILISATEURS as u ON u.no_utilisateur = av.no_utilisateur INNER JOIN CATEGORIES as c ON c.no_categorie=av.no_categorie WHERE c.no_categorie=?";
 
-	public List<Vente> selectencherecateg(Vente vente) {
-		Connection cnx = null;
+	public List<Vente> selectencherecateg(Vente vente) throws DALException {
 		List<Vente> listeEnchere = new ArrayList<Vente>();
-		try {
-			cnx = ConnectionProvider.getConnection();
-		} catch (DALException e) {
-			System.out.println(e.getMessage());
-		}
+		try (Connection cnx = ConnectionProvider.getConnection();) {
 
-		try {
 			PreparedStatement rqt = cnx.prepareStatement(SELECTENCHERECATEG);
 			rqt.setInt(1, vente.getNumcategorie());
 			ResultSet rs = rqt.executeQuery();
@@ -187,25 +176,17 @@ public class VenteDAOjdclImpl {
 
 			}
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			throw new DALException(" select catego -");
 		}
-		System.out.println(listeEnchere.get(1));
 		return listeEnchere;
 	}
 
 	private static final String SELECTENCHERECONTIENT = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,av.no_categorie, pseudo, libelle FROM ARTICLES_VENDUS as av INNER JOIN UTILISATEURS as u ON u.no_utilisateur = av.no_utilisateur INNER JOIN CATEGORIES as c ON c.no_categorie=av.no_categorie WHERE nom_article LIKE ?";
 
-	public List<Vente> selectencherecontient(Vente vente) {
+	public List<Vente> selectencherecontient(Vente vente) throws DALException {
 		System.out.println("coucou");
-		Connection cnx = null;
 		List<Vente> listeEnchere = new ArrayList<Vente>();
-		try {
-			cnx = ConnectionProvider.getConnection();
-		} catch (DALException e) {
-			System.out.println(e.getMessage());
-		}
-
-		try {
+		try (Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement rqt = cnx.prepareStatement(SELECTENCHERECONTIENT);
 			rqt.setString(1, vente.getContient());
 			ResultSet rs = rqt.executeQuery();
@@ -230,9 +211,8 @@ public class VenteDAOjdclImpl {
 
 			}
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			throw new DALException(" select catego -");
 		}
-		System.out.println(listeEnchere.get(1));
 		return listeEnchere;
 	}
 

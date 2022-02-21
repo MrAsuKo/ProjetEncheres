@@ -72,16 +72,24 @@ public class FiltreRechercheCategoriesServlet extends HttpServlet {
 				//fin list des categories
 				if (!categStr.equals("0") ) {
 				//Creation de la liste des encheres par categoeries choisi
-					System.out.println("catego");
 				List<Vente> listeEnchere = null;		
-				listeEnchere = venteMgr.selectencherecateg(categ);
+				try {
+					listeEnchere = venteMgr.selectencherecateg(categ);
+				} catch (fr.eni.gestion_user.dal.DALException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				request.setAttribute("listeEnchere", listeEnchere);
 				//fin de la creation de la liste des encheres
 				} else {
 				//Creation de la liste des encheres par mot choisi
-				System.out.println("content");
 					List<Vente> listeEnchere = null;		
-				listeEnchere = venteMgr.selectencherecontient(contient);
+				try {
+					listeEnchere = venteMgr.selectencherecontient(contient);
+				} catch (fr.eni.gestion_user.dal.DALException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				request.setAttribute("listeEnchere", listeEnchere);
 				}
 				//fin de la creation de la liste des encheres

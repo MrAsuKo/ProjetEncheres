@@ -34,6 +34,7 @@
 		<input type="submit" id="recherche" name ="recherche" value="recherche">
 	</form>
 	
+			<form action="">
 			<div style="display: flex; flex-direction: row;">
 			<input type="checkbox" id="achat" name="achat">
 			<label style="border-radius: 50%" for="achats">Achats</label>
@@ -49,15 +50,8 @@
 			<div><input type="checkbox" id="ventesnondebutees" name="ventesnondebutees"><label style="border-radius: 50%" for="ventesnondebutees">ventes non debutées</label></div>
 			<div><input type="checkbox" id="ventesterminees" name="ventesterminees"><label style="border-radius: 50%" for="ventesterminees">ventes terminées</label></div>
 			</div>
-				<!-- <input type="checkbox" id="typeachat" name="typeachat">
-					<label style="border-radius: 50%" for="enchères ouvertes">enchères ouvertes</label>
-					<label style="border-radius: 50%" for="mes enchères">mes enchères</label>
-					<label style="border-radius: 50%" for="mes emchères remportées">mes emchères remportées</label>
-			<label style="border-radius: 50%" for="ventes">Mes ventes</label>
-				<input type="checkbox" id="typevente" name="typevente">
-					<label style="border-radius: 50%" for="mes ventes en cours">mes ventes en cours</label>
-					<label style="border-radius: 50%" for="ventes non debutées">ventes non debutées</label>
-					<label style="border-radius: 50%" for="ventes terminées">ventes terminées</label> -->
+			</form>
+
 	</div>
 
 <div>	
