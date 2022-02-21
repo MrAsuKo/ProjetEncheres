@@ -11,7 +11,7 @@
 		<%@include file="fragments/header.jspf" %>
 		<h3>Mon profil</h3>
 		<form action="" method="post">
-			<p>Pseudo : <input type="text" id="pseudo" name="pseudo" value="${sessionScope.pseudo}" disabled="disabled"></p>
+			<p>Pseudo : <input type="text" id="pseudo" name="pseudo" value="${sessionScope.pseudo}" ></p>
 			<p>Nom : <input type="text" id="nom" name="nom" placeholder="${sessionScope.nom}"></p>
 			<p>Prenom : <input type="text" id="prenom" name="prenom" placeholder="${sessionScope.prenom}"></p>
 			<p>Email : <input type="text" id="email" name="email" placeholder="${sessionScope.email}"></p>

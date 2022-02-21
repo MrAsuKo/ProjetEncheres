@@ -188,7 +188,7 @@ public class VenteDAOjdclImpl {
 		List<Vente> listeEnchere = new ArrayList<Vente>();
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement rqt = cnx.prepareStatement(SELECTENCHERECONTIENT);
-			rqt.setString(1, vente.getContient());
+			rqt.setString(1, '%' + vente.getContient() + '%');
 			ResultSet rs = rqt.executeQuery();
 			while (rs.next()) {
 				int idEnchere = (rs.getInt("no_article"));

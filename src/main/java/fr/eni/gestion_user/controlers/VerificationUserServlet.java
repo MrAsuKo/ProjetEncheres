@@ -52,6 +52,21 @@ public class VerificationUserServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//liste des categoeries
+		List<Categorie> listeCategorie = null;
+		try {
+			try {
+				listeCategorie = categorieMgr.selectcategorie();
+			} catch (fr.eni.gestion_user.dal.DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			request.setAttribute("listecategorie", listeCategorie);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//fin list des categories
 		//Creation de la liste des encheres
 		List<Vente> listeEnchere = null;		
 		try {
@@ -70,21 +85,7 @@ public class VerificationUserServlet extends HttpServlet {
 		}
 		request.setAttribute("listeEnchere", listeEnchere);
 		//fin de la creation de la liste des encheres
-		//liste des categoeries
-		List<Categorie> listeCategorie = null;
-		try {
-			try {
-				listeCategorie = categorieMgr.selectcategorie();
-			} catch (fr.eni.gestion_user.dal.DALException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			request.setAttribute("listecategorie", listeCategorie);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//fin list des categories
+
 		String pseudo = request.getParameter("pseudo");
 		String mdp = request.getParameter("mdp");
 		try {

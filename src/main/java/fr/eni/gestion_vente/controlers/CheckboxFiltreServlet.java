@@ -2,10 +2,7 @@ package fr.eni.gestion_vente.controlers;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.List;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,34 +11,45 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.gestion_user.bll.UserMgr;
+import fr.eni.gestion_vente.bll.CategorieMgr;
 import fr.eni.gestion_vente.bll.VenteMgr;
+import fr.eni.gestion_vente.bo.Categorie;
 import fr.eni.gestion_vente.bo.Vente;
 import fr.eni.gestion_vente.dal.DALException;
 
 /**
- * Servlet implementation class DetailVenteServlet
+ * Servlet implementation class CheckboxFiltreServlet
  */
-@WebServlet("/DetailVente")
-public class DetailVenteServlet extends HttpServlet {
+@WebServlet("/CheckboxFiltre")
+public class CheckboxFiltreServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-      
+       
+	private UserMgr userMgr;
 	private VenteMgr venteMgr;
+	private CategorieMgr categorieMgr;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DetailVenteServlet() {
+    public CheckboxFiltreServlet() {
         super();
+        userMgr = new UserMgr();
         venteMgr = new VenteMgr();
+        categorieMgr = new CategorieMgr();
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String noArticleStr = request.getParameter("name");
-		String datefin = request.getParameter("datefin");
-		int noArticle = Integer.parseInt(noArticleStr);
-		request.setAttribute("noArticleStr", noArticleStr);
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/AccueilConnecter.jsp");
+		rd.forward(request, response); 
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Creation de la liste des encheres
 		List<Vente> listeEnchere = null;		
 		try {
@@ -58,31 +66,25 @@ public class DetailVenteServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		System.out.println(listeEnchere.get(0));
 		request.setAttribute("listeEnchere", listeEnchere);
 		//fin de la creation de la liste des encheres
-		//recuperer la meilleur offre
-		int meilleurOffre = venteMgr.meilleurOffre(noArticle);
-		System.out.println(meilleurOffre);
-		request.setAttribute("meilleurOffre", meilleurOffre);
-		//recupere si date fin est depassé
-		LocalDate datefinDate = LocalDate.parse(datefin);
-		if(datefinDate.isBefore(LocalDate.now())) {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/DetailVente.jsp");
-		rd.forward(request, response);	
-		} else {
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/EnchereFini.jsp");
-			rd.forward(request, response);
+		//liste des categoeries
+		List<Categorie> listeCategorie = null;
+		try {
+			try {
+				listeCategorie = categorieMgr.selectcategorie();
+			} catch (fr.eni.gestion_user.dal.DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			request.setAttribute("listecategorie", listeCategorie);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		
+		//fin list des categories
+				
+		doGet(request, response);
 	}
 
 }

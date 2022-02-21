@@ -4,6 +4,9 @@
     pageEncoding="UTF-8"%>
 <%@ page import="fr.eni.gestion_vente.bo.Vente" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.time.LocalDateTime" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -31,23 +34,42 @@
 				<% 	} %>
 				
 				<p>Mise à prix : <%=art.getPrixdepart()%></p>
+				<p>Debut de l'enchère : <%=art.getDebutenchere()%></p>
 				<p>Fin de l'enchère : <%=art.getFinenchere()%></p>
 				<p>Retrait :</p>
 				<p>Vendeur : <%=art.getPseudo()%></p>	
 					<form action="<%=request.getContextPath()%>/NouvelleEnchere" method="post">
-					<% 
+					<%
+					// regarde le mini prix
 					int prixdepart = Integer.parseInt(art.getPrixdepart());
 					int min = prixdepart;
 					int meilleurOffre = Integer.parseInt(message);
 						if (meilleurOffre > prixdepart) {
 							min = meilleurOffre;	
 						}
-						%>	
-				<p>Offre : 	<input type="number" id="offre" name="offre" min="<%=min%>"></p>
+						// rendre les enchere possible si dans les date d'encheres
+						LocalDate datedebut = LocalDate.parse(art.getDebutenchere());
+						LocalDate datefin = LocalDate.parse(art.getFinenchere());
+						Boolean flag = false;
+						if(LocalDate.now().isBefore(datefin) && LocalDate.now().isAfter(datedebut)){
+							flag = true;%>
+							<p>Offre : 	<input type="number" id="offre" name="offre" min="<%=min%>" ></p>
+						<% } else {
+						flag = false;%>
+							<p>Offre : 	<input type="number" id="offre" name="offre" min="<%=min%>" disabled="disabled"></p>
+						<%}
+							%>										
 							<input id="prodId" name="noArticle" type="hidden" value="<%=art.getIdEnchere() %>">
 							<input id="prodId" name="id" type="hidden" value="${sessionScope.id}">
 							<input type="submit" id="encherir" name ="encherir" value="Enchérir">
 							</form>
+							
+							<%String pseudo = (String)request.getSession(false).getAttribute("pseudo");
+							if (art.getPseudo().equals(pseudo) && flag==false ) {%>
+								<input type="submit" id="Annuler" name ="Annuler" value="Annuler vente">
+							<%}%>
+								
+							
 				<%} %>
 	
 		

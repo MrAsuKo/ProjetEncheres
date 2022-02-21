@@ -70,6 +70,7 @@ public class FiltreRechercheCategoriesServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 				//fin list des categories
+				
 				if (!categStr.equals("0") ) {
 				//Creation de la liste des encheres par categoeries choisi
 				List<Vente> listeEnchere = null;		
