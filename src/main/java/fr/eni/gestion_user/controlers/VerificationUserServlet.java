@@ -14,7 +14,9 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.gestion_user.bll.UserMgr;
 import fr.eni.gestion_user.bo.User;
+import fr.eni.gestion_vente.bll.CategorieMgr;
 import fr.eni.gestion_vente.bll.VenteMgr;
+import fr.eni.gestion_vente.bo.Categorie;
 import fr.eni.gestion_vente.bo.Vente;
 import fr.eni.gestion_vente.dal.DALException;
 
@@ -27,6 +29,7 @@ public class VerificationUserServlet extends HttpServlet {
 	
 	private UserMgr userMgr;
 	private VenteMgr venteMgr;
+	private CategorieMgr categorieMgr;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -35,6 +38,7 @@ public class VerificationUserServlet extends HttpServlet {
         super();
         userMgr = new UserMgr();
         venteMgr = new VenteMgr();
+        categorieMgr = new CategorieMgr();
     }
 
 	/**
@@ -51,7 +55,12 @@ public class VerificationUserServlet extends HttpServlet {
 		//Creation de la liste des encheres
 		List<Vente> listeEnchere = null;		
 		try {
-			listeEnchere = venteMgr.selectenchere();
+			try {
+				listeEnchere = venteMgr.selectenchere();
+			} catch (fr.eni.gestion_user.dal.DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -61,7 +70,21 @@ public class VerificationUserServlet extends HttpServlet {
 		}
 		request.setAttribute("listeEnchere", listeEnchere);
 		//fin de la creation de la liste des encheres
-		
+		//liste des categoeries
+		List<Categorie> listeCategorie = null;
+		try {
+			try {
+				listeCategorie = categorieMgr.selectcategorie();
+			} catch (fr.eni.gestion_user.dal.DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			request.setAttribute("listecategorie", listeCategorie);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//fin list des categories
 		String pseudo = request.getParameter("pseudo");
 		String mdp = request.getParameter("mdp");
 		try {

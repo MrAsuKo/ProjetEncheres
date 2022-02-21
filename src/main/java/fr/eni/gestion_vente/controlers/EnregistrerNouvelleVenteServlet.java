@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.gestion_vente.bll.CategorieMgr;
 import fr.eni.gestion_vente.bll.VenteMgr;
+import fr.eni.gestion_vente.bo.Categorie;
 import fr.eni.gestion_vente.bo.Vente;
 import fr.eni.gestion_vente.dal.DALException;
 
@@ -24,12 +26,14 @@ public class EnregistrerNouvelleVenteServlet extends HttpServlet {
      
 	//attribu vers Manager
 	private VenteMgr venteMgr;
+	private CategorieMgr categorieMgr;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public EnregistrerNouvelleVenteServlet() {
         super();
-        venteMgr= new VenteMgr();
+        categorieMgr = new CategorieMgr();
+        venteMgr = new VenteMgr();;
     }
 
 	/**
@@ -47,7 +51,12 @@ public class EnregistrerNouvelleVenteServlet extends HttpServlet {
 				//Creation de la liste des encheres
 				List<Vente> listeEnchere = null;		
 				try {
-					listeEnchere = venteMgr.selectenchere();
+					try {
+						listeEnchere = venteMgr.selectenchere();
+					} catch (fr.eni.gestion_user.dal.DALException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -57,7 +66,22 @@ public class EnregistrerNouvelleVenteServlet extends HttpServlet {
 				}
 				request.setAttribute("listeEnchere", listeEnchere);
 				//fin de la creation de la liste des encheres
-		
+				//liste des categoeries
+				List<Categorie> listeCategorie = null;
+				try {
+					try {
+						listeCategorie = categorieMgr.selectcategorie();
+					} catch (fr.eni.gestion_user.dal.DALException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					request.setAttribute("listecategorie", listeCategorie);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				//fin list des categories
+				
 		String article = request.getParameter("article");
 		String description = request.getParameter("description");
 		String categorie = request.getParameter("categorie");

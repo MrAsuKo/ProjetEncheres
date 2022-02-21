@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="fr.eni.gestion_vente.bo.Vente" %>
+<%@ page import="fr.eni.gestion_vente.bo.Vente" %>
+<%@ page import="fr.eni.gestion_vente.bo.Categorie" %>
 <%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
@@ -21,30 +22,37 @@
 	</div>
 	<h3> Liste des enchères</h3>
 	
-	<form action="" method="post">
-		<input type="text" id="nom" name ="nom" value="le nom de l'article contient">
-		<select name="categories" id="categories">
-			<option value="Catego">Toutes</option>
-			<option value="Catego">--Please choose an option--</option>
-		</select>
-	</form>
-	<form action="<%=request.getContextPath()%>/AffichageEnchere" method="post">
+	<form action="<%=request.getContextPath()%>/FiltreRecherche" method="post">
+	<input type="text" id="contient" name ="contient" value="le nom de l'article contient">
+	<p>Catégorie : <select name="categorie" id="categorie">
+    <option  value="0">---- Choisir une categorie ----</option>
+    <% List<Categorie> list2 = (List<Categorie>)request.getAttribute("listecategorie");
+    for (Categorie cat : list2){ %>
+    	<option  value="<%=cat.getNumcatego()%>"><%=cat.getLibelle()%></option>
+    <%}
+    %>
 		<input type="submit" id="recherche" name ="recherche" value="recherche">
 	</form>
 	
-	<div>
-		<input type="checkbox" id="type" name="type">
-			<label style="border-radius: 50%" for="achats">Achats</label>
-			<input type="checkbox" id="typeachat" name="typeachat">
-				<label style="border-radius: 50%" for="enchères ouvertes">enchères ouvertes</label>
-				<label style="border-radius: 50%" for="mes enchères">mes enchères</label>
-				<label style="border-radius: 50%" for="mes emchères remportées">mes emchères remportées</label>
-				<label style="border-radius: 50%" for="ventes">Mes ventes</label>
-			<input type="checkbox" id="typevente" name="typevente">
-				<label style="border-radius: 50%" for="mes ventes en cours">mes ventes en cours</label>
-				<label style="border-radius: 50%" for="ventes non debutées">ventes non debutées</label>
-				<label style="border-radius: 50%" for="ventes terminées">ventes terminées</label>
-	</div>
+			<form action="">
+			<div style="display: flex; flex-direction: row;">
+				<input type="checkbox" id="achat" name="achat">
+				<label style="border-radius: 50%" for="achats">Achats</label>
+					<ul style="list-style: none;">
+						<li><input type="checkbox" id="enchères ouvertes" name="enchères ouvertes"><label style="border-radius: 50%" for="enchères ouvertes">enchères ouvertes</label></li>
+						<li><input type="checkbox" id="mesencheres" name="mesencheres"><label style="border-radius: 50%" for="mesencheres">mes enchères</label></li>
+						<li><input type="checkbox" id="mesemcheresremportees" name="mesemcheresremportees"><label style="border-radius: 50%" for="mesemcheresremportees">mes emchères remportées</label></li>
+					</ul>
+				<input type="checkbox" id="vente" name="vente">
+				<label style="border-radius: 50%" for="achats">Mes vente</label>
+					<ul style="list-style: none;">
+						<li><input type="checkbox" id="mesventesencours" name="mesventesencours"><label style="border-radius: 50%" for="mesventesencours">mes ventes en cours</label></li>
+						<li><input type="checkbox" id="ventesnondebutees" name="ventesnondebutees"><label style="border-radius: 50%" for="ventesnondebutees">ventes non debutées</label></li>
+						<li><input type="checkbox" id="ventesterminees" name="ventesterminees"><label style="border-radius: 50%" for="ventesterminees">ventes terminées</label></li>
+					</ul>
+			</div>
+			</form>
+			
 
 <div>	
     <% List<Vente> list = (List<Vente>)request.getAttribute("listeEnchere");

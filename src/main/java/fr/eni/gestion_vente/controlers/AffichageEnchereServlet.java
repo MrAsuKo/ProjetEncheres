@@ -46,7 +46,12 @@ public class AffichageEnchereServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Vente> listeEnchere = null;		
 		try {
-			listeEnchere = venteMgr.selectenchere();
+			try {
+				listeEnchere = venteMgr.selectenchere();
+			} catch (fr.eni.gestion_user.dal.DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,12 +20,10 @@ import fr.eni.gestion_vente.bo.Vente;
 public class VenteDAOjdclImpl {
 
 	private static final String INSERT_ENCHERE = "INSERT INTO ARTICLES_VENDUS(nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie)VALUES(?,?,?,?,?,?,?,?)";
-	
+
 	public void insert(Vente vente) throws DALException {
-		Connection cnx = null;
-		
-		try {
-			cnx = ConnectionProvider.getConnection();
+
+		try(Connection cnx = ConnectionProvider.getConnection()) {
 			cnx.setAutoCommit(false);
 			PreparedStatement rqt = cnx.prepareStatement(INSERT_ENCHERE, PreparedStatement.RETURN_GENERATED_KEYS);
 			rqt.setString(1, vente.getArticle());
@@ -43,51 +40,43 @@ public class VenteDAOjdclImpl {
 				vente.setId(rs.getInt(1));
 			}
 			cnx.commit();
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	private static final String SELECTCATEGO ="SELECT no_categorie,libelle FROM CATEGORIES";
-	public List<Categorie> selectcategorie(){
-		Connection cnx = null;
+	private static final String SELECTCATEGO = "SELECT no_categorie,libelle FROM CATEGORIES";
+
+	public List<Categorie> selectcategorie() throws DALException {
 		List<Categorie> listeCategorie = new ArrayList<Categorie>();
-		try{	
-		cnx = ConnectionProvider.getConnection();
-		} catch (DALException e) {
-			System.out.println(e.getMessage());
-		}
-			Statement rqt;
-			try {
-			rqt = cnx.createStatement();
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+
+			Statement rqt = cnx.createStatement();
 			ResultSet rs = rqt.executeQuery(SELECTCATEGO);
 			while (rs.next()) {
 				int num = (rs.getInt("no_categorie"));
 				String libelle = (rs.getString("libelle"));
-				Categorie categorie = new Categorie (num,libelle);
+				Categorie categorie = new Categorie(num, libelle);
 				listeCategorie.add(categorie);
 			}
-			} catch (SQLException e) {
-				System.out.println(e.getMessage());
-			}
-			return listeCategorie;
-		
-	}
-	
-	private static final String SELECTENCHERE ="SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,av.no_categorie, pseudo, libelle FROM ARTICLES_VENDUS as av INNER JOIN UTILISATEURS as u ON u.no_utilisateur = av.no_utilisateur INNER JOIN CATEGORIES as c ON c.no_categorie=av.no_categorie";
-	public List<Vente> selectenchere(){
-		Connection cnx = null;
-		List<Vente> listeEnchere = new ArrayList<Vente>();
-		try{	
-		cnx = ConnectionProvider.getConnection();
-		} catch (DALException e) {
-			System.out.println(e.getMessage());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new DALException(" erreur selectCategorie -");
 		}
-			Statement rqt;
-			try {
-			rqt = cnx.createStatement();
+
+		return listeCategorie;
+
+	}
+
+	private static final String SELECTENCHERE = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,av.no_categorie, pseudo, libelle FROM ARTICLES_VENDUS as av INNER JOIN UTILISATEURS as u ON u.no_utilisateur = av.no_utilisateur INNER JOIN CATEGORIES as c ON c.no_categorie=av.no_categorie";
+
+	public List<Vente> selectenchere() throws DALException {
+		List<Vente> listeEnchere = new ArrayList<Vente>();
+		try (Connection cnx= ConnectionProvider.getConnection()){
+
+			Statement rqt = cnx.createStatement();
 			ResultSet rs = rqt.executeQuery(SELECTENCHERE);
 			while (rs.next()) {
 				int idEnchere = (rs.getInt("no_article"));
@@ -104,24 +93,23 @@ public class VenteDAOjdclImpl {
 				String finEnchere = finEnchereDate.toString();
 				String pseudo = rs.getString("pseudo");
 				String libellecatego = (rs.getString("libelle"));
-				Vente vente = new Vente (idEnchere,article,description,debutEnchere,finEnchere,prixDepartStr,prixVente,numUser,numCatego,pseudo,libellecatego);
+				Vente vente = new Vente(idEnchere, article, description, debutEnchere, finEnchere, prixDepartStr,
+						prixVente, numUser, numCatego, pseudo, libellecatego);
 				listeEnchere.add(vente);
-				
+
 			}
-			} catch (SQLException e) {
-				System.out.println(e.getMessage());
-			}
-			System.out.println(listeEnchere.get(1));
-			return listeEnchere;
-		
+		} catch (SQLException e) {
+			throw new DALException(" erreur selectCategorie -");
+		}
+		return listeEnchere;
+
 	}
-	
+
 	private static final String INSERTOFFREENCHERE = "INSERT INTO ENCHERES (date_enchere, montant_enchere, no_article, no_utilisateur) VALUES (?,?,?,?)";
+
 	public void offreEnchere(Enchere enchere) throws DALException {
-		Connection cnx = null;
-		
-		try {
-			cnx = ConnectionProvider.getConnection();
+		try (Connection cnx = ConnectionProvider.getConnection()){ 
+			
 			PreparedStatement rqt = cnx.prepareStatement(INSERTOFFREENCHERE, PreparedStatement.RETURN_GENERATED_KEYS);
 			rqt.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
 			rqt.setInt(2, enchere.getOffre());
@@ -132,17 +120,100 @@ public class VenteDAOjdclImpl {
 			if (rs.next()) {
 				enchere.setIdEnchere(rs.getInt(1));
 			}
-			
+
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DALException(" erreur insert enchere -");
 		}
 	}
-	
-	private static final String SELECT_MEILLEUR_OFFRE ="SELECT MAX(montant_enchere)[montant_max], e.no_utilisateur,pseudo FROM ENCHERES as e INNER JOIN UTILISATEURS as u ON u.no_utilisateur=e.no_utilisateur WHERE e.no_article=? GROUP BY e.no_utilisateur, u.pseudo;";
-	public int meilleurOffre() {
-		// TODO Auto-generated method stub
-		return 0;
+
+	private static final String SELECT_MEILLEUR_OFFRE = "  SELECT u.no_utilisateur,montant_enchere FROM UTILISATEURS u JOIN ENCHERES e ON u.no_utilisateur = e.no_utilisateur WHERE montant_enchere = (SELECT MAX(montant_enchere) FROM ENCHERES WHERE no_article=?) AND no_article = ?";
+
+	public int meilleurOffre(Enchere enchere) throws DALException {
+		int max = 0;
+		try (Connection cnx = ConnectionProvider.getConnection()) { 
+			PreparedStatement rqt = cnx.prepareStatement(SELECT_MEILLEUR_OFFRE);
+			rqt.setInt(1, enchere.getNoArticle());
+			rqt.setInt(2, enchere.getNoArticle());
+			ResultSet rs = rqt.executeQuery();
+			if (rs.next()) {
+				max = rs.getInt("montant_enchere");
+
+			}
+
+		} catch (SQLException e) {
+			throw new DALException(" erreur meiileur offre -");
+		}
+		return max;
 	}
-	
+
+	private static final String SELECTENCHERECATEG = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,av.no_categorie, pseudo, libelle FROM ARTICLES_VENDUS as av INNER JOIN UTILISATEURS as u ON u.no_utilisateur = av.no_utilisateur INNER JOIN CATEGORIES as c ON c.no_categorie=av.no_categorie WHERE c.no_categorie=?";
+
+	public List<Vente> selectencherecateg(Vente vente) throws DALException {
+		List<Vente> listeEnchere = new ArrayList<Vente>();
+		try (Connection cnx = ConnectionProvider.getConnection();) {
+
+			PreparedStatement rqt = cnx.prepareStatement(SELECTENCHERECATEG);
+			rqt.setInt(1, vente.getNumcategorie());
+			ResultSet rs = rqt.executeQuery();
+			while (rs.next()) {
+				int idEnchere = (rs.getInt("no_article"));
+				String article = (rs.getString("nom_article"));
+				String description = (rs.getString("description"));
+				LocalDate debutEnchereDate = rs.getDate("date_debut_encheres").toLocalDate();
+				LocalDate finEnchereDate = rs.getDate("date_fin_encheres").toLocalDate();
+				int prixDepart = (rs.getInt("prix_initial"));
+				int prixVente = (rs.getInt("prix_vente"));
+				int numUser = (rs.getInt("no_utilisateur"));
+				int numCatego = (rs.getInt("no_categorie"));
+				String prixDepartStr = String.valueOf(prixDepart);
+				String debutEnchere = debutEnchereDate.toString();
+				String finEnchere = finEnchereDate.toString();
+				String pseudo = rs.getString("pseudo");
+				String libellecatego = (rs.getString("libelle"));
+				Vente vente1 = new Vente(idEnchere, article, description, debutEnchere, finEnchere, prixDepartStr,
+						prixVente, numUser, numCatego, pseudo, libellecatego);
+				listeEnchere.add(vente1);
+
+			}
+		} catch (SQLException e) {
+			throw new DALException(" select catego -");
+		}
+		return listeEnchere;
+	}
+
+	private static final String SELECTENCHERECONTIENT = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,av.no_categorie, pseudo, libelle FROM ARTICLES_VENDUS as av INNER JOIN UTILISATEURS as u ON u.no_utilisateur = av.no_utilisateur INNER JOIN CATEGORIES as c ON c.no_categorie=av.no_categorie WHERE nom_article LIKE ?";
+
+	public List<Vente> selectencherecontient(Vente vente) throws DALException {
+		System.out.println("coucou");
+		List<Vente> listeEnchere = new ArrayList<Vente>();
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			PreparedStatement rqt = cnx.prepareStatement(SELECTENCHERECONTIENT);
+			rqt.setString(1, vente.getContient());
+			ResultSet rs = rqt.executeQuery();
+			while (rs.next()) {
+				int idEnchere = (rs.getInt("no_article"));
+				String article = (rs.getString("nom_article"));
+				String description = (rs.getString("description"));
+				LocalDate debutEnchereDate = rs.getDate("date_debut_encheres").toLocalDate();
+				LocalDate finEnchereDate = rs.getDate("date_fin_encheres").toLocalDate();
+				int prixDepart = (rs.getInt("prix_initial"));
+				int prixVente = (rs.getInt("prix_vente"));
+				int numUser = (rs.getInt("no_utilisateur"));
+				int numCatego = (rs.getInt("no_categorie"));
+				String prixDepartStr = String.valueOf(prixDepart);
+				String debutEnchere = debutEnchereDate.toString();
+				String finEnchere = finEnchereDate.toString();
+				String pseudo = rs.getString("pseudo");
+				String libellecatego = (rs.getString("libelle"));
+				Vente vente1 = new Vente(idEnchere, article, description, debutEnchere, finEnchere, prixDepartStr,
+						prixVente, numUser, numCatego, pseudo, libellecatego);
+				listeEnchere.add(vente1);
+
+			}
+		} catch (SQLException e) {
+			throw new DALException(" select catego -");
+		}
+		return listeEnchere;
+	}
+
 }

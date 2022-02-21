@@ -29,7 +29,7 @@ public class VenteMgr {
 		
 	}
 
-	public List<Vente> selectenchere() throws SQLException, DALException {		
+	public List<Vente> selectenchere() throws SQLException, DALException, fr.eni.gestion_user.dal.DALException {		
 		return this.venteDAO.selectenchere();
 	}
 
@@ -46,10 +46,30 @@ public class VenteMgr {
 		
 	}
 
+	public int meilleurOffre(int noArticle) {
+		Enchere enchere = new Enchere(noArticle);
+		int max = 0;
+		try {
+			max= this.venteDAO.meilleurOffre(enchere);
+		} catch (fr.eni.gestion_user.dal.DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return max;
+	}
 
 
-	public int meilleurOffre() {
-		return this.venteDAO.meilleurOffre();
+
+	public List<Vente> selectencherecateg(int categ) throws fr.eni.gestion_user.dal.DALException {
+		Vente vente = new Vente (categ);
+		return this.venteDAO.selectencherecateg(vente);
+	}
+
+
+
+	public List<Vente> selectencherecontient(String contient) throws fr.eni.gestion_user.dal.DALException {
+		Vente vente = new Vente (contient);
+		return this.venteDAO.selectencherecontient(vente);
 	}	
 	
 

@@ -22,6 +22,13 @@ public class Enchere {
 	}
 
 	/**
+	 * @param noArticle
+	 */
+	public Enchere(int noArticle) {
+		this.noArticle = noArticle;
+	}
+
+	/**
 	 * @return the offre
 	 */
 	public int getOffre() {

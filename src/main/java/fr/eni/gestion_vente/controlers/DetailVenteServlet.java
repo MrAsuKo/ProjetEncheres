@@ -41,7 +41,12 @@ public class DetailVenteServlet extends HttpServlet {
 		//Creation de la liste des encheres
 		List<Vente> listeEnchere = null;		
 		try {
-			listeEnchere = venteMgr.selectenchere();
+			try {
+				listeEnchere = venteMgr.selectenchere();
+			} catch (fr.eni.gestion_user.dal.DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,9 +54,13 @@ public class DetailVenteServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(listeEnchere.get(0));
+//		System.out.println(listeEnchere.get(0));
 		request.setAttribute("listeEnchere", listeEnchere);
 		//fin de la creation de la liste des encheres
+		//recuperer la meilleur offre
+		int meilleurOffre = venteMgr.meilleurOffre(noArticle);
+		System.out.println(meilleurOffre);
+		request.setAttribute("meilleurOffre", meilleurOffre);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/DetailVente.jsp");
 		rd.forward(request, response);	
 	}

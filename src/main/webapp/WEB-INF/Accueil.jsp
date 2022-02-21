@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="fr.eni.gestion_vente.bo.Vente" %>
+<%@ page import="fr.eni.gestion_vente.bo.Categorie" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -12,14 +15,33 @@
 		<%@include file="fragments/header.jspf" %>
 		<a href="<%=request.getContextPath()%>/SeConnecter">S'inscrire - Se connecter</a>
 		<h3> Liste des enchères</h3>
-		<form action="" method="post">
-			<input type="text" id="nom" name ="nom" value="le nom de l'article contient">
-			<select name="categories" id="categories">
-				<option value="Catego">Toutes</option>
-				<option value="Catego">--Please choose an option--</option>
-			</select>
-			<input type="submit" id="recherche" name ="recherche" value="Recherche">
-		</form>
-		<p>Liste enchere a prevoir</p>
+
+	<form action="<%=request.getContextPath()%>/FiltreRecherche" method="post">
+	<input type="text" id="contient" name ="contient" value="le nom de l'article contient">
+	<p>Catégorie : <select name="categorie" id="categorie">
+    <option  value="0">---- Choisir une categorie ----</option>
+    <% List<Categorie> list2 = (List<Categorie>)request.getAttribute("listecategorie");
+    for (Categorie cat : list2){ %>
+    	<option  value="<%=cat.getNumcatego()%>"><%=cat.getLibelle()%></option>
+    <%}
+    %>
+		<input type="submit" id="recherche" name ="recherche" value="recherche">
+	</form>
+
+		
+
+<div>	
+    <% List<Vente> list = (List<Vente>)request.getAttribute("listeEnchere");
+    for (Vente art : list){ 
+    	if (list !=null) {
+    	int noArticle = art.getIdEnchere();%>
+    	<div style="border:solid; width: 300px ; margin:10px">
+    	<p><%=art.getArticle()%></p><p>Prix : <%=art.getPrixdepart()%></p><p>fin de l'enchère : <%=art.getFinenchere()%></p><p>Vendeur : <%=art.getPseudo()%></p>
+    	</div>
+    <%}
+    }
+    %>
+</div>   
+
 	</body>
 </html>

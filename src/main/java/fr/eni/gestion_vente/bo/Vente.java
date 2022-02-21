@@ -15,6 +15,7 @@ public class Vente {
 	private int prixvente;
 	private String pseudo;
 	private String libellecatego;
+	private String contient;
 	
 	/**
 	 * @return the libellecatego
@@ -120,6 +121,12 @@ public class Vente {
 		this.libellecatego = libellecatego;
 	}
 		
+	public Vente(int numcategorie) {
+		this.numcategorie = numcategorie;
+	}
+	public Vente(String contient) {
+		this.contient=contient;
+	}
 	/**
 	 * @return the categorie
 	 */
@@ -149,6 +156,18 @@ public class Vente {
 	 */
 	public String getDescription() {
 		return description;
+	}
+	/**
+	 * @return the contient
+	 */
+	public String getContient() {
+		return contient;
+	}
+	/**
+	 * @param contient the contient to set
+	 */
+	public void setContient(String contient) {
+		this.contient = contient;
 	}
 	/**
 	 * @param description the description to set

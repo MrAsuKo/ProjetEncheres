@@ -54,7 +54,12 @@ public class CreationUserServlet extends HttpServlet {
 		//Creation de la liste des encheres
 		List<Vente> listeEnchere = null;		
 		try {
-			listeEnchere = venteMgr.selectenchere();
+			try {
+				listeEnchere = venteMgr.selectenchere();
+			} catch (fr.eni.gestion_user.dal.DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (DALException e) {
