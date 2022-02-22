@@ -60,7 +60,7 @@
     		<div class="p-4 card border-warning bg-dark mb-3" style="max-width: 18rem;">
   				<div class="card-header">Vendeur : <a href="./Show/Vendeur?name=<%=art.getPseudo()%>"><%=art.getPseudo()%></a></div>
   					<div class="card-body">
-    					<h5 class="card-title"><a href="<%=request.getContextPath()%>/DetailVente?name=<%=art.getIdEnchere()%>"><%=art.getArticle()%></a></h5>
+    					<h5 class="card-title"><a href="<%=request.getContextPath()%>/DetailVente?name=<%=art.getIdEnchere()%>&datefin=<%=art.getFinenchere()%>"><%=art.getArticle()%></a></h5>
 						    <p class="card-text">Prix : <%=art.getPrixdepart()%></p>
 						    <p class="card-text">Fin de l'enchère : <%=art.getFinenchere()%></p>
   					</div>
