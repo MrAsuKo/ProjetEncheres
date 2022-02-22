@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.gestion_vente.bll.VenteMgr;
+import fr.eni.gestion_vente.bo.Enchere;
 import fr.eni.gestion_vente.bo.Vente;
 import fr.eni.gestion_vente.dal.DALException;
 
@@ -58,13 +59,20 @@ public class DetailVenteServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		System.out.println(listeEnchere.get(0));
 		request.setAttribute("listeEnchere", listeEnchere);
 		//fin de la creation de la liste des encheres
 		//recuperer la meilleur offre
-		int meilleurOffre = venteMgr.meilleurOffre(noArticle);
-		System.out.println(meilleurOffre);
-		request.setAttribute("meilleurOffre", meilleurOffre);
+		Enchere enchere = null;
+		try {
+			enchere = venteMgr.meilleurOffre(noArticle);
+		} catch (fr.eni.gestion_user.dal.DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(" test : " + enchere.getId());
+		request.setAttribute("meilleurOffre", enchere.getOffre());
+		request.setAttribute("id", enchere.getId());
+		request.setAttribute("pseudo", enchere.getPseudo());
 		
 		//remporter enchrere si date fin est depassé
 		LocalDate datefinDate = LocalDate.parse(datefin);

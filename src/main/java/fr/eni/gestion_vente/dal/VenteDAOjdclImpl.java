@@ -126,24 +126,27 @@ public class VenteDAOjdclImpl {
 		}
 	}
 
-	private static final String SELECT_MEILLEUR_OFFRE = "  SELECT u.no_utilisateur,montant_enchere FROM UTILISATEURS u JOIN ENCHERES e ON u.no_utilisateur = e.no_utilisateur WHERE montant_enchere = (SELECT MAX(montant_enchere) FROM ENCHERES WHERE no_article=?) AND no_article = ?";
+	private static final String SELECT_MEILLEUR_OFFRE = "  SELECT u.no_utilisateur,pseudo,montant_enchere FROM UTILISATEURS u JOIN ENCHERES e ON u.no_utilisateur = e.no_utilisateur WHERE montant_enchere = (SELECT MAX(montant_enchere) FROM ENCHERES WHERE no_article=?) AND no_article = ?";
 
-	public int meilleurOffre(Enchere enchere) throws DALException {
-		int max = 0;
+	public Enchere meilleurOffre(Enchere enchere) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) { 
 			PreparedStatement rqt = cnx.prepareStatement(SELECT_MEILLEUR_OFFRE);
 			rqt.setInt(1, enchere.getNoArticle());
 			rqt.setInt(2, enchere.getNoArticle());
 			ResultSet rs = rqt.executeQuery();
 			if (rs.next()) {
-				max = rs.getInt("montant_enchere");
+				System.out.println(rs.getInt("no_utilisateur"));
+				enchere.setId(rs.getInt("no_utilisateur"));
+				enchere.setPseudo(rs.getString("pseudo"));
+				enchere.setOffre(rs.getInt("montant_enchere"));
 
 			}
 
 		} catch (SQLException e) {
-			throw new DALException(" erreur meiileur offre -");
+			e.printStackTrace();
+			throw new DALException(" erreur meilleur offre -");
 		}
-		return max;
+		return enchere;
 	}
 
 	private static final String SELECTENCHERECATEG = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,av.no_categorie, pseudo, libelle FROM ARTICLES_VENDUS as av INNER JOIN UTILISATEURS as u ON u.no_utilisateur = av.no_utilisateur INNER JOIN CATEGORIES as c ON c.no_categorie=av.no_categorie WHERE c.no_categorie=?";

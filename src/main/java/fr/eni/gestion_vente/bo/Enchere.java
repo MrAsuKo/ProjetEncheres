@@ -6,6 +6,7 @@ public class Enchere {
 	private int offre;
 	private int noArticle;
 	private int id;
+	private String pseudo;
 
 	/**
 	 * @param offre
@@ -13,6 +14,26 @@ public class Enchere {
 	public Enchere(int idEnchere, int offre) {
 		this.idEnchere=idEnchere;
 		this.offre = offre;
+	}
+	
+	/**
+	 * @return the pseudo
+	 */
+	public String getPseudo() {
+		return pseudo;
+	}
+
+	/**
+	 * @param pseudo the pseudo to set
+	 */
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
+	}
+
+	public Enchere(int idEnchere, int offre, String pseudo) {
+		this.idEnchere=idEnchere;
+		this.offre = offre;
+		this.pseudo = pseudo;
 	}
 
 	public Enchere(int offre, int noArticle, int id) {

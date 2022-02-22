@@ -15,6 +15,7 @@ import javax.websocket.Session;
 
 import fr.eni.gestion_user.bo.User;
 import fr.eni.gestion_vente.bll.VenteMgr;
+import fr.eni.gestion_vente.bo.Enchere;
 import fr.eni.gestion_vente.bo.Vente;
 import fr.eni.gestion_vente.dal.DALException;
 
@@ -75,9 +76,14 @@ public class NouvelleEnchereServlet extends HttpServlet {
 		//Inserer l'offre dans la BDD
 		venteMgr.offreEnchere(offre,noArticle,id);
 		//recuperer la meilleur offre
-		int meilleurOffre = venteMgr.meilleurOffre(noArticle);
-		System.out.println(meilleurOffre);
-		request.setAttribute("meilleurOffre", meilleurOffre);
+		Enchere enchere = null;
+		try {
+			enchere = venteMgr.meilleurOffre(noArticle);
+		} catch (fr.eni.gestion_user.dal.DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		request.setAttribute("meilleurOffre", enchere.getOffre());
 		doGet(request, response);
 	}
 

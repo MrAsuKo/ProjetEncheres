@@ -14,7 +14,22 @@
 </head>
 <body>
 <h1>ENI - Enchères</h1>
-		<h3>VOUS AVEZ REMPORTER L'ENCHERE</h3>
+				<%	
+				String pseudo = null;
+				if (request.getAttribute("pseudo") != null) {
+				pseudo = (String)request.getAttribute("pseudo");
+				}
+				int id = 0;
+				int idSession = (int)request.getSession(false).getAttribute("id");
+				if (request.getAttribute("id") != null) {
+				id = (int)request.getAttribute("id");
+				}
+				if (id == idSession) {%>
+					<h3>VOUS AVEZ REMPORTER L'ENCHERE</h3>
+				<%} else { %>
+				<h2 style="color:red">YOU LOSE!!!!</h2>
+				<h3><%=pseudo %> A REMPORTER L'ENCHERE</h3>
+				<%} %>
 
 			<% List<Vente> list = (List<Vente>)request.getAttribute("listeEnchere");
 	   		for (Vente art : list){ 
@@ -28,7 +43,7 @@
 				<%	String message = null;
 				if (request.getAttribute("meilleurOffre") != null) {
 					message = request.getAttribute("meilleurOffre").toString(); %>
-					<p>Meilleure offre : <%=message %></p>
+					<p>Meilleure offre : <%=message %> par <%=pseudo %></p>
 				<% 	} %>
 				
 				<p>Mise à prix : <%=art.getPrixdepart()%></p>

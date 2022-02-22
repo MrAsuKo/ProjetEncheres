@@ -46,16 +46,10 @@ public class VenteMgr {
 		
 	}
 
-	public int meilleurOffre(int noArticle) {
+	public Enchere meilleurOffre(int noArticle) throws fr.eni.gestion_user.dal.DALException {
 		Enchere enchere = new Enchere(noArticle);
-		int max = 0;
-		try {
-			max= this.venteDAO.meilleurOffre(enchere);
-		} catch (fr.eni.gestion_user.dal.DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return max;
+			return this.venteDAO.meilleurOffre(enchere);
+
 	}
 
 
