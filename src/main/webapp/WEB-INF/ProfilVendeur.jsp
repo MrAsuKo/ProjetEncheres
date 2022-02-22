@@ -19,10 +19,5 @@
 		<p>Prénom : ${user.prenom}</p>
 		<p>Email : ${user.email}</p>
 		<p>Téléphone : ${user.telephone}</p>
-		<p>Rue : ${user.rue}</p>
-		<p>Code postal : ${user.cp}</p>
-		<p>Ville : ${user.ville}</p>
-		<p>Crédit : ${user.credit}</p>
-
 	</body>
 </html>

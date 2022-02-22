@@ -23,7 +23,7 @@
 	<h3> Liste des enchères</h3>
 	
 	<form action="<%=request.getContextPath()%>/FiltreRecherche" method="post">
-	<input type="text" id="contient" name ="contient" value="le nom de l'article contient">
+	<input type="text" id="contient" name ="contient" placeholder="Rechercher sur Bidhub">
 	<p>Catégorie : <select name="categorie" id="categorie">
     <option  value="0">---- Choisir une categorie ----</option>
     <% List<Categorie> list2 = (List<Categorie>)request.getAttribute("listecategorie");
@@ -32,23 +32,23 @@
     <%}
     %>
     <!-- Filtre checkbox -->
-    			<div style="display: flex; flex-direction: row;">
-				<input type="checkbox" id="achat" name="achat">
+    			<div>
+				<input type="radio" id="achat" name="achat">
 				<label for="achats">Achats</label>
 					<ul style="list-style: none;">
-						<li><input type="checkbox" id="enchères ouvertes" name="enchères ouvertes"><label for="enchères ouvertes">enchères ouvertes</label></li>
-						<li><input type="checkbox" id="mesencheres" name="mesencheres"><label for="mesencheres">mes enchères</label></li>
-						<li><input type="checkbox" id="mesemcheresremportees" name="mesemcheresremportees"><label for="mesemcheresremportees">mes emchères remportées</label></li>
+						<li><input type="checkbox" id="enchères ouvertes" name="enchères ouvertes"><label for="enchères ouvertes">Enchères ouvertes</label></li>
+						<li><input type="checkbox" id="mesencheres" name="mesencheres"><label for="mesencheres">Mes enchères</label></li>
+						<li><input type="checkbox" id="mesemcheresremportees" name="mesemcheresremportees"><label for="mesemcheresremportees">Mes enchères remportées</label></li>
 					</ul>
-				<input type="checkbox" id="vente" name="vente">
-				<label for="achats">Mes vente</label>
+				<input type="radio" id="vente" name="achat">
+				<label for="achats">Mes ventes</label>
 					<ul style="list-style: none;">
-						<li><input type="checkbox" id="checkbox" name="checkbox" value="mesventesencours"><label for="mesventesencours">mes ventes en cours</label></li>
-						<li><input type="checkbox" id="checkbox" name="checkbox" value="ventesnondebutees"><label for="ventesnondebutees">ventes non debutées</label></li>
-						<li><input type="checkbox" id="checkbox" name="checkbox" value ="ventesterminees"><label for="ventesterminees">ventes terminées</label></li>
+						<li><input type="checkbox" id="checkbox" name="checkbox" value="mesventesencours"><label for="mesventesencours">Mes ventes en cours</label></li>
+						<li><input type="checkbox" id="checkbox" name="checkbox" value="ventesnondebutees"><label for="ventesnondebutees">Ventes non debutées</label></li>
+						<li><input type="checkbox" id="checkbox" name="checkbox" value ="ventesterminees"><label for="ventesterminees">Ventes terminées</label></li>
 					</ul>
 			</div>
-		<input type="submit" id="recherche" name ="recherche" value="recherche">
+		<input type="submit" id="recherche" name ="recherche" value="Rechercher">
 	</form>
 
 	<div class="row row-cols-xxl-6 row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2">	
