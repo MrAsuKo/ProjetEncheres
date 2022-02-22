@@ -62,8 +62,7 @@ public class VenteMgr {
 
 
 	public List<Vente> selectEnchereContient(String contient) throws fr.eni.encheres.dal.DALException {
-		Vente vente = new Vente (contient);
-		return this.venteDAO.selectEnchereContient(vente);
+		return this.venteDAO.selectEnchereContient(contient);
 	}
 
 
