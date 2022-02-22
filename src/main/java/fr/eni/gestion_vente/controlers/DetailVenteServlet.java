@@ -69,7 +69,6 @@ public class DetailVenteServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(" test : " + enchere.getId());
 		request.setAttribute("meilleurOffre", enchere.getOffre());
 		request.setAttribute("id", enchere.getId());
 		request.setAttribute("pseudo", enchere.getPseudo());

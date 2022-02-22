@@ -135,7 +135,6 @@ public class VenteDAOjdclImpl {
 			rqt.setInt(2, enchere.getNoArticle());
 			ResultSet rs = rqt.executeQuery();
 			if (rs.next()) {
-				System.out.println(rs.getInt("no_utilisateur"));
 				enchere.setId(rs.getInt("no_utilisateur"));
 				enchere.setPseudo(rs.getString("pseudo"));
 				enchere.setOffre(rs.getInt("montant_enchere"));

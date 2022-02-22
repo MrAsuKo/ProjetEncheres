@@ -47,7 +47,6 @@ public class NouvelleEnchereServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("coucou");
 		String offreStr = request.getParameter("offre");
 		String noArticleStr = request.getParameter("noArticle");
 		int noArticle = Integer.parseInt(noArticleStr);

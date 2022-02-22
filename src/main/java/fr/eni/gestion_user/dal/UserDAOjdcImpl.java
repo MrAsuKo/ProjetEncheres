@@ -115,7 +115,6 @@ public class UserDAOjdcImpl implements UserDAO {
 			PreparedStatement rqt = cnx.prepareStatement(UPDATE_USER);
 			rqt.setString(8, user.getPseudo());
 			rqt.setString(9, user.getMdp());
-			System.out.println("1 : " + user.getPseudo());
 			rqt.setString(1, user.getNom());
 			rqt.setString(2, user.getPrenom());
 			rqt.setString(3, user.getEmail());

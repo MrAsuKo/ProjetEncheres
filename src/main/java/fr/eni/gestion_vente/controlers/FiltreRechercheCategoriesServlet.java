@@ -51,8 +51,6 @@ public class FiltreRechercheCategoriesServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String categStr = request.getParameter("categorie");
 		String contient = request.getParameter("contient");
-		System.out.println(categStr);
-		System.out.println(contient);
 		int categ = Integer.parseInt(categStr);
 		
 			//liste des categoeries

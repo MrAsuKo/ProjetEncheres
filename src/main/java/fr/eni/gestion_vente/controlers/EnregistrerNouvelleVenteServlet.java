@@ -89,7 +89,6 @@ public class EnregistrerNouvelleVenteServlet extends HttpServlet {
 		String debutenchere = request.getParameter("debutenchere");
 		String finenchere = request.getParameter("finenchere");
 		int numcategorie = Integer.parseInt(categorie);
-		System.out.println(numcategorie);
 		int id = (int) request.getSession(false).getAttribute("id");
 		
 		try {

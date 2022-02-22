@@ -43,7 +43,6 @@ public class AfficherProfilVendeurServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String pseudo = request.getParameter("name");
-		System.out.println("doPost: " + pseudo);
 		
 		try {			
 			User user = userMgr.profilVendeur(pseudo);
