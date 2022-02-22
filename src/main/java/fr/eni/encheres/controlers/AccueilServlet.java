@@ -1,4 +1,4 @@
-package fr.eni.encheres;
+package fr.eni.encheres.controlers;
 
 import java.io.IOException;
 import java.sql.SQLException;
