@@ -25,6 +25,7 @@
     	<option  value="<%=cat.getNumcatego()%>"><%=cat.getLibelle()%></option>
     <%}
     %>
+    </select>
 		<input type="submit" id="recherche" name ="recherche" value="Rechercher">
 	</form>
 

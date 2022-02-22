@@ -31,6 +31,7 @@
     	<option  value="<%=cat.getNumcatego()%>"><%=cat.getLibelle()%></option>
     <%}
     %>
+    </select>
     <!-- Filtre checkbox -->
     			<div>
 				<input type="radio" id="achat" name="achat">
