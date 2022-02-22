@@ -47,16 +47,14 @@ public class VenteMgr {
 	}
 
 	public Enchere meilleurOffre(int noArticle) throws fr.eni.encheres.dal.DALException {
-		Enchere enchere = new Enchere(noArticle);
-			return this.venteDAO.meilleurOffre(enchere);
+			return this.venteDAO.meilleurOffre(noArticle);
 
 	}
 
 
 
 	public List<Vente> selectencherecateg(int categ) throws fr.eni.encheres.dal.DALException {
-		Vente vente = new Vente (categ);
-		return this.venteDAO.selectEnchereCateg(vente);
+		return this.venteDAO.selectEnchereCateg(categ);
 	}
 
 

@@ -3,7 +3,7 @@ package fr.eni.encheres.bo;
 public class Enchere {
 
 	private int idEnchere;
-	private int offre;
+	private int montantEnchere;
 	private int noArticle;
 	private int id;
 	private String pseudo;
@@ -11,9 +11,9 @@ public class Enchere {
 	/**
 	 * @param offre
 	 */
-	public Enchere(int idEnchere, int offre) {
+	public Enchere(int idEnchere, int montantEnchere) {
 		this.idEnchere=idEnchere;
-		this.offre = offre;
+		this.montantEnchere = montantEnchere;
 	}
 	
 	/**
@@ -30,14 +30,14 @@ public class Enchere {
 		this.pseudo = pseudo;
 	}
 
-	public Enchere(int idEnchere, int offre, String pseudo) {
+	public Enchere(int idEnchere, int montantEnchere, String pseudo) {
 		this.idEnchere=idEnchere;
-		this.offre = offre;
+		this.montantEnchere = montantEnchere;
 		this.pseudo = pseudo;
 	}
 
-	public Enchere(int offre, int noArticle, int id) {
-		this.offre = offre;
+	public Enchere(int montantEnchere, int noArticle, int id) {
+		this.montantEnchere = montantEnchere;
 		this.noArticle = noArticle;
 		this.id = id;
 	}
@@ -49,11 +49,15 @@ public class Enchere {
 		this.noArticle = noArticle;
 	}
 
+	public Enchere(int id, String pseudo, int montantEnchere) {
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
-	 * @return the offre
+	 * @return the montantEnchere
 	 */
-	public int getOffre() {
-		return offre;
+	public int getMontantEnchere() {
+		return montantEnchere;
 	}
 
 	/**
@@ -87,8 +91,8 @@ public class Enchere {
 	/**
 	 * @param offre the offre to set
 	 */
-	public void setOffre(int offre) {
-		this.offre = offre;
+	public void setMontantEnchere(int montantEnchere) {
+		this.montantEnchere = montantEnchere;
 	}
 
 	/**

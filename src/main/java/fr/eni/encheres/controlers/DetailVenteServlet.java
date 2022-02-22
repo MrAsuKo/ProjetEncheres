@@ -62,13 +62,14 @@ public class DetailVenteServlet extends HttpServlet {
 		Enchere enchere = null;
 		try {
 			enchere = venteMgr.meilleurOffre(noArticle);
+			request.setAttribute("meilleurOffre", enchere.getMontantEnchere());
+			request.setAttribute("id", enchere.getId());
+			request.setAttribute("pseudo", enchere.getPseudo());
 		} catch (fr.eni.encheres.dal.DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+
 		}
-		request.setAttribute("meilleurOffre", enchere.getOffre());
-		request.setAttribute("id", enchere.getId());
-		request.setAttribute("pseudo", enchere.getPseudo());
+
 		
 		//remporter enchrere si date fin est depassé
 		LocalDate datefinDate = LocalDate.parse(datefin);

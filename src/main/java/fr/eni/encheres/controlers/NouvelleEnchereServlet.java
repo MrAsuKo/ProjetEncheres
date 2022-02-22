@@ -69,7 +69,6 @@ public class NouvelleEnchereServlet extends HttpServlet {
 		int offre = Integer.parseInt(offreStr);
 		String idStr = request.getParameter("id");
 		int id = Integer.parseInt(idStr);
-		//Inserer l'offre dans la BDD
 		venteMgr.offreEnchere(offre,noArticle,id);
 		//recuperer la meilleur offre
 		Enchere enchere = null;
@@ -79,7 +78,7 @@ public class NouvelleEnchereServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		request.setAttribute("meilleurOffre", enchere.getOffre());
+		request.setAttribute("meilleurOffre", enchere.getMontantEnchere());
 		doGet(request, response);
 	}
 
