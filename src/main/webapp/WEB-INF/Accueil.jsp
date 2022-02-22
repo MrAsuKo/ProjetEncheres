@@ -28,20 +28,25 @@
 		<input type="submit" id="recherche" name ="recherche" value="recherche">
 	</form>
 
-		
-
-<div>	
+	<div class="row row-cols-xxl-6 row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2">	
     <% List<Vente> list = (List<Vente>)request.getAttribute("listeEnchere");
     for (Vente art : list){ 
     	if (list !=null) {
     	int noArticle = art.getIdEnchere();%>
-    	<div style="border:solid; width: 300px ; margin:10px">
-    	<p><%=art.getArticle()%></p><p>Prix : <%=art.getPrixdepart()%></p><p>fin de l'enchère : <%=art.getFinenchere()%></p><p>Vendeur : <%=art.getPseudo()%></p>
-    	</div>
-    <%}
-    }
-    %>
-</div>   
-
+    	<div class="col">
+    		<div class="p-4 card border-warning bg-dark mb-3" style="max-width: 18rem;">
+  				<div class="card-header">Vendeur : <%=art.getPseudo()%></div>
+  					<div class="card-body">
+    					<h5 class="card-title"><%=art.getArticle()%></h5>
+						    <p class="card-text">Prix : <%=art.getPrixdepart()%></p>
+						    <p class="card-text">Fin de l'enchère : <%=art.getFinenchere()%></p>
+  					</div>
+				</div>
+			</div>
+	    <%}
+		}
+	    %>
+	</div>
+	   
 	</body>
 </html>
