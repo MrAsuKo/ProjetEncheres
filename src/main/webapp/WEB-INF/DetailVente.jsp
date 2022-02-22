@@ -16,7 +16,7 @@
 		<link href="<%=request.getContextPath() %>/css/style.css" rel="stylesheet"> 
 	</head>
 	<body>
-		<h1>ENI - Enchères</h1>
+		<%@include file="fragments/header.jspf" %>
 		<h3>Détail vente</h3>
 
 			<% List<Vente> list = (List<Vente>)request.getAttribute("listeEnchere");

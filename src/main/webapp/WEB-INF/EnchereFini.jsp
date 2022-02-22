@@ -58,9 +58,9 @@
 				<p>Fin de l'enchère : <%=art.getFinenchere()%></p>
 				<p>Retrait :</p>
 				<p>Vendeur : <%=art.getPseudo()%></p>
-				<p> Tel : </p>
+				<p> Tel : <%=art.getTelephone()%></p>
 					<form action="<%=request.getContextPath()%>/BackAccueil" method="post">
-							<input type="submit" id="back" name ="back" value="back">
+							<input type="submit" id="back" name ="back" value="Retour">
 							<input id="prodId" name="noArticle" type="hidden" value="<%=art.getIdEnchere() %>">
 							<input id="prodId" name="id" type="hidden" value="${sessionScope.id}">
 					</form>
