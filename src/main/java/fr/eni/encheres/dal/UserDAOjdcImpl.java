@@ -14,7 +14,7 @@ public class UserDAOjdcImpl implements UserDAO {
 	private static final String SELECT_USEREMAIL = "SELECT email FROM UTILISATEURS WHERE email=?";
 	private static final String SELECT_USER = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE pseudo=? and mot_de_passe=?";
 	private static final String DELETE_USER = "DELETE FROM UTILISATEURS WHERE pseudo=?";
-	private static final String UPDATE_USER = "UPDATE UTILISATEURS SET  nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=? WHERE pseudo=? and mot_de_passe=?";
+	private static final String UPDATE_USER = "UPDATE UTILISATEURS SET  nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mdp=? WHERE pseudo=?";
 	private static final String SELECT_VENDEUR = "SELECT pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit FROM UTILISATEURS WHERE pseudo=?";
 
 	public boolean verif(User user) throws DALException {
@@ -114,8 +114,6 @@ public class UserDAOjdcImpl implements UserDAO {
 		try {
 			cnx = ConnectionProvider.getConnection();
 			PreparedStatement rqt = cnx.prepareStatement(UPDATE_USER);
-			rqt.setString(8, user.getPseudo());
-			rqt.setString(9, user.getMdp());
 			rqt.setString(1, user.getNom());
 			rqt.setString(2, user.getPrenom());
 			rqt.setString(3, user.getEmail());
@@ -123,6 +121,8 @@ public class UserDAOjdcImpl implements UserDAO {
 			rqt.setString(5, user.getRue());
 			rqt.setString(6, user.getCp());
 			rqt.setString(7, user.getVille());
+			rqt.setString(8, user.getMdp());
+			rqt.setString(9, user.getPseudo());
 			rqt.executeUpdate();
 
 		} catch (SQLException e) {
