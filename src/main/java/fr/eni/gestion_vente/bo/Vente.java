@@ -16,6 +16,7 @@ public class Vente {
 	private String pseudo;
 	private String libellecatego;
 	private String contient;
+	private String telephone;
 	
 	/**
 	 * @return the libellecatego
@@ -107,7 +108,7 @@ public class Vente {
 		this.numcategorie = numcategorie;
 		this.iduser = iduser;
 	}
-	public Vente(int idEnchere, String article, String description, String debutenchere, String finenchere, String prixdepart,int prixvente, int iduser, int numcategorie, String pseudo, String libellecatego) {
+	public Vente(int idEnchere, String article, String description, String debutenchere, String finenchere, String prixdepart,int prixvente, int iduser, int numcategorie, String pseudo, String libellecatego, String telephone) {
 		this.idEnchere = idEnchere;
 		this.article = article;
 		this.description = description;
@@ -119,6 +120,7 @@ public class Vente {
 		this.iduser=iduser;
 		this.pseudo=pseudo;
 		this.libellecatego = libellecatego;
+		this.telephone=telephone;
 	}
 		
 	public Vente(int numcategorie) {
@@ -132,6 +134,18 @@ public class Vente {
 	 */
 	public int getCategorie() {
 		return numcategorie;
+	}
+	/**
+	 * @return the telephone
+	 */
+	public String getTelephone() {
+		return telephone;
+	}
+	/**
+	 * @param telephone the telephone to set
+	 */
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
 	}
 	/**
 	 * @param categorie the categorie to set

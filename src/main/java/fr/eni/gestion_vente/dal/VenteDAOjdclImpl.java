@@ -70,7 +70,7 @@ public class VenteDAOjdclImpl {
 
 	}
 
-	private static final String SELECTENCHERE = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,av.no_categorie, pseudo, libelle FROM ARTICLES_VENDUS as av INNER JOIN UTILISATEURS as u ON u.no_utilisateur = av.no_utilisateur INNER JOIN CATEGORIES as c ON c.no_categorie=av.no_categorie";
+	private static final String SELECTENCHERE = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,av.no_categorie, pseudo, libelle,telephone FROM ARTICLES_VENDUS as av INNER JOIN UTILISATEURS as u ON u.no_utilisateur = av.no_utilisateur INNER JOIN CATEGORIES as c ON c.no_categorie=av.no_categorie";
 
 	public List<Vente> selectenchere() throws DALException {
 		List<Vente> listeEnchere = new ArrayList<Vente>();
@@ -88,13 +88,14 @@ public class VenteDAOjdclImpl {
 				int prixVente = (rs.getInt("prix_vente"));
 				int numUser = (rs.getInt("no_utilisateur"));
 				int numCatego = (rs.getInt("no_categorie"));
+				String telephone = (rs.getString("telephone"));
 				String prixDepartStr = String.valueOf(prixDepart);
 				String debutEnchere = debutEnchereDate.toString();
 				String finEnchere = finEnchereDate.toString();
 				String pseudo = rs.getString("pseudo");
 				String libellecatego = (rs.getString("libelle"));
 				Vente vente = new Vente(idEnchere, article, description, debutEnchere, finEnchere, prixDepartStr,
-						prixVente, numUser, numCatego, pseudo, libellecatego);
+						prixVente, numUser, numCatego, pseudo, libellecatego,telephone);
 				listeEnchere.add(vente);
 
 			}
@@ -152,7 +153,7 @@ public class VenteDAOjdclImpl {
 
 	public List<Vente> selectencherecateg(Vente vente) throws DALException {
 		List<Vente> listeEnchere = new ArrayList<Vente>();
-		try (Connection cnx = ConnectionProvider.getConnection();) {
+		try (Connection cnx = ConnectionProvider.getConnection()) {
 
 			PreparedStatement rqt = cnx.prepareStatement(SELECTENCHERECATEG);
 			rqt.setInt(1, vente.getNumcategorie());

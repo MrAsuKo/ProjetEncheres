@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -45,8 +46,8 @@ public class VerificationUserServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
 	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -88,6 +89,19 @@ public class VerificationUserServlet extends HttpServlet {
 
 		String pseudo = request.getParameter("pseudo");
 		String mdp = request.getParameter("mdp");
+		//cookie se souvenir
+		if (request.getParameter("memoriser") != null) {
+			Cookie cookie = new Cookie("identite",pseudo);
+			cookie.setHttpOnly(true);
+			cookie.setMaxAge(Integer.MAX_VALUE);
+			cookie.setComment("souvenir");
+			response.addCookie(cookie);
+		} else {
+			Cookie cookie = new Cookie("identite", pseudo);
+			cookie.setMaxAge(0);
+			response.addCookie(cookie);
+		}
+		// crée la session
 		try {
 			User user = userMgr.selectUser(pseudo, mdp);
 			if(user.isTrouve()) {
@@ -115,5 +129,8 @@ public class VerificationUserServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+
+
+		}
+	
 }
