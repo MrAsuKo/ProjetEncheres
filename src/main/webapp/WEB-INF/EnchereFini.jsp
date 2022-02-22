@@ -27,10 +27,11 @@
 				id = (int)request.getAttribute("id");
 				}
 				if (id == idSession) {%>
-					<h3>VOUS AVEZ REMPORTER L'ENCHERE</h3>
+					<h2 style="color:green">YOU WIN !</h2>
+					<h3>VOUS AVEZ REMPORTÉ L'ENCHÈRE</h3>
 				<%} else { %>
-				<h2 style="color:red">YOU LOSE!!!!</h2>
-				<h3><%=pseudo %> A REMPORTER L'ENCHERE</h3>
+					<h2 style="color:red">YOU LOSE !</h2>
+					<h3><%=pseudo %> A REMPORTÉ L'ENCHÈRE</h3>
 				<%} %>
 
 
