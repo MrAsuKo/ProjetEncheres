@@ -8,8 +8,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Accueil Connecté</title>
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-		<link href="./css/style.css" rel="stylesheet">  
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> 
+		<link href="<%=request.getContextPath() %>/css/style.css" rel="stylesheet"> 
 	</head>
 	<body>
 	<div>
@@ -50,26 +50,26 @@
 			</div>
 		<input type="submit" id="recherche" name ="recherche" value="recherche">
 	</form>
-			
 
-<div>	
+	<div class="row row-cols-xxl-6 row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2">	
     <% List<Vente> list = (List<Vente>)request.getAttribute("listeEnchere");
     for (Vente art : list){ 
     	if (list !=null) {
     	int noArticle = art.getIdEnchere();%>
-    	<div style="border:solid; width: 300px ; margin:10px">
-<<<<<<< HEAD
-    	<a href="<%=request.getContextPath()%>/DetailVente?name=<%=art.getIdEnchere()%>&datefin=<%=art.getFinenchere()%>"><%=art.getArticle()%></a><p>Prix : <%=art.getPrixdepart()%></p><p>fin de l'enchère : <%=art.getFinenchere()%></p><p>Vendeur : <a href="<%=request.getContextPath()%>/Show/Vendeur?name=<%=art.getPseudo()%>"></p>
-=======
+    	<div class="col">
+    		<div class="p-4 card border-warning bg-dark mb-3" style="max-width: 18rem;">
+  				<div class="card-header">Vendeur : <a href="./Show/Vendeur?name=<%=art.getPseudo()%>"><%=art.getPseudo()%></a></div>
+  					<div class="card-body">
+    					<h5 class="card-title"><a href="<%=request.getContextPath()%>/DetailVente?name=<%=art.getIdEnchere()%>"><%=art.getArticle()%></a></h5>
+						    <p class="card-text">Prix : <%=art.getPrixdepart()%></p>
+						    <p class="card-text">Fin de l'enchère : <%=art.getFinenchere()%></p>
+  					</div>
+				</div>
+			</div>
+	    <%}
+		}
+	    %>
+	</div>
 
-
-    	<a href="<%=request.getContextPath()%>/DetailVente?name=<%=art.getIdEnchere()%>"><%=art.getArticle()%></a><p>Prix : <%=art.getPrixdepart()%></p><p>fin de l'enchère : <%=art.getFinenchere()%></p><p>Vendeur : <a href="./Show/Vendeur?name=<%=art.getPseudo()%>"><%=art.getPseudo()%></a></p>
-
->>>>>>> branch 'main' of https://github.com/MrAsuKo/ProjetEncheres.git
-    	</div>
-    <%}
-    }
-    %>
-</div>   
 	</body>
 </html>
