@@ -86,5 +86,4 @@ public class BackAccueilServlet extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/AccueilConnecter.jsp");
 		rd.forward(request, response); 
 	}
-
 }

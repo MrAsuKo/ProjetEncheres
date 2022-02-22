@@ -17,7 +17,7 @@
 		<h3> Liste des enchères</h3>
 
 	<form action="<%=request.getContextPath()%>/FiltreRecherche" method="post">
-	<input type="text" id="contient" name ="contient" value="le nom de l'article contient">
+	<input type="text" id="contient" name ="contient" placeholder="Rechercher sur Bidhub">
 	<p>Catégorie : <select name="categorie" id="categorie">
     <option  value="0">---- Choisir une categorie ----</option>
     <% List<Categorie> list2 = (List<Categorie>)request.getAttribute("listecategorie");
@@ -25,7 +25,8 @@
     	<option  value="<%=cat.getNumcatego()%>"><%=cat.getLibelle()%></option>
     <%}
     %>
-		<input type="submit" id="recherche" name ="recherche" value="recherche">
+    </select>
+		<input type="submit" id="recherche" name ="recherche" value="Rechercher">
 	</form>
 
 	<div class="row row-cols-xxl-6 row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2">	
