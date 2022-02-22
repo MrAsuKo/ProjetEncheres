@@ -82,7 +82,7 @@ public class CreationUserServlet extends HttpServlet {
 		try {
 			boolean use = userMgr.verifierUser(pseudo, email, mdp);
 			if (use) {
-			String message = "Pseudo et/ou email déja utilisés";
+			String message = "Pseudo et/ou email dÃ©ja utilisÃ©s";
 			request.setAttribute("message", message);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Inscription.jsp");
 			rd.forward(request, response);
