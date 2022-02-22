@@ -10,7 +10,7 @@
 	</head>
 	<body>
 		<%@include file="fragments/header.jspf" %>
-		<h3>Mon profil</h3>
+		<h3>Créer mon Profil</h3>
 		<form action="<%=request.getContextPath()%>/AccueilInscr" method="post">
 			<p>Pseudo : <input type="text" id="pseudo" name="pseudo" required pattern="[a-zA-Z0-9]+" required></p>
 			<p>Nom : <input type="text" id="nom" name="nom" required></p>
