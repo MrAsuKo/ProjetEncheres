@@ -20,7 +20,7 @@
 		<h3>Se connecter</h3>
 		<p>${sessionScope.pseudo}</p>
 		<form action="<%=request.getContextPath()%>/AccueilConnect" method="post">
-			<p>Pseudo : <input type="text" id="pseudo" name="pseudo" placeholder="votre pseudo..." value="<%=value%>" required></p>
+			<p>Pseudo : <input type="text" id="pseudo" name="pseudo" value="<%=value%>" required></p>
 			<p>Mot de passe : <input type="password" id="mdp" name="mdp" required></p>
 			<p><input type="checkbox" id="memoriser" name="memoriser">
 				<label for="memoriser">Se souvenir</label></p>
