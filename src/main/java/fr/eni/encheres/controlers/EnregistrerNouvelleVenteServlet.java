@@ -52,7 +52,7 @@ public class EnregistrerNouvelleVenteServlet extends HttpServlet {
 				List<Vente> listeEnchere = null;		
 				try {
 					try {
-						listeEnchere = venteMgr.selectenchere();
+						listeEnchere = venteMgr.selectEnchere();
 					} catch (fr.eni.encheres.dal.DALException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -92,8 +92,8 @@ public class EnregistrerNouvelleVenteServlet extends HttpServlet {
 		String ville = request.getParameter("ville");
 		
 		try {
-		int noArticle = venteMgr.ajoutenchere(article, description, debutenchere, finenchere, prixdepart,id,numcategorie);
-		venteMgr.insertretrait(noArticle,rue,cp,ville);
+		int noArticle = venteMgr.ajoutEnchere(article, description, debutenchere, finenchere, prixdepart,id,numcategorie);
+		venteMgr.insertRetrait(noArticle,rue,cp,ville);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -84,7 +84,7 @@ public class FiltreRechercheCategoriesServlet extends HttpServlet {
 				//Creation de la liste des encheres par mot choisi
 					List<Vente> listeEnchere = null;		
 				try {
-					listeEnchere = venteMgr.selectencherecontient(contient);
+					listeEnchere = venteMgr.selectEnchereContient(contient);
 				} catch (fr.eni.encheres.dal.DALException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

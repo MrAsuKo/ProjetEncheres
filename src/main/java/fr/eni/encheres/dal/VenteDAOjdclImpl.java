@@ -47,7 +47,7 @@ public class VenteDAOjdclImpl {
 
 	private static final String SELECTCATEGO = "SELECT no_categorie,libelle FROM CATEGORIES";
 
-	public List<Categorie> selectcategorie() throws DALException {
+	public List<Categorie> selectCategorie() throws DALException {
 		List<Categorie> listeCategorie = new ArrayList<Categorie>();
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
@@ -70,7 +70,7 @@ public class VenteDAOjdclImpl {
 
 	private static final String SELECTENCHERE = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,av.no_categorie, pseudo, libelle,telephone FROM ARTICLES_VENDUS as av INNER JOIN UTILISATEURS as u ON u.no_utilisateur = av.no_utilisateur INNER JOIN CATEGORIES as c ON c.no_categorie=av.no_categorie";
 
-	public List<Vente> selectenchere() throws DALException {
+	public List<Vente> selectEnchere() throws DALException {
 		List<Vente> listeEnchere = new ArrayList<Vente>();
 		try (Connection cnx= ConnectionProvider.getConnection()){
 
@@ -149,7 +149,7 @@ public class VenteDAOjdclImpl {
 
 	private static final String SELECTENCHERECATEG = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,av.no_categorie, pseudo, libelle FROM ARTICLES_VENDUS as av INNER JOIN UTILISATEURS as u ON u.no_utilisateur = av.no_utilisateur INNER JOIN CATEGORIES as c ON c.no_categorie=av.no_categorie WHERE c.no_categorie=?";
 
-	public List<Vente> selectencherecateg(Vente vente) throws DALException {
+	public List<Vente> selectEnchereCateg(Vente vente) throws DALException {
 		List<Vente> listeEnchere = new ArrayList<Vente>();
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
@@ -184,7 +184,7 @@ public class VenteDAOjdclImpl {
 
 	private static final String SELECTENCHERECONTIENT = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,av.no_categorie, pseudo, libelle FROM ARTICLES_VENDUS as av INNER JOIN UTILISATEURS as u ON u.no_utilisateur = av.no_utilisateur INNER JOIN CATEGORIES as c ON c.no_categorie=av.no_categorie WHERE nom_article LIKE ?";
 
-	public List<Vente> selectencherecontient(Vente vente) throws DALException {
+	public List<Vente> selectEnchereContient(Vente vente) throws DALException {
 		List<Vente> listeEnchere = new ArrayList<Vente>();
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement rqt = cnx.prepareStatement(SELECTENCHERECONTIENT);
@@ -218,7 +218,7 @@ public class VenteDAOjdclImpl {
 
 	private static final String INSERTRETRAIT = "INSERT INTO RETRAITS (no_article,rue,code_postal,ville) VALUES (?,?,?,?)";
 
-	public void insertretrait(int noArticle, String rue, String cp, String ville) throws SQLException, DALException {
+	public void insertRetrait(int noArticle, String rue, String cp, String ville) throws SQLException, DALException {
 			try (Connection cnx = ConnectionProvider.getConnection()){ 
 			
 			PreparedStatement rqt = cnx.prepareStatement(INSERTRETRAIT);

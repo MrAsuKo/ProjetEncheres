@@ -51,7 +51,7 @@ public class AccueilServlet extends HttpServlet {
 				List<Vente> listeEnchere = null;		
 				try {
 					try {
-						listeEnchere = venteMgr.selectenchere();
+						listeEnchere = venteMgr.selectEnchere();
 					} catch (fr.eni.encheres.dal.DALException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

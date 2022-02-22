@@ -17,6 +17,6 @@ public class CategorieMgr {
 	}
 	
 	public List<Categorie> selectcategorie() throws SQLException, DALException {
-		return this.CategoDAO.selectcategorie();
+		return this.CategoDAO.selectCategorie();
 	}
 }

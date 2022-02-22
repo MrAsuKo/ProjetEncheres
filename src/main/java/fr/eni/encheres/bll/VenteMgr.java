@@ -19,7 +19,7 @@ public class VenteMgr {
 
 
 
-	public int ajoutenchere(String article, String description, String debutenchere, String finenchere, String prixdepart, int id, int numcategorie) throws Exception {
+	public int ajoutEnchere(String article, String description, String debutenchere, String finenchere, String prixdepart, int id, int numcategorie) throws Exception {
 		// construire lobjet BO
 		Vente vente = new Vente(article, description, debutenchere, finenchere, prixdepart, id, numcategorie);
 	
@@ -29,8 +29,8 @@ public class VenteMgr {
 		
 	}
 
-	public List<Vente> selectenchere() throws SQLException, DALException, fr.eni.encheres.dal.DALException {		
-		return this.venteDAO.selectenchere();
+	public List<Vente> selectEnchere() throws SQLException, DALException, fr.eni.encheres.dal.DALException {		
+		return this.venteDAO.selectEnchere();
 	}
 
 
@@ -56,20 +56,20 @@ public class VenteMgr {
 
 	public List<Vente> selectencherecateg(int categ) throws fr.eni.encheres.dal.DALException {
 		Vente vente = new Vente (categ);
-		return this.venteDAO.selectencherecateg(vente);
+		return this.venteDAO.selectEnchereCateg(vente);
 	}
 
 
 
-	public List<Vente> selectencherecontient(String contient) throws fr.eni.encheres.dal.DALException {
+	public List<Vente> selectEnchereContient(String contient) throws fr.eni.encheres.dal.DALException {
 		Vente vente = new Vente (contient);
-		return this.venteDAO.selectencherecontient(vente);
+		return this.venteDAO.selectEnchereContient(vente);
 	}
 
 
 
-	public void insertretrait (int noArticle, String rue, String cp, String ville) throws SQLException, fr.eni.encheres.dal.DALException {
-		venteDAO.insertretrait(noArticle,rue,cp,ville);
+	public void insertRetrait (int noArticle, String rue, String cp, String ville) throws SQLException, fr.eni.encheres.dal.DALException {
+		venteDAO.insertRetrait(noArticle,rue,cp,ville);
 		
 		
 		
