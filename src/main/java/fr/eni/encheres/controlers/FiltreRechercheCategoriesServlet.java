@@ -1,4 +1,4 @@
-package fr.eni.encheres;
+package fr.eni.encheres.controlers;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -18,51 +18,42 @@ import fr.eni.encheres.bo.Vente;
 import fr.eni.encheres.dal.DALException;
 
 /**
- * Servlet implementation class AccueilServlet
+ * Servlet implementation class FiltreRechercheCategoriesServlet
  */
-@WebServlet({"/index.html","/Accueil"})
-public class AccueilServlet extends HttpServlet {
+@WebServlet("/FiltreRecherche")
+public class FiltreRechercheCategoriesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private VenteMgr venteMgr;
+      
+	
 	private CategorieMgr categorieMgr;
-       
+	private VenteMgr venteMgr;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AccueilServlet() {
+    public FiltreRechercheCategoriesServlet() {
         super();
-        venteMgr = new VenteMgr();
         categorieMgr = new CategorieMgr();
+        venteMgr = new VenteMgr();
+        
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/AccueilConnecter.jsp");
+		rd.forward(request, response); 
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession().invalidate();
-		//Creation de la liste des encheres
-				List<Vente> listeEnchere = null;		
-				try {
-					try {
-						listeEnchere = venteMgr.selectenchere();
-					} catch (fr.eni.encheres.dal.DALException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				request.setAttribute("listeEnchere", listeEnchere);
-				//fin de la creation de la liste des encheres
-				//liste des categoeries
+		String categStr = request.getParameter("categorie");
+		String contient = request.getParameter("contient");
+		int categ = Integer.parseInt(categStr);
+		
+			//liste des categoeries
 				List<Categorie> listeCategorie = null;
 				try {
 					try {
@@ -77,8 +68,32 @@ public class AccueilServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 				//fin list des categories
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");
-		rd.forward(request, response);
-		
+				
+				if (!categStr.equals("0") ) {
+				//Creation de la liste des encheres par categoeries choisi
+				List<Vente> listeEnchere = null;		
+				try {
+					listeEnchere = venteMgr.selectencherecateg(categ);
+				} catch (fr.eni.encheres.dal.DALException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				request.setAttribute("listeEnchere", listeEnchere);
+				//fin de la creation de la liste des encheres
+				} else {
+				//Creation de la liste des encheres par mot choisi
+					List<Vente> listeEnchere = null;		
+				try {
+					listeEnchere = venteMgr.selectencherecontient(contient);
+				} catch (fr.eni.encheres.dal.DALException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				request.setAttribute("listeEnchere", listeEnchere);
+				}
+				//fin de la creation de la liste des encheres
+				
+		doGet(request, response);
 	}
+
 }

@@ -1,4 +1,4 @@
-package fr.eni.encheres;
+package fr.eni.encheres.controlers;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -18,36 +18,37 @@ import fr.eni.encheres.bo.Vente;
 import fr.eni.encheres.dal.DALException;
 
 /**
- * Servlet implementation class AccueilServlet
+ * Servlet implementation class NouvelleVenteServlet
  */
-@WebServlet({"/index.html","/Accueil"})
-public class AccueilServlet extends HttpServlet {
+@WebServlet("/EnregistrerNouvelleVente")
+public class EnregistrerNouvelleVenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+     
+	//attribu vers Manager
 	private VenteMgr venteMgr;
 	private CategorieMgr categorieMgr;
-       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AccueilServlet() {
+    public EnregistrerNouvelleVenteServlet() {
         super();
-        venteMgr = new VenteMgr();
         categorieMgr = new CategorieMgr();
+        venteMgr = new VenteMgr();;
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/AccueilConnecter.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession().invalidate();
-		//Creation de la liste des encheres
+				//Creation de la liste des encheres
 				List<Vente> listeEnchere = null;		
 				try {
 					try {
@@ -77,8 +78,29 @@ public class AccueilServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 				//fin list des categories
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");
-		rd.forward(request, response);
+				
+		String article = request.getParameter("article");
+		String description = request.getParameter("description");
+		String categorie = request.getParameter("categorie");
+		String prixdepart = request.getParameter("prixdepart");
+		String debutenchere = request.getParameter("debutenchere");
+		String finenchere = request.getParameter("finenchere");
+		int numcategorie = Integer.parseInt(categorie);
+		int id = (int) request.getSession(false).getAttribute("id");
+		String rue = request.getParameter("rue");
+		String cp = request.getParameter("cp");
+		String ville = request.getParameter("ville");
 		
+		try {
+		int noArticle = venteMgr.ajoutenchere(article, description, debutenchere, finenchere, prixdepart,id,numcategorie);
+		venteMgr.insertretrait(noArticle,rue,cp,ville);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		doGet(request, response);
 	}
+
 }

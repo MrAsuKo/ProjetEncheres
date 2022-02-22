@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="fr.eni.gestion_vente.bo.Vente" %>
+<%@ page import="fr.eni.encheres.bo.Vente" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.time.LocalDateTime" %>
