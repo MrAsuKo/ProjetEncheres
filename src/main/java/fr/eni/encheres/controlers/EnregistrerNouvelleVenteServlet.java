@@ -90,7 +90,8 @@ public class EnregistrerNouvelleVenteServlet extends HttpServlet {
 		String finenchereStr = request.getParameter("finenchere");
 		int numcategorie = Integer.parseInt(categorieStr);
 		int no_utilisateur = (int) request.getSession(false).getAttribute("id");
-		Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateurConnecte");
+//		Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateurConnecte");
+		Utilisateur utilisateur = new Utilisateur(no_utilisateur);
 		String rue = request.getParameter("rue");
 		String cp = request.getParameter("cp");
 		String ville = request.getParameter("ville");
@@ -99,8 +100,9 @@ public class EnregistrerNouvelleVenteServlet extends HttpServlet {
 		int prixdepart = Integer.parseInt(prixdepartStr);
 		
 		try {
-		venteMgr.ajoutEnchere(nom_article, description, date_debut_encheres, date_fin_encheres, prixdepart,utilisateur,categorie);
-//		venteMgr.insertRetrait(noArticle,rue,cp,ville);
+		int noArticle = venteMgr.ajoutEnchere(nom_article, description, date_debut_encheres, date_fin_encheres, prixdepart,utilisateur,categorie);
+		System.out.println(noArticle);
+		venteMgr.insertRetrait(noArticle,rue,cp,ville);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

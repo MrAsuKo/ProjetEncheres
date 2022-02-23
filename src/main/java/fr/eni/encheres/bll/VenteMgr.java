@@ -20,11 +20,12 @@ public class VenteMgr {
 		venteDAO = new VenteDAOjdclImpl();
 	}
 
-	public void ajoutEnchere(String nom_article, String description, LocalDate date_debut_encheres, LocalDate date_fin_encheres, int prixdepart, Utilisateur utilisateur, Categorie categorie) throws Exception {
+	public int ajoutEnchere(String nom_article, String description, LocalDate date_debut_encheres, LocalDate date_fin_encheres, int prixdepart, Utilisateur utilisateur, Categorie categorie) throws Exception {
 		// construire lobjet BO
 		Articles_vendus vente = new Articles_vendus(nom_article, description, date_debut_encheres, date_fin_encheres, prixdepart,utilisateur,categorie);
 		//Deleguer à la DAL l'ajout de l'utilisateur à la BDD
-		this.venteDAO.insert(vente);	
+		int noArticle = this.venteDAO.insert(vente);
+		return noArticle;	
 	}
 
 	public List<Articles_vendus> selectEnchere() throws SQLException, DALException, fr.eni.encheres.dal.DALException {		

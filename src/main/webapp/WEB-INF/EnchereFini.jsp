@@ -48,6 +48,7 @@
 					<%
 
 					}
+			}
 					%>
 					<br>
 	<%
@@ -56,8 +57,9 @@
 		    	if (list !=null) {
 		    	String noArticleStr = (String)request.getAttribute("noArticleStr");
 		    	int noArticle = Integer.parseInt(noArticleStr);   		
-		    	if (noArticle==art.getNoArticle()){
+ 		    	if (noArticle==art.getNoArticle()){
 	%>
+	<p><%=art.getNomArticle()%> - <%=noArticle%></p>
 	<p>
 		Nom de l'article :
 		<%=art.getNomArticle()%></p>
@@ -100,8 +102,9 @@
 	</form>
 
 	<%}
-	}
-	}
-	}%>
+   	}
+  	}
+	
+	%>
 </body>
 </html>

@@ -20,7 +20,7 @@ public class VenteDAOjdclImpl {
 
 	private static final String INSERT_ENCHERE = "INSERT INTO ARTICLES_VENDUS(nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie)VALUES(?,?,?,?,?,?,?,?)";
 
-	public void insert(Articles_vendus vente) throws DALException {
+	public int insert(Articles_vendus vente) throws DALException {
 		try(Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement rqt = cnx.prepareStatement(INSERT_ENCHERE, PreparedStatement.RETURN_GENERATED_KEYS);
 			rqt.setString(1, vente.getNomArticle());
@@ -42,6 +42,7 @@ public class VenteDAOjdclImpl {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return vente.getNoArticle();
 	}
 
 	private static final String SELECTCATEGO = "SELECT no_categorie,libelle FROM CATEGORIES";
