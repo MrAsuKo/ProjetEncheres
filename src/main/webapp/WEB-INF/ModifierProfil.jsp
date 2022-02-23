@@ -14,19 +14,19 @@
 		<br>
 		<form action="" method="post">
 			<p>Pseudo : <input type="text" id="pseudo" name="pseudo" value="${sessionScope.pseudo}" required></p>
-			<p>Nom : <input type="text" id="nom" name="nom" placeholder="${sessionScope.nom}"></p>
-			<p>Prenom : <input type="text" id="prenom" name="prenom" placeholder="${sessionScope.prenom}"></p>
-			<p>Email : <input type="text" id="email" name="email" placeholder="${sessionScope.email}"></p>
-			<p>Téléphone : <input type="text" id="telephone" name="telephone" placeholder="${sessionScope.telephone}"></p>
-			<p>Rue : <input type="text" id="rue" name="rue" placeholder="${sessionScope.rue}"></p>
-			<p>Code postal : <input type="text" id="cp" name="cp" placeholder="${sessionScope.cp}"></p>
-			<p>Ville : <input type="text" id="ville" name="ville" placeholder="${sessionScope.ville}"></p>
+			<p>Nom : <input type="text" id="nom" name="nom" value="${sessionScope.nom}"></p>
+			<p>Prenom : <input type="text" id="prenom" name="prenom" value="${sessionScope.prenom}"></p>
+			<p>Email : <input type="text" id="email" name="email" value="${sessionScope.email}"></p>
+			<p>Téléphone : <input type="text" id="telephone" name="telephone" value="${sessionScope.telephone}"></p>
+			<p>Rue : <input type="text" id="rue" name="rue" value="${sessionScope.rue}"></p>
+			<p>Code postal : <input type="text" id="cp" name="cp" value="${sessionScope.cp}"></p>
+			<p>Ville : <input type="text" id="ville" name="ville" value="${sessionScope.ville}"></p>
 			<p>Mot de passe actuel : <input type="password" id="mdp" name="mdp"></p>
 			<p>Nouveau mot de passe : <input type="password" id="nouveau_mdp" name="nouveau_mdp"></p>
 			<p>Confirmer mot de passe : <input type="password" id="mdp_conf" name="mdp_conf"></p>
 			<input type="submit" id="enregistrer" name ="enregistrer" value="Enregistrer">
 		</form>
-			<form action="<%=request.getContextPath()%>/Home" method="post">
+		<form action="<%=request.getContextPath()%>/Home" method="post">
 			<input type="submit" id="supprimer" name ="supprimer" value="Supprimer mon compte">
 		</form>
 	</body>

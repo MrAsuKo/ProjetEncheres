@@ -14,9 +14,9 @@ public class UserDAOjdcImpl implements UserDAO {
 	private static final String SELECT_USEREMAIL = "SELECT email FROM UTILISATEURS WHERE email=?";
 	private static final String SELECT_USER = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE pseudo=? and mot_de_passe=?";
 	private static final String DELETE_USER = "DELETE FROM UTILISATEURS WHERE pseudo=?";
-	private static final String UPDATE_USER = "UPDATE UTILISATEURS SET  nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mdp=? WHERE pseudo=?";
+	private static final String UPDATE_USER = "UPDATE UTILISATEURS SET  nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE pseudo=?";
+	private static final String UPDATE_PASSWORD = "UPDATE UTILISATEURS SET mdp=? WHERE pseudo=?";
 	private static final String SELECT_VENDEUR = "SELECT pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit FROM UTILISATEURS WHERE pseudo=?";
-
 	public boolean verif(Utilisateur user) throws DALException {
 		Connection cnx = null;
 		boolean use = false;
@@ -123,13 +123,15 @@ public class UserDAOjdcImpl implements UserDAO {
 			rqt.setString(7, user.getVille());
 			rqt.setString(8, user.getMdp());
 			rqt.setString(9, user.getPseudo());
-			//user="Update mdp SET mdp=? WHERE Pseudo=?";
 			rqt.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
+	
+	
+
 
 	public Utilisateur profilVendeur(String pseudo) throws DALException {
 		Utilisateur user = new Utilisateur();
