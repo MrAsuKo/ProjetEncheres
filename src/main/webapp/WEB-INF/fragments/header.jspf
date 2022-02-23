@@ -4,9 +4,15 @@
 <div class="d-inline">
 	<div class="row">
 	<div class="col-2">
+	<%if(request.getSession().getAttribute("pseudo") != null) { %>
+		<a class="navbar-brand" href="<%=request.getContextPath() %>/BackAccueil">
+			<img alt="logo" src="<%=request.getContextPath() %>/images/logo.png" height="80px" width="200px">
+		</a>
+	<%} else { %>
 		<a class="navbar-brand" href="<%=request.getContextPath() %>/Accueil">
 			<img alt="logo" src="<%=request.getContextPath() %>/images/logo.png" height="80px" width="200px">
     	</a>
+    <%} %>
 	</div>
 	<div class="col-5" style="padding-top: 25px;">
 		<h4>Bienvenue ${sessionScope.pseudo}</h4>
