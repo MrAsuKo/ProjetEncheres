@@ -12,10 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.encheres.bll.CategorieMgr;
 import fr.eni.encheres.bll.UserMgr;
 import fr.eni.encheres.bll.VenteMgr;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.bo.Articles_vendus;
+import fr.eni.encheres.bo.Categorie;
 import fr.eni.encheres.dal.DALException;
 
 /**
@@ -28,6 +30,7 @@ public class CreationUserServlet extends HttpServlet {
 	//attibut vers Manager
 	private UserMgr userMgr;
 	private VenteMgr venteMgr;
+	private CategorieMgr categorieMgr;
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -36,6 +39,7 @@ public class CreationUserServlet extends HttpServlet {
         super();
         userMgr = new UserMgr();
         venteMgr = new VenteMgr();
+        categorieMgr = new CategorieMgr();
     }
 
 	/**
@@ -51,20 +55,36 @@ public class CreationUserServlet extends HttpServlet {
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Creation de la liste des encheres
-		List<Articles_vendus> listeEnchere = null;		
-		try {
-			try {
-				listeEnchere = venteMgr.selectEnchere();
-			} catch (fr.eni.encheres.dal.DALException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		request.setAttribute("listeEnchere", listeEnchere);
-		//fin de la creation de la liste des encheres
+		//liste des categoeries
+				List<Categorie> listeCategorie = null;
+				try {
+					try {
+						listeCategorie = categorieMgr.selectcategorie();
+					} catch (fr.eni.encheres.dal.DALException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					request.setAttribute("listecategorie", listeCategorie);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				//fin list des categories
+				//Creation de la liste des encheres
+				List<Articles_vendus> listeEnchere = null;		
+				try {
+					try {
+						listeEnchere = venteMgr.selectEnchere();
+					} catch (fr.eni.encheres.dal.DALException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				request.setAttribute("listeEnchere", listeEnchere);
+				//fin de la creation de la liste des encheres
 		
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
