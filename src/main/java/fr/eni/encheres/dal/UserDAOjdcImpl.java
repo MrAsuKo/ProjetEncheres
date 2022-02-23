@@ -123,6 +123,7 @@ public class UserDAOjdcImpl implements UserDAO {
 			rqt.setString(7, user.getVille());
 			rqt.setString(8, user.getMdp());
 			rqt.setString(9, user.getPseudo());
+			//user="Update mdp SET mdp=? WHERE Pseudo=?";
 			rqt.executeUpdate();
 
 		} catch (SQLException e) {

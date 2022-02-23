@@ -9,6 +9,8 @@
 	</head>
 	<body>
 		<%@include file="fragments/header.jspf" %>
+
+		
 		<h3>Mon profil</h3>
 		<form action="" method="post">
 			<p>Pseudo : <input type="text" id="pseudo" name="pseudo" value="${sessionScope.pseudo}" required></p>
@@ -20,7 +22,7 @@
 			<p>Code postal : <input type="text" id="cp" name="cp" placeholder="${sessionScope.cp}"></p>
 			<p>Ville : <input type="text" id="ville" name="ville" placeholder="${sessionScope.ville}"></p>
 			<p>Mot de passe actuel : <input type="password" id="mdp" name="mdp"></p>
-			<p>Nouveau mot de passe : <input type="password" id="mdp" name="mdp"></p>
+			<p>Nouveau mot de passe : <input type="password" id="nouveau_mdp" name="nouveau_mdp"></p>
 			<p>Confirmer mot de passe : <input type="password" id="mdp_conf" name="mdp_conf"></p>
 			<input type="submit" id="enregistrer" name ="enregistrer" value="Enregistrer">
 		</form>
