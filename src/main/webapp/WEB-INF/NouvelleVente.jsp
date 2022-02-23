@@ -7,13 +7,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Nouvelle vente</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<link href="<%=request.getContextPath() %>/css/style.css" rel="stylesheet"> 
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+		<link href="<%=request.getContextPath() %>/css/style.css" rel="stylesheet"> 
 </head>
 <body>
 <%@include file="fragments/header.jspf" %>
+<br>
 	<h3>Nouvelle vente</h3>	
-
+<br>
 <form action="<%=request.getContextPath()%>/EnregistrerNouvelleVente" method="post">
 		<p>Article : <input type="text" id="name" name="article" required>	</p>	
 		<p>Description : <input type="text" id="name" name="description" required>	</p>
