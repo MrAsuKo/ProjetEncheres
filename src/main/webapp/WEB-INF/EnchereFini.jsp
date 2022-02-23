@@ -28,7 +28,7 @@
 			}
 			int id = -1;
 			if(meilleureOffre != null) {
-				id = meilleureOffre.getId();
+				id = meilleureOffre.getUtilisateur().getId();
 			}				
 			int idSession = (int)request.getSession(false).getAttribute("id");
 
@@ -77,7 +77,7 @@
 		Meilleure offre :
 		<%=message %>
 		par
-		<%=meilleureOffre.getPseudo() %></p>
+		<%=meilleureOffre.getUtilisateur().getPseudo() %></p>
 	<% 	} %>
 
 	<p>
