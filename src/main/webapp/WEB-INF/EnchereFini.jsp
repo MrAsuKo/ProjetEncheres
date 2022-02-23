@@ -74,8 +74,6 @@
 		<%=meilleureOffre.getMontantEnchere() %>
 		par
 		<%=meilleureOffre.getUtilisateur().getPseudo() %></p>
-
-
 	<p>
 		Mise à prix :
 		<%=art.getPrixDepart()%></p>
