@@ -67,15 +67,15 @@
 	    List<Articles_vendus> list = (List<Articles_vendus>)request.getAttribute("listeEnchere");
 	        for (Articles_vendus art : list){ 
 	        	if (list !=null) {
-	        	int noArticle = art.getNo_article();
+	        	int noArticle = art.getNoArticle();
 	    %>
     	<div class="col">
     		<div class="p-4 card border-warning bg-dark mb-3" style="max-width: 18rem;">
-  				<div class="card-header">Vendeur : <a href="./Show/Vendeur?name=<%=art.getPseudo()%>"><%=art.getPseudo()%></a></div>
+  				<div class="card-header">Vendeur : <a href="./Show/Vendeur?name=<%=art.getUtilisateur().getPseudo()%>"><%=art.getUtilisateur().getPseudo()%></a></div>
   					<div class="card-body">
-    					<h5 class="card-title"><a href="<%=request.getContextPath()%>/DetailVente?name=<%=art.getNo_article()%>&datefin=<%=art.getDate_fin_encheres()%>"><%=art.getNom_article()%></a></h5>
-						    <p class="card-text">Prix : <%=art.getPrixdepart()%></p>
-						    <p class="card-text">Fin de l'enchère : <%=art.getDate_fin_encheres()%></p>
+    					<h5 class="card-title"><a href="<%=request.getContextPath()%>/DetailVente?name=<%=art.getNoArticle()%>&datefin=<%=art.getDateFinEncheres()%>"><%=art.getNomArticle()%></a></h5>
+						    <p class="card-text">Prix : <%=art.getPrixDepart()%></p>
+						    <p class="card-text">Fin de l'enchère : <%=art.getDateFinEncheres()%></p>
   					</div>
 				</div>
 			</div>
