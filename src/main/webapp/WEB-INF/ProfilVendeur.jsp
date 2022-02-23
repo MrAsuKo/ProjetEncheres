@@ -13,7 +13,9 @@
 	</head>
 	<body>
 <%@include file="fragments/header.jspf" %>
+<br>
 		<h3>Profil vendeur</h3>
+		<br>
 		<p>Pseudo : ${user.pseudo}</p>
 		<p>Nom : ${user.nom}</p>
 		<p>Prénom : ${user.prenom}</p>

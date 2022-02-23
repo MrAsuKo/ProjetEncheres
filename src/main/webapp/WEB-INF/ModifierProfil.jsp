@@ -9,7 +9,9 @@
 		<link href="<%=request.getContextPath() %>/css/style.css" rel="stylesheet"> 
 	<body>
 		<%@include file="fragments/header.jspf" %>
+		<br>
 		<h3>Mon profil</h3>
+		<br>
 		<form action="" method="post">
 			<p>Pseudo : <input type="text" id="pseudo" name="pseudo" value="${sessionScope.pseudo}" required></p>
 			<p>Nom : <input type="text" id="nom" name="nom" placeholder="${sessionScope.nom}"></p>

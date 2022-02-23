@@ -16,6 +16,7 @@
 </head>
 <body>
 	<%@include file="fragments/header.jspf"%>
+	<br>
 
 	<%
 			Enchere meilleureOffre = null;
@@ -43,11 +44,12 @@
 
 							} else {
 				%>
-						<h3>Persnne ne l'a remportée</h3>
+						<h3>PERSONNE A REMPORTÉ L'ENCHÈRE</h3>
 					<%
 
 					}
 					%>
+					<br>
 	<%
 	 List<Articles_vendus> list = (List<Articles_vendus>)request.getAttribute("listeEnchere");
 		   		for (Articles_vendus art : list){ 

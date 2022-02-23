@@ -12,8 +12,9 @@
 </head>
 <body>
 <%@include file="fragments/header.jspf" %>
+<br>
 	<h3>Nouvelle vente</h3>	
-
+<br>
 <form action="<%=request.getContextPath()%>/EnregistrerNouvelleVente" method="post">
 		<p>Article : <input type="text" id="name" name="article" required>	</p>	
 		<p>Description : <input type="text" id="name" name="description" required>	</p>
