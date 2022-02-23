@@ -99,8 +99,8 @@ public class EnregistrerNouvelleVenteServlet extends HttpServlet {
 		int prixdepart = Integer.parseInt(prixdepartStr);
 		
 		try {
-		int noArticle = venteMgr.ajoutEnchere(nom_article, description, date_debut_encheres, date_fin_encheres, prixdepart,utilisateur,categorie);
-		venteMgr.insertRetrait(noArticle,rue,cp,ville);
+		venteMgr.ajoutEnchere(nom_article, description, date_debut_encheres, date_fin_encheres, prixdepart,utilisateur,categorie);
+//		venteMgr.insertRetrait(noArticle,rue,cp,ville);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

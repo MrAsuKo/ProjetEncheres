@@ -20,7 +20,7 @@ public class VenteDAOjdclImpl {
 
 	private static final String INSERT_ENCHERE = "INSERT INTO ARTICLES_VENDUS(nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie)VALUES(?,?,?,?,?,?,?,?)";
 
-	public int insert(Articles_vendus vente) throws DALException {
+	public void insert(Articles_vendus vente) throws DALException {
 		try(Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement rqt = cnx.prepareStatement(INSERT_ENCHERE, PreparedStatement.RETURN_GENERATED_KEYS);
 			rqt.setString(1, vente.getNomArticle());
@@ -35,14 +35,13 @@ public class VenteDAOjdclImpl {
 			
 			ResultSet rs = rqt.getGeneratedKeys();
 			if (rs.next()) {
-				enchere.(rs.getInt(1);
+				vente.(rs.getInt(1);
 			}
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return vente.getUtilisateur();
 	}
 
 	private static final String SELECTCATEGO = "SELECT no_categorie,libelle FROM CATEGORIES";
@@ -157,19 +156,23 @@ public class VenteDAOjdclImpl {
 			ResultSet rs = rqt.executeQuery();
 			while (rs.next()) {
 				int no_article = (rs.getInt("no_article"));
-				String article = (rs.getString("nom_article"));
+				String nom_article = (rs.getString("nom_article"));
 				String description = (rs.getString("description"));
-				LocalDate debutEnchereDate = rs.getDate("date_debut_encheres").toLocalDate();
-				LocalDate finEnchereDate = rs.getDate("date_fin_encheres").toLocalDate();
+				LocalDate date_debut_encheres = rs.getDate("date_debut_encheres").toLocalDate();
+				LocalDate date_fin_encheres = rs.getDate("date_fin_encheres").toLocalDate();
 				int prixDepart = (rs.getInt("prix_initial"));
 				int prixVente = (rs.getInt("prix_vente"));
-				int numUser = (rs.getInt("no_utilisateur"));
-				int numCatego = (rs.getInt("no_categorie"));
+				int no_utilisateur = (rs.getInt("no_utilisateur"));
+				int no_categorie = (rs.getInt("no_categorie"));
+				String telephone = (rs.getString("telephone"));
+				String prixDepartStr = String.valueOf(prixDepart);
 				String pseudo = rs.getString("pseudo");
 				String libellecatego = (rs.getString("libelle"));
-				Articles_vendus vente1 = new Articles_vendus(no_article, article, description, debutEnchereDate, finEnchereDate, prixDepart,
-						prixVente, numUser, numCatego, pseudo, libellecatego);
-				listeEnchere.add(vente1);
+				Utilisateur utilisateur = new Utilisateur (no_utilisateur, pseudo, telephone);
+				Categorie categorie = new Categorie(no_categorie,libellecatego);
+				Articles_vendus vente = new Articles_vendus(no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prixDepartStr,
+						prixVente, categorie, utilisateur);
+				listeEnchere.add(vente);
 
 			}
 		} catch (SQLException e) {
@@ -187,23 +190,24 @@ public class VenteDAOjdclImpl {
 			rqt.setString(1, '%' + contient + '%');
 			ResultSet rs = rqt.executeQuery();
 			while (rs.next()) {
-				int idEnchere = (rs.getInt("no_article"));
-				String article = (rs.getString("nom_article"));
+				int no_article = (rs.getInt("no_article"));
+				String nom_article = (rs.getString("nom_article"));
 				String description = (rs.getString("description"));
-				LocalDate debutEnchereDate = rs.getDate("date_debut_encheres").toLocalDate();
-				LocalDate finEnchereDate = rs.getDate("date_fin_encheres").toLocalDate();
+				LocalDate date_debut_encheres = rs.getDate("date_debut_encheres").toLocalDate();
+				LocalDate date_fin_encheres = rs.getDate("date_fin_encheres").toLocalDate();
 				int prixDepart = (rs.getInt("prix_initial"));
 				int prixVente = (rs.getInt("prix_vente"));
-				int numUser = (rs.getInt("no_utilisateur"));
-				int numCatego = (rs.getInt("no_categorie"));
+				int no_utilisateur = (rs.getInt("no_utilisateur"));
+				int no_categorie = (rs.getInt("no_categorie"));
+				String telephone = (rs.getString("telephone"));
 				String prixDepartStr = String.valueOf(prixDepart);
-				String debutEnchere = debutEnchereDate.toString();
-				String finEnchere = finEnchereDate.toString();
 				String pseudo = rs.getString("pseudo");
 				String libellecatego = (rs.getString("libelle"));
-				Articles_vendus vente1 = new Articles_vendus(idEnchere, article, description, debutEnchere, finEnchere, prixDepartStr,
-						prixVente, numUser, numCatego, pseudo, libellecatego);
-				listeEnchere.add(vente1);
+				Utilisateur utilisateur = new Utilisateur (no_utilisateur, pseudo, telephone);
+				Categorie categorie = new Categorie(no_categorie,libellecatego);
+				Articles_vendus vente = new Articles_vendus(no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prixDepartStr,
+						prixVente, categorie, utilisateur);
+				listeEnchere.add(vente);
 
 			}
 		} catch (SQLException e) {
