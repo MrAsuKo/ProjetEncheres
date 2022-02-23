@@ -63,6 +63,10 @@ public class Articles_vendus {
 		this.categorie = categorie;
 	}
 
+	public Articles_vendus(int noArticle) {
+		this.noArticle = noArticle;
+	}
+
 	/**
 	 * @return the noArticle
 	 */

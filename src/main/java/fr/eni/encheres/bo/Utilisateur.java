@@ -115,6 +115,10 @@ public class Utilisateur {
 		this.mdp=mdp;
 	}
 
+	public Utilisateur(int id) {
+		this.id=id;
+	}
+
 	/**
 	 * @return the id
 	 */

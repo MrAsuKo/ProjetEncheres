@@ -31,9 +31,9 @@ public class VenteMgr {
 		return this.venteDAO.selectEnchere();
 	}
 
-	public void offreEnchere(int offre, int noArticle, int id) {
+	public void offreEnchere(int offre, Articles_vendus articlesVendus, Utilisateur utilisateur) {
 		try {
-			Enchere enchere = new Enchere(offre, noArticle, id);
+			Enchere enchere = new Enchere(offre, articlesVendus, utilisateur);
 			venteDAO.offreEnchere(enchere);
 		} catch (fr.eni.encheres.dal.DALException e) {
 			// TODO Auto-generated catch block
