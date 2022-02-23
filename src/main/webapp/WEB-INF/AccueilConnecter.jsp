@@ -74,7 +74,6 @@
   				<div class="card-header">Vendeur : <a href="./Show/Vendeur?name=<%=art.getUtilisateur().getPseudo()%>"><%=art.getUtilisateur().getPseudo()%></a></div>
   					<div class="card-body">
     					<h5 class="card-title"><a href="<%=request.getContextPath()%>/DetailVente?name=<%=art.getNoArticle()%>&datefin=<%=art.getDateFinEncheres()%>"><%=art.getNomArticle()%></a></h5>
-						    <p class="card-text">num article : <%=art.getNoArticle()%></p>
 						    <p class="card-text">Prix : <%=art.getPrixDepart()%></p>
 						    <p class="card-text">Fin de l'enchère : <%=art.getDateFinEncheres()%></p>
   					</div>

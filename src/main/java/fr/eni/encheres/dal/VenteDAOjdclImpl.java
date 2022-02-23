@@ -67,7 +67,7 @@ public class VenteDAOjdclImpl {
 
 	}
 
-	private static final String SELECTENCHERE = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,av.no_categorie, pseudo, libelle,telephone FROM ARTICLES_VENDUS as av INNER JOIN UTILISATEURS as u ON u.no_utilisateur = av.no_utilisateur INNER JOIN CATEGORIES as c ON c.no_categorie=av.no_categorie";
+	private static final String SELECTENCHERE = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,av.no_categorie, pseudo, libelle,telephone FROM ARTICLES_VENDUS as av INNER JOIN UTILISATEURS as u ON u.no_utilisateur = av.no_utilisateur INNER JOIN CATEGORIES as c ON c.no_categorie=av.no_categorie ORDER BY date_fin_encheres DESC";
 
 	public List<Articles_vendus> selectEnchere() throws DALException {
 		List<Articles_vendus> listeEnchere = new ArrayList<Articles_vendus>();
