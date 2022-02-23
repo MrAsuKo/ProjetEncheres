@@ -91,12 +91,11 @@ public class VenteDAOjdclImpl {
 				Categorie categorie = new Categorie(no_categorie,libellecatego);
 				Articles_vendus vente = new Articles_vendus(no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prixDepart,
 						prixVente, categorie, utilisateur);
-				System.out.println(vente.getNoArticle());
 				listeEnchere.add(vente);
 
 			}
 		} catch (SQLException e) {
-			throw new DALException(" erreur selectCategorie -");
+			throw new DALException(" erreur selectenchere -");
 		}
 		return listeEnchere;
 
@@ -135,7 +134,6 @@ public class VenteDAOjdclImpl {
 				int noUtilisateur = rs.getInt("no_utilisateur");
 				String pseudo = rs.getString("pseudo");
 				int montantEnchere = rs.getInt("montant_enchere");
-				System.out.println("test " + montantEnchere);
 				Utilisateur utilisateur = new Utilisateur (noUtilisateur,pseudo);
 				enchere = new Enchere(utilisateur, montantEnchere);
 			}
@@ -149,7 +147,7 @@ public class VenteDAOjdclImpl {
 	private static final String SELECTENCHERECATEG = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,av.no_categorie, pseudo, libelle FROM ARTICLES_VENDUS as av INNER JOIN UTILISATEURS as u ON u.no_utilisateur = av.no_utilisateur INNER JOIN CATEGORIES as c ON c.no_categorie=av.no_categorie WHERE c.no_categorie=?";
 
 	public List<Articles_vendus> selectEnchereCateg(int no_categ) throws DALException {
-		List<Articles_vendus> listeEnchere = new ArrayList<Articles_vendus>();
+		List<Articles_vendus> listeEncherecateg = new ArrayList<Articles_vendus>();
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
 			PreparedStatement rqt = cnx.prepareStatement(SELECTENCHERECATEG);
@@ -165,21 +163,20 @@ public class VenteDAOjdclImpl {
 				int prixVente = (rs.getInt("prix_vente"));
 				int no_utilisateur = (rs.getInt("no_utilisateur"));
 				int no_categorie = (rs.getInt("no_categorie"));
-				String telephone = (rs.getString("telephone"));
-				String prixDepartStr = String.valueOf(prixDepart);
 				String pseudo = rs.getString("pseudo");
 				String libellecatego = (rs.getString("libelle"));
-				Utilisateur utilisateur = new Utilisateur (no_utilisateur, pseudo, telephone);
+				Utilisateur utilisateur = new Utilisateur (no_utilisateur, pseudo);
 				Categorie categorie = new Categorie(no_categorie,libellecatego);
 				Articles_vendus vente = new Articles_vendus(no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prixDepart,
 						prixVente, categorie, utilisateur);
-				listeEnchere.add(vente);
+				listeEncherecateg.add(vente);
 
 			}
 		} catch (SQLException e) {
-			throw new DALException(" select catego -");
+			e.printStackTrace();
+			throw new DALException(" select catego -" );
 		}
-		return listeEnchere;
+		return listeEncherecateg;
 	}
 
 	private static final String SELECTENCHERECONTIENT = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,av.no_categorie, pseudo, libelle FROM ARTICLES_VENDUS as av INNER JOIN UTILISATEURS as u ON u.no_utilisateur = av.no_utilisateur INNER JOIN CATEGORIES as c ON c.no_categorie=av.no_categorie WHERE nom_article LIKE ?";
@@ -200,11 +197,9 @@ public class VenteDAOjdclImpl {
 				int prixVente = (rs.getInt("prix_vente"));
 				int no_utilisateur = (rs.getInt("no_utilisateur"));
 				int no_categorie = (rs.getInt("no_categorie"));
-				String telephone = (rs.getString("telephone"));
-				String prixDepartStr = String.valueOf(prixDepart);
 				String pseudo = rs.getString("pseudo");
 				String libellecatego = (rs.getString("libelle"));
-				Utilisateur utilisateur = new Utilisateur (no_utilisateur, pseudo, telephone);
+				Utilisateur utilisateur = new Utilisateur (no_utilisateur, pseudo);
 				Categorie categorie = new Categorie(no_categorie,libellecatego);
 				Articles_vendus vente = new Articles_vendus(no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prixDepart,
 						prixVente, categorie, utilisateur);
@@ -212,7 +207,7 @@ public class VenteDAOjdclImpl {
 
 			}
 		} catch (SQLException e) {
-			throw new DALException(" select catego -");
+			throw new DALException(" select contient -");
 		}
 		return listeEnchere;
 	}
