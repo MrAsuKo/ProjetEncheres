@@ -10,7 +10,9 @@
 	</head>
 	<body>
 		<%@include file="fragments/header.jspf" %>
+		<br>
 		<h3>Mon profil</h3>
+		<br>
 		<p>Pseudo : ${sessionScope.pseudo}</p>
 		<p>Nom : ${sessionScope.nom}</p>
 		<p>Prénom : ${sessionScope.prenom}</p>
@@ -20,8 +22,9 @@
 		<p>Code postal : ${sessionScope.cp}</p>
 		<p>Ville : ${sessionScope.ville}</p>
 		<p>Crédit : ${sessionScope.credit}</p>
+		<br>
 		<form action="<%=request.getContextPath()%>/ModifierProfil" method="post">
-			<input type="submit" id="modifier" name ="modifier" value="Modifier">
+			<input class="btn btn-outline-warning" type="submit" id="modifier" name ="modifier" value="Modifier">
 		</form>
 	</body>
 </html>
