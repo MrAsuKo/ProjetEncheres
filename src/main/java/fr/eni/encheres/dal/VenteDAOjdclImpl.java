@@ -135,10 +135,11 @@ public class VenteDAOjdclImpl {
 			rqt.setInt(2, noArticle);
 			ResultSet rs = rqt.executeQuery();
 			if (rs.next()) {
-				int id = rs.getInt("no_utilisateur");
+				int noUtilisateur = rs.getInt("no_utilisateur");
 				String pseudo = rs.getString("pseudo");
 				int montantEnchere = rs.getInt("montant_enchere");
-				enchere = new Enchere(id, pseudo, montantEnchere);
+				Utilisateur utilisateur = new Utilisateur (noUtilisateur,pseudo);
+				enchere = new Enchere(utilisateur, montantEnchere);
 			}
 			} catch (SQLException e) {
 			e.printStackTrace();

@@ -46,9 +46,9 @@ public class Utilisateur {
 		this.mdp = mdp;
 	}
 	
-	public Utilisateur(String pseudo, String mdp) {
+	public Utilisateur(int noUtilisateur, String pseudo) {
+		this.id = noUtilisateur;
 		this.pseudo = pseudo;
-		this.mdp = mdp;
 	}
 	
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue, String cp,
@@ -108,6 +108,11 @@ public class Utilisateur {
 		this.pseudo=pseudo;
 		this.telephone=telephone;
 		this.id=no_utilisateur;
+	}
+
+	public Utilisateur(String pseudo, String mdp) {
+		this.pseudo=pseudo;
+		this.mdp=mdp;
 	}
 
 	/**
