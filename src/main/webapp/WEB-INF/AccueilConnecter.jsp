@@ -38,7 +38,7 @@
     <div class="row justify-content-start">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     			<div class="col-2 form-check form-switch">
-				<input class="form-check-input" role="switch" type="radio" id="achat" name="achat">
+				<input class="form-check-input" role="switch" type="radio" id="achat" name="achat" checked>
 				<label for="achats">Achats</label>
 					<ul style="list-style: none;">
 						<li><input class="form-check-input" type="checkbox" id="encheresouvertes" name="encheresouvertes"><label class="form-check-label" for="encheresouvertes">Enchères ouvertes</label></li>
