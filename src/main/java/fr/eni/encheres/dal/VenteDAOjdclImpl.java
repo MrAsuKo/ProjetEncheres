@@ -91,8 +91,10 @@ public class VenteDAOjdclImpl {
 				String libellecatego = (rs.getString("libelle"));
 				Utilisateur utilisateur = new Utilisateur (no_utilisateur, pseudo, telephone);
 				Categorie categorie = new Categorie(no_categorie,libellecatego);
-				Articles_vendus vente = new Articles_vendus(no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prixDepartStr,
+				Articles_vendus vente = new Articles_vendus(no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prixDepart,
 						prixVente, categorie, utilisateur);
+				System.out.println(vente.getNoArticle());
+				System.out.println(vente.getUtilisateur());
 				listeEnchere.add(vente);
 
 			}

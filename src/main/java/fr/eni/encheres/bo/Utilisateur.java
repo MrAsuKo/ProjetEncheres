@@ -104,8 +104,10 @@ public class Utilisateur {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Utilisateur(int no_utilisateur, String pseudo2, String telephone2) {
-		// TODO Auto-generated constructor stub
+	public Utilisateur(int no_utilisateur, String pseudo, String telephone) {
+		this.pseudo=pseudo;
+		this.telephone=telephone;
+		this.id=no_utilisateur;
 	}
 
 	/**
