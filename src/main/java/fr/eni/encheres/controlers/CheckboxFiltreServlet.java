@@ -15,7 +15,7 @@ import fr.eni.encheres.bll.CategorieMgr;
 import fr.eni.encheres.bll.UserMgr;
 import fr.eni.encheres.bll.VenteMgr;
 import fr.eni.encheres.bo.Categorie;
-import fr.eni.encheres.bo.Vente;
+import fr.eni.encheres.bo.Articles_vendus;
 import fr.eni.encheres.dal.DALException;
 
 /**
@@ -51,7 +51,7 @@ public class CheckboxFiltreServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Creation de la liste des encheres
-		List<Vente> listeEnchere = null;		
+		List<Articles_vendus> listeEnchere = null;		
 		try {
 			try {
 				listeEnchere = venteMgr.selectEnchere();
@@ -65,18 +65,16 @@ public class CheckboxFiltreServlet extends HttpServlet {
 		}
 		request.setAttribute("listeEnchere", listeEnchere);
 		//fin de la creation de la liste des encheres
-		//liste des categoeries
+		//liste des categories
 		List<Categorie> listeCategorie = null;
 		try {
 			try {
 				listeCategorie = categorieMgr.selectcategorie();
 			} catch (fr.eni.encheres.dal.DALException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			request.setAttribute("listecategorie", listeCategorie);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		//fin list des categories

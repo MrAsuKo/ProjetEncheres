@@ -13,35 +13,36 @@ import java.util.List;
 
 import fr.eni.encheres.bo.Categorie;
 import fr.eni.encheres.bo.Enchere;
-import fr.eni.encheres.bo.Vente;
+import fr.eni.encheres.bo.Utilisateur;
+import fr.eni.encheres.bo.Articles_vendus;
 
 public class VenteDAOjdclImpl {
 
 	private static final String INSERT_ENCHERE = "INSERT INTO ARTICLES_VENDUS(nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie)VALUES(?,?,?,?,?,?,?,?)";
 
-	public int insert(Vente vente) throws DALException {
+	public int insert(Articles_vendus vente) throws DALException {
 		try(Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement rqt = cnx.prepareStatement(INSERT_ENCHERE, PreparedStatement.RETURN_GENERATED_KEYS);
-			rqt.setString(1, vente.getArticle());
+			rqt.setString(1, vente.getNomArticle());
 			rqt.setString(2, vente.getDescription());
-			rqt.setString(3, vente.getDebutenchere());
-			rqt.setString(4, vente.getFinenchere());
-			rqt.setString(5, vente.getPrixdepart());
+			rqt.setDate(3, java.sql.Date.valueOf(vente.getDateDebutEncheres()));
+			rqt.setDate(4, java.sql.Date.valueOf(vente.getDateFinEncheres()));
+			rqt.setInt(5, vente.getPrixDepart());
 			rqt.setInt(6, 0);
-			rqt.setInt(7, vente.getId());
-			rqt.setInt(8, vente.getCategorie());
+			rqt.setInt(7, vente.getUtilisateur().getId());
+			rqt.setInt(8, vente.getCategorie().getNumcatego());
 			rqt.executeUpdate();
 			
 			ResultSet rs = rqt.getGeneratedKeys();
 			if (rs.next()) {
-				vente.setId(rs.getInt(1));
+				enchere.(rs.getInt(1);
 			}
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return vente.getId();
+		return vente.getUtilisateur();
 	}
 
 	private static final String SELECTCATEGO = "SELECT no_categorie,libelle FROM CATEGORIES";
@@ -69,30 +70,30 @@ public class VenteDAOjdclImpl {
 
 	private static final String SELECTENCHERE = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,av.no_categorie, pseudo, libelle,telephone FROM ARTICLES_VENDUS as av INNER JOIN UTILISATEURS as u ON u.no_utilisateur = av.no_utilisateur INNER JOIN CATEGORIES as c ON c.no_categorie=av.no_categorie";
 
-	public List<Vente> selectEnchere() throws DALException {
-		List<Vente> listeEnchere = new ArrayList<Vente>();
+	public List<Articles_vendus> selectEnchere() throws DALException {
+		List<Articles_vendus> listeEnchere = new ArrayList<Articles_vendus>();
 		try (Connection cnx= ConnectionProvider.getConnection()){
 
 			Statement rqt = cnx.createStatement();
 			ResultSet rs = rqt.executeQuery(SELECTENCHERE);
 			while (rs.next()) {
-				int idEnchere = (rs.getInt("no_article"));
-				String article = (rs.getString("nom_article"));
+				int no_article = (rs.getInt("no_article"));
+				String nom_article = (rs.getString("nom_article"));
 				String description = (rs.getString("description"));
-				LocalDate debutEnchereDate = rs.getDate("date_debut_encheres").toLocalDate();
-				LocalDate finEnchereDate = rs.getDate("date_fin_encheres").toLocalDate();
+				LocalDate date_debut_encheres = rs.getDate("date_debut_encheres").toLocalDate();
+				LocalDate date_fin_encheres = rs.getDate("date_fin_encheres").toLocalDate();
 				int prixDepart = (rs.getInt("prix_initial"));
 				int prixVente = (rs.getInt("prix_vente"));
-				int numUser = (rs.getInt("no_utilisateur"));
-				int numCatego = (rs.getInt("no_categorie"));
+				int no_utilisateur = (rs.getInt("no_utilisateur"));
+				int no_categorie = (rs.getInt("no_categorie"));
 				String telephone = (rs.getString("telephone"));
 				String prixDepartStr = String.valueOf(prixDepart);
-				String debutEnchere = debutEnchereDate.toString();
-				String finEnchere = finEnchereDate.toString();
 				String pseudo = rs.getString("pseudo");
 				String libellecatego = (rs.getString("libelle"));
-				Vente vente = new Vente(idEnchere, article, description, debutEnchere, finEnchere, prixDepartStr,
-						prixVente, numUser, numCatego, pseudo, libellecatego,telephone);
+				Utilisateur utilisateur = new Utilisateur (no_utilisateur, pseudo, telephone);
+				Categorie categorie = new Categorie(no_categorie,libellecatego);
+				Articles_vendus vente = new Articles_vendus(no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prixDepartStr,
+						prixVente, categorie, utilisateur);
 				listeEnchere.add(vente);
 
 			}
@@ -147,15 +148,15 @@ public class VenteDAOjdclImpl {
 
 	private static final String SELECTENCHERECATEG = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,av.no_categorie, pseudo, libelle FROM ARTICLES_VENDUS as av INNER JOIN UTILISATEURS as u ON u.no_utilisateur = av.no_utilisateur INNER JOIN CATEGORIES as c ON c.no_categorie=av.no_categorie WHERE c.no_categorie=?";
 
-	public List<Vente> selectEnchereCateg(int categ) throws DALException {
-		List<Vente> listeEnchere = new ArrayList<Vente>();
+	public List<Articles_vendus> selectEnchereCateg(int no_categ) throws DALException {
+		List<Articles_vendus> listeEnchere = new ArrayList<Articles_vendus>();
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
 			PreparedStatement rqt = cnx.prepareStatement(SELECTENCHERECATEG);
-			rqt.setInt(1, categ);
+			rqt.setInt(1, no_categ);
 			ResultSet rs = rqt.executeQuery();
 			while (rs.next()) {
-				int idEnchere = (rs.getInt("no_article"));
+				int no_article = (rs.getInt("no_article"));
 				String article = (rs.getString("nom_article"));
 				String description = (rs.getString("description"));
 				LocalDate debutEnchereDate = rs.getDate("date_debut_encheres").toLocalDate();
@@ -164,12 +165,9 @@ public class VenteDAOjdclImpl {
 				int prixVente = (rs.getInt("prix_vente"));
 				int numUser = (rs.getInt("no_utilisateur"));
 				int numCatego = (rs.getInt("no_categorie"));
-				String prixDepartStr = String.valueOf(prixDepart);
-				String debutEnchere = debutEnchereDate.toString();
-				String finEnchere = finEnchereDate.toString();
 				String pseudo = rs.getString("pseudo");
 				String libellecatego = (rs.getString("libelle"));
-				Vente vente1 = new Vente(idEnchere, article, description, debutEnchere, finEnchere, prixDepartStr,
+				Articles_vendus vente1 = new Articles_vendus(no_article, article, description, debutEnchereDate, finEnchereDate, prixDepart,
 						prixVente, numUser, numCatego, pseudo, libellecatego);
 				listeEnchere.add(vente1);
 
@@ -182,8 +180,8 @@ public class VenteDAOjdclImpl {
 
 	private static final String SELECTENCHERECONTIENT = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,av.no_categorie, pseudo, libelle FROM ARTICLES_VENDUS as av INNER JOIN UTILISATEURS as u ON u.no_utilisateur = av.no_utilisateur INNER JOIN CATEGORIES as c ON c.no_categorie=av.no_categorie WHERE nom_article LIKE ?";
 
-	public List<Vente> selectEnchereContient(String contient) throws DALException {
-		List<Vente> listeEnchere = new ArrayList<Vente>();
+	public List<Articles_vendus> selectEnchereContient(String contient) throws DALException {
+		List<Articles_vendus> listeEnchere = new ArrayList<Articles_vendus>();
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement rqt = cnx.prepareStatement(SELECTENCHERECONTIENT);
 			rqt.setString(1, '%' + contient + '%');
@@ -203,7 +201,7 @@ public class VenteDAOjdclImpl {
 				String finEnchere = finEnchereDate.toString();
 				String pseudo = rs.getString("pseudo");
 				String libellecatego = (rs.getString("libelle"));
-				Vente vente1 = new Vente(idEnchere, article, description, debutEnchere, finEnchere, prixDepartStr,
+				Articles_vendus vente1 = new Articles_vendus(idEnchere, article, description, debutEnchere, finEnchere, prixDepartStr,
 						prixVente, numUser, numCatego, pseudo, libellecatego);
 				listeEnchere.add(vente1);
 

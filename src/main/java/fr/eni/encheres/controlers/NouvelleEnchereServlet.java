@@ -15,8 +15,8 @@ import javax.websocket.Session;
 
 import fr.eni.encheres.bll.VenteMgr;
 import fr.eni.encheres.bo.Enchere;
-import fr.eni.encheres.bo.User;
-import fr.eni.encheres.bo.Vente;
+import fr.eni.encheres.bo.Utilisateur;
+import fr.eni.encheres.bo.Articles_vendus;
 import fr.eni.encheres.dal.DALException;
 
 /**
@@ -52,7 +52,7 @@ public class NouvelleEnchereServlet extends HttpServlet {
 		int noArticle = Integer.parseInt(noArticleStr);
 		request.setAttribute("noArticleStr", noArticleStr);
 				//Creation de la liste des encheres
-				List<Vente> listeEnchere = null;		
+				List<Articles_vendus> listeEnchere = null;		
 				try {
 					try {
 						listeEnchere = venteMgr.selectEnchere();

@@ -2,6 +2,7 @@ package fr.eni.encheres.controlers;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -14,7 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.encheres.bll.CategorieMgr;
 import fr.eni.encheres.bll.VenteMgr;
 import fr.eni.encheres.bo.Categorie;
-import fr.eni.encheres.bo.Vente;
+import fr.eni.encheres.bo.Utilisateur;
+import fr.eni.encheres.bo.Articles_vendus;
 import fr.eni.encheres.dal.DALException;
 
 /**
@@ -49,7 +51,7 @@ public class EnregistrerNouvelleVenteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				//Creation de la liste des encheres
-				List<Vente> listeEnchere = null;		
+				List<Articles_vendus> listeEnchere = null;		
 				try {
 					try {
 						listeEnchere = venteMgr.selectEnchere();
@@ -63,7 +65,7 @@ public class EnregistrerNouvelleVenteServlet extends HttpServlet {
 				}
 				request.setAttribute("listeEnchere", listeEnchere);
 				//fin de la creation de la liste des encheres
-				//liste des categoeries
+				//liste des categories
 				List<Categorie> listeCategorie = null;
 				try {
 					try {
@@ -79,20 +81,25 @@ public class EnregistrerNouvelleVenteServlet extends HttpServlet {
 				}
 				//fin list des categories
 				
-		String article = request.getParameter("article");
+		String nom_article = request.getParameter("article");
 		String description = request.getParameter("description");
-		String categorie = request.getParameter("categorie");
-		String prixdepart = request.getParameter("prixdepart");
-		String debutenchere = request.getParameter("debutenchere");
-		String finenchere = request.getParameter("finenchere");
-		int numcategorie = Integer.parseInt(categorie);
-		int id = (int) request.getSession(false).getAttribute("id");
+		String categorieStr = request.getParameter("categorie");
+		Categorie categorie = new Categorie(Integer.parseInt(categorieStr));
+		String prixdepartStr = request.getParameter("prixdepart");
+		String debutenchereStr = request.getParameter("debutenchere");
+		String finenchereStr = request.getParameter("finenchere");
+		int numcategorie = Integer.parseInt(categorieStr);
+		int no_utilisateur = (int) request.getSession(false).getAttribute("id");
+		Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateurConnecte");
 		String rue = request.getParameter("rue");
 		String cp = request.getParameter("cp");
 		String ville = request.getParameter("ville");
+		LocalDate date_debut_encheres = LocalDate.parse(debutenchereStr);
+		LocalDate date_fin_encheres = LocalDate.parse(finenchereStr);
+		int prixdepart = Integer.parseInt(prixdepartStr);
 		
 		try {
-		int noArticle = venteMgr.ajoutEnchere(article, description, debutenchere, finenchere, prixdepart,id,numcategorie);
+		int noArticle = venteMgr.ajoutEnchere(nom_article, description, date_debut_encheres, date_fin_encheres, prixdepart,utilisateur,categorie);
 		venteMgr.insertRetrait(noArticle,rue,cp,ville);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

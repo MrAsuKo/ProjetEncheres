@@ -1,18 +1,21 @@
 package fr.eni.encheres.bo;
 
+import java.sql.Date;
+
 public class Enchere {
 
-	private int idEnchere;
+	private int noEnchere;
+	private Date dateEnchere;
 	private int montantEnchere;
 	private int noArticle;
-	private int id;
+	private int noUtilisateur;
 	private String pseudo;
 
 	/**
 	 * @param offre
 	 */
 	public Enchere(int idEnchere, int montantEnchere) {
-		this.idEnchere=idEnchere;
+		this.noEnchere=idEnchere;
 		this.montantEnchere = montantEnchere;
 	}
 	
@@ -31,7 +34,7 @@ public class Enchere {
 	}
 
 	public Enchere(int idEnchere, int montantEnchere, String pseudo) {
-		this.idEnchere=idEnchere;
+		this.noEnchere=idEnchere;
 		this.montantEnchere = montantEnchere;
 		this.pseudo = pseudo;
 	}
@@ -39,7 +42,7 @@ public class Enchere {
 	public Enchere(int montantEnchere, int noArticle, int id) {
 		this.montantEnchere = montantEnchere;
 		this.noArticle = noArticle;
-		this.id = id;
+		this.noUtilisateur = id;
 	}
 
 	/**
@@ -78,14 +81,14 @@ public class Enchere {
 	 * @return the id
 	 */
 	public int getId() {
-		return id;
+		return noUtilisateur;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(int id) {
-		this.id = id;
+		this.noUtilisateur = id;
 	}
 
 	/**
@@ -99,14 +102,20 @@ public class Enchere {
 	 * @return the idEnchere
 	 */
 	public int getIdEnchere() {
-		return idEnchere;
+		return noEnchere;
 	}
 
 	/**
 	 * @param idEnchere the idEnchere to set
 	 */
 	public void setIdEnchere(int idEnchere) {
-		this.idEnchere = idEnchere;
+		this.noEnchere = idEnchere;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("Enchere [idEnchere=%s, montantEnchere=%s, noArticle=%s, id=%s, pseudo=%s]", noEnchere,
+				montantEnchere, noArticle, noUtilisateur, pseudo);
 	}
 	
 }

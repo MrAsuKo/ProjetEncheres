@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.encheres.bll.VenteMgr;
 import fr.eni.encheres.bo.Enchere;
-import fr.eni.encheres.bo.Vente;
+import fr.eni.encheres.bo.Articles_vendus;
 import fr.eni.encheres.dal.DALException;
 
 /**
@@ -42,12 +42,12 @@ public class DetailVenteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//recuperer le pseudo par le lien
 		String noArticleStr = request.getParameter("name");
-		String datefin = request.getParameter("datefin");
 		int noArticle = Integer.parseInt(noArticleStr);
 		request.setAttribute("noArticleStr", noArticleStr);
 		// Creation de la liste des encheres
-		List<Vente> listeEnchere = null;
+		List<Articles_vendus> listeEnchere = null;
 		try {
 			try {
 				listeEnchere = venteMgr.selectEnchere();
@@ -72,7 +72,8 @@ public class DetailVenteServlet extends HttpServlet {
 		request.setAttribute("meilleurOffre", enchere);
 
 		// remporter enchrere si date fin est depassé
-		LocalDate datefinDate = LocalDate.parse(datefin);
+		String datefinStr = request.getParameter("datefin");
+		LocalDate datefinDate = LocalDate.parse(datefinStr);
 		if (datefinDate.isBefore(LocalDate.now())) {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/EnchereFini.jsp");
 			rd.forward(request, response);

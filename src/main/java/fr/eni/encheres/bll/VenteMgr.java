@@ -1,10 +1,13 @@
 package fr.eni.encheres.bll;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 import fr.eni.encheres.bo.Enchere;
-import fr.eni.encheres.bo.Vente;
+import fr.eni.encheres.bo.Utilisateur;
+import fr.eni.encheres.bo.Articles_vendus;
+import fr.eni.encheres.bo.Categorie;
 import fr.eni.encheres.dal.DALException;
 import fr.eni.encheres.dal.VenteDAOjdclImpl;
 
@@ -17,14 +20,14 @@ public class VenteMgr {
 		venteDAO = new VenteDAOjdclImpl();
 	}
 
-	public int ajoutEnchere(String article, String description, String debutenchere, String finenchere, String prixdepart, int id, int numcategorie) throws Exception {
+	public int ajoutEnchere(String nom_article, String description, LocalDate date_debut_encheres, LocalDate date_fin_encheres, int prixdepart, Utilisateur utilisateur, Categorie categorie) throws Exception {
 		// construire lobjet BO
-		Vente vente = new Vente(article, description, debutenchere, finenchere, prixdepart, id, numcategorie);
+		Articles_vendus vente = new Articles_vendus(nom_article, description, date_debut_encheres, date_fin_encheres, prixdepart,utilisateur,categorie);
 		//Deleguer à la DAL l'ajout de l'utilisateur à la BDD
 		return  this.venteDAO.insert(vente);	
 	}
 
-	public List<Vente> selectEnchere() throws SQLException, DALException, fr.eni.encheres.dal.DALException {		
+	public List<Articles_vendus> selectEnchere() throws SQLException, DALException, fr.eni.encheres.dal.DALException {		
 		return this.venteDAO.selectEnchere();
 	}
 
@@ -42,13 +45,13 @@ public class VenteMgr {
 			return this.venteDAO.meilleurOffre(noArticle);
 	}
 
-	public List<Vente> selectencherecateg(int categ) throws fr.eni.encheres.dal.DALException {
-		return this.venteDAO.selectEnchereCateg(categ);
+	public List<Articles_vendus> selectencherecateg(int no_categorie) throws fr.eni.encheres.dal.DALException {
+		return this.venteDAO.selectEnchereCateg(no_categorie);
 	}
 
 
 
-	public List<Vente> selectEnchereContient(String contient) throws fr.eni.encheres.dal.DALException {
+	public List<Articles_vendus> selectEnchereContient(String contient) throws fr.eni.encheres.dal.DALException {
 		return this.venteDAO.selectEnchereContient(contient);
 	}
 
