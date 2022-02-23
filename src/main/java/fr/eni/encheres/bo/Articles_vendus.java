@@ -26,13 +26,13 @@ public class Articles_vendus {
 	 * @param no_categorie
 	 */
 	public Articles_vendus(int no_article, String nom_article, String description, LocalDate date_debut_encheres,
-			LocalDate date_fin_encheres, int prixdepart, int prixvente, Utilisateur no_utilisateur, Categorie no_categorie) {
+			LocalDate date_fin_encheres, int prixDepart, int prixvente, Utilisateur no_utilisateur, Categorie no_categorie) {
 		this.noArticle = no_article;
 		this.nomArticle = nom_article;
 		this.description = description;
 		this.dateDebutEncheres = date_debut_encheres;
 		this.dateFinEncheres = date_fin_encheres;
-		this.prixDepart = prixdepart;
+		this.prixDepart = prixDepart;
 		this.prixVente = prixvente;
 		this.utilisateur = no_utilisateur;
 		this.categorie = no_categorie;
@@ -51,10 +51,18 @@ public class Articles_vendus {
 		this.categorie = no_categorie;
 	}
 
-	public Articles_vendus(int no_article, String nom_article, String description2, LocalDate date_debut_encheres,
-			LocalDate date_fin_encheres, String prixDepartStr, int prixVente2, Categorie categorie2,
-			Utilisateur utilisateur2) {
-		// TODO Auto-generated constructor stub
+	public Articles_vendus(int no_article, String nom_article, String description, LocalDate date_debut_encheres,
+			LocalDate date_fin_encheres, int prixDepart, int prixVente, Categorie categorie,
+			Utilisateur utilisateur) {
+		this.noArticle = noArticle;
+		this.nomArticle = nom_article;
+		this.description = description;
+		this.dateDebutEncheres = date_debut_encheres;
+		this.dateFinEncheres = date_fin_encheres;
+		this.prixDepart = prixDepart;
+		this.prixVente = prixVente;
+		this.utilisateur = utilisateur;
+		this.categorie = categorie;
 	}
 
 	/**

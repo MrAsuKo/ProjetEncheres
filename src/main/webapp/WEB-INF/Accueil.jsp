@@ -46,15 +46,15 @@
 	    List<Articles_vendus> list = (List<Articles_vendus>)request.getAttribute("listeEnchere");
 	        for (Articles_vendus art : list){ 
 	        	if (list !=null) {
-	        	int noArticle = art.getIdEnchere();
+	        	int noArticle = art.getNoArticle();
 	    %>
     	<div class="col">
     		<div class="p-4 card border-warning bg-dark mb-3" style="max-width: 18rem;">
-  				<div class="card-header">Vendeur : <%=art.getPseudo()%></div>
+  				<div class="card-header">Vendeur : <%=art.getUtilisateur().getPseudo()%></div>
   					<div class="card-body">
-    					<h5 class="card-title"><%=art.getArticle()%></h5>
-						    <p class="card-text">Prix : <%=art.getPrixdepart()%></p>
-						    <p class="card-text">Fin de l'enchère : <%=art.getFinenchere()%></p>
+    					<h5 class="card-title"><%=art.getNomArticle()%></h5>
+						    <p class="card-text">Prix : <%=art.getPrixDepart()%></p>
+						    <p class="card-text">Fin de l'enchère : <%=art.getDateFinEncheres()%></p>
   					</div>
 				</div>
 			</div>
