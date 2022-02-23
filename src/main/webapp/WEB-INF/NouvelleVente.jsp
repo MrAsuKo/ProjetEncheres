@@ -49,7 +49,7 @@
     </table>
 		<input type="submit" id="enregistrer" name ="enregistrer" value="Enregistrer">
 	</form>	
-	<form action="<%=request.getContextPath()%>/Accueil" method="post">
+	<form action="<%=request.getContextPath()%>/BackAccueil" method="post">
 		<input type="submit" id="annuler" name ="annuler" value="Annuler">
 	</form>	
 </body>
