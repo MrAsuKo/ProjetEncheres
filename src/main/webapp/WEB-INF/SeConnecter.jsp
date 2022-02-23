@@ -25,7 +25,7 @@
 			<p>Mot de passe : <input type="password" id="mdp" name="mdp" required></p>
 			<p><input type="checkbox" id="memoriser" name="memoriser">
 				<label for="memoriser">Se souvenir</label></p>
-			<%	String message = null;
+			<%	String message = null; 
 				if (request.getAttribute("message") != null) {
 					message = (String)request.getAttribute("message"); %>
 					<p style="color: red;"><%=message %></p>
