@@ -86,7 +86,6 @@ public class VenteDAOjdclImpl {
 				int no_utilisateur = (rs.getInt("no_utilisateur"));
 				int no_categorie = (rs.getInt("no_categorie"));
 				String telephone = (rs.getString("telephone"));
-				String prixDepartStr = String.valueOf(prixDepart);
 				String pseudo = rs.getString("pseudo");
 				String libellecatego = (rs.getString("libelle"));
 				Utilisateur utilisateur = new Utilisateur (no_utilisateur, pseudo, telephone);
@@ -94,7 +93,6 @@ public class VenteDAOjdclImpl {
 				Articles_vendus vente = new Articles_vendus(no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prixDepart,
 						prixVente, categorie, utilisateur);
 				System.out.println(vente.getNoArticle());
-				System.out.println(vente.getUtilisateur());
 				listeEnchere.add(vente);
 
 			}
@@ -138,6 +136,7 @@ public class VenteDAOjdclImpl {
 				int noUtilisateur = rs.getInt("no_utilisateur");
 				String pseudo = rs.getString("pseudo");
 				int montantEnchere = rs.getInt("montant_enchere");
+				System.out.println("test " + montantEnchere);
 				Utilisateur utilisateur = new Utilisateur (noUtilisateur,pseudo);
 				enchere = new Enchere(utilisateur, montantEnchere);
 			}

@@ -26,8 +26,9 @@
 				    	if (list !=null) {
 				    	String noArticleStr = (String)request.getAttribute("noArticleStr");
 				    	int noArticle = Integer.parseInt(noArticleStr);   		
-				    	if (noArticle==art.getNoArticle())
+				    	if (noArticle==art.getNoArticle()){
 			%>    			
+
 				<p>Nom de l'article : <%=art.getNomArticle()%></p>
 				<p>Description : <%=art.getDescription()%></p>
 				<p>Catégorie : <%=art.getCategorie().getLibelle()%> </p>
@@ -50,7 +51,7 @@
 					// regarde le mini prix
 								int prixdepart = art.getPrixDepart();
 								int min = prixdepart;
-								int meilleurPrix = meilleurOffre.getMontantEnchere();
+								int meilleurPrix = 100;
 									if (meilleurPrix > prixdepart) {
 										min = meilleurPrix;	
 									}
@@ -78,6 +79,7 @@
 							<%}
 							}
 							}
+				   		}
 							%>
 	</body>
 </html>

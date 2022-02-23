@@ -25,9 +25,9 @@ public class Articles_vendus {
 	 * @param no_utilisateur
 	 * @param no_categorie
 	 */
-	public Articles_vendus(int no_article, String nom_article, String description, LocalDate date_debut_encheres,
+	public Articles_vendus(int noArticle, String nom_article, String description, LocalDate date_debut_encheres,
 			LocalDate date_fin_encheres, int prixDepart, int prixvente, Utilisateur no_utilisateur, Categorie no_categorie) {
-		this.noArticle = no_article;
+		this.noArticle = noArticle;
 		this.nomArticle = nom_article;
 		this.description = description;
 		this.dateDebutEncheres = date_debut_encheres;
@@ -38,20 +38,18 @@ public class Articles_vendus {
 		this.categorie = no_categorie;
 	}
 	
-	public Articles_vendus(String nom_article, String description, LocalDate date_debut_encheres,
+	public Articles_vendus(String nomArticle, String description, LocalDate date_debut_encheres,
 			LocalDate date_fin_encheres, int prixdepart, Utilisateur no_utilisateur, Categorie no_categorie) {
-		this.noArticle = noArticle;
-		this.nomArticle = nom_article;
+		this.nomArticle = nomArticle;
 		this.description = description;
 		this.dateDebutEncheres = date_debut_encheres;
 		this.dateFinEncheres = date_fin_encheres;
 		this.prixDepart = prixdepart;
-		this.prixVente = prixVente;
 		this.utilisateur = no_utilisateur;
 		this.categorie = no_categorie;
 	}
 
-	public Articles_vendus(int no_article, String nom_article, String description, LocalDate date_debut_encheres,
+	public Articles_vendus(int noArticle, String nom_article, String description, LocalDate date_debut_encheres,
 			LocalDate date_fin_encheres, int prixDepart, int prixVente, Categorie categorie,
 			Utilisateur utilisateur) {
 		this.noArticle = noArticle;
