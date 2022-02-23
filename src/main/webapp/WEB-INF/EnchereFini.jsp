@@ -16,8 +16,7 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
-<link href="<%=t(request.getContextPath(%>/css/style.css"
-	rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
 </head>
 <body>
 	<%@include file="fragments/header.jspf"%>
@@ -33,7 +32,7 @@
 			}				
 			int idSession = (int)request.getSession(false).getAttribute("id");
 
-			if (id == idSession)
+			if (id == idSession){
 	%>
 				<h2 style="color: green">YOU WIN !</h2>
 				<h3>VOUS AVEZ REMPORTÉ L'ENCHÈRE</h3>
@@ -59,17 +58,17 @@
 		    	if (list !=null) {
 		    	String noArticleStr = (String)request.getAttribute("noArticleStr");
 		    	int noArticle = Integer.parseInt(noArticleStr);   		
-		    	if (noArticle==art.getIdEnchere())
+		    	if (noArticle==art.getNoArticle())
 	%>
 	<p>
 		Nom de l'article :
-		<%=art.getArticle()%></p>
+		<%=art.getNomArticle()%></p>
 	<p>
 		Description :
 		<%=art.getDescription()%></p>
 	<p>
 		Catégorie :
-		<%=art.getLibellecatego()%>
+		<%=art.getCategorie().getLibelle()%>
 	</p>
 	<%	String message = null;
 				if (request.getAttribute("meilleurOffre") != null) {
@@ -83,32 +82,29 @@
 
 	<p>
 		Mise à prix :
-		<%=art.getPrixdepart()%></p>
+		<%=art.getPrixDepart()%></p>
 	<p>
 		Debut de l'enchère :
-		<%=art.getDebutenchere()%></p>
+		<%=art.getDateDebutEncheres()%></p>
 	<p>
 		Fin de l'enchère :
-		<%=art.getFinenchere()%></p>
+		<%=art.getDateFinEncheres()%></p>
 	<p>Retrait :</p>
 	<p>
 		Vendeur :
-		<%=art.getPseudo()%></p>
+		<%=art.getUtilisateur().getPseudo()%></p>
 	<p>
 		Tel :
-		<%=art.getTelephone()%></p>
+		<%=art.getUtilisateur().getTelephone()%></p>
 	<form action="<%=request.getContextPath()%>/BackAccueil" method="post">
 		<input type="submit" id="back" name="back" value="Retour"> <input
 			id="prodId" name="noArticle" type="hidden"
-			value="<%=art.getIdEnchere() %>"> <input id="prodId"
+			value="<%=art.getNoArticle() %>"> <input id="prodId"
 			name="id" type="hidden" value="${sessionScope.id}">
 	</form>
 
-	<%} %>
-
-
 	<%}
-		    }
-		    %>
+	}
+	}%>
 </body>
 </html>
