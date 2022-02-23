@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="fr.eni.gestion_vente.bo.Categorie" %>
+<%@ page import="fr.eni.encheres.bo.Categorie" %>
 <%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
@@ -36,13 +36,13 @@
     	<tr>
     		<th>Retrait</th>    
     		<td><p>Rue :</p>
-				<input type="text" id="name" name="rue" placeholder=${sessionScope.rue} disabled="disabled">
+				<input type="text" id="name" name="rue" placeholder=${sessionScope.rue} value=${sessionScope.rue}>
 			</td>			
 			<td><p>Code Postal :</p>
-				<input type="text" id="name" name="cp" placeholder=${sessionScope.cp} disabled="disabled">
+				<input type="text" id="name" name="cp" placeholder=${sessionScope.cp} value=${sessionScope.cp}>
 			</td>			
 			<td><p>Ville :</p>
-				<input type="text" id="name" name="ville" placeholder=${sessionScope.ville} disabled="disabled">
+				<input type="text" id="name" name="ville" placeholder=${sessionScope.ville} value=${sessionScope.ville}>
 			</td>    		
     	</tr>
     </table>
