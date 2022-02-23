@@ -33,7 +33,6 @@ public class ConnecterServlet extends HttpServlet {
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
 				if (cookie.getName().equals("identite")) {
-					System.out.println("coucou " + cookie);
 				String pseudo = cookie.getValue();
 				request.setAttribute("pseudo", pseudo);
 				}

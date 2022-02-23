@@ -1,7 +1,7 @@
 <%@page import="fr.eni.encheres.bo.Enchere"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="fr.eni.encheres.bo.Vente"%>
+<%@ page import="fr.eni.encheres.bo.Articles_vendus"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.Date"%>
 <%@ page import="java.time.LocalDateTime"%>
@@ -16,50 +16,51 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
-<link href="<%=request.getContextPath() %>/css/style.css"
+<link href="<%=t(request.getContextPath(%>/css/style.css"
 	rel="stylesheet">
 </head>
 <body>
 	<%@include file="fragments/header.jspf"%>
 
 	<%
-				Enchere meilleureOffre = null;
-				if(request.getAttribute("meilleurOffre") != null) {
-					meilleureOffre = (Enchere)request.getAttribute("meilleurOffre");
-				}
-				int id = -1;
-				if(meilleureOffre != null) {
-					id = meilleureOffre.getId();
-				}				
-				int idSession = (int)request.getSession(false).getAttribute("id");
+			Enchere meilleureOffre = null;
+			if(request.getAttribute("meilleurOffre") != null) {
+				meilleureOffre = (Enchere)request.getAttribute("meilleurOffre");
+			}
+			int id = -1;
+			if(meilleureOffre != null) {
+				id = meilleureOffre.getId();
+			}				
+			int idSession = (int)request.getSession(false).getAttribute("id");
 
-				if (id == idSession) {%>
+			if (id == idSession)
+	%>
 				<h2 style="color: green">YOU WIN !</h2>
 				<h3>VOUS AVEZ REMPORTÉ L'ENCHÈRE</h3>
-			<%} else {
-					if(meilleureOffre != null) {						
-				%>
+			<%
+			} else {
+						if(meilleureOffre != null) {
+			%>
 						<h2 style="color: red">YOU LOSE !</h2>
-						<h3><%=meilleureOffre %>
-							A REMPORTÉ L'ENCHÈRE
-						</h3>
+						<h3><%=meilleureOffre%> A REMPORTÉ L'ENCHÈRE </h3>
 				<%
-					} else {
+
+
+							} else {
 				%>
 						<h3>Persnne ne l'a remportée</h3>
-					<%}
-			}%>
+					<%
 
-
-
-
-
-	<% List<Vente> list = (List<Vente>)request.getAttribute("listeEnchere");
-	   		for (Vente art : list){ 
-	    	if (list !=null) {
-	    	String noArticleStr = (String)request.getAttribute("noArticleStr");
-	    	int noArticle = Integer.parseInt(noArticleStr);   		
-	    	if (noArticle==art.getIdEnchere()) {%>
+					}
+					%>
+	<%
+	 List<Articles_vendus> list = (List<Articles_vendus>)request.getAttribute("listeEnchere");
+		   		for (Articles_vendus art : list){ 
+		    	if (list !=null) {
+		    	String noArticleStr = (String)request.getAttribute("noArticleStr");
+		    	int noArticle = Integer.parseInt(noArticleStr);   		
+		    	if (noArticle==art.getIdEnchere())
+	%>
 	<p>
 		Nom de l'article :
 		<%=art.getArticle()%></p>

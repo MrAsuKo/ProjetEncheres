@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.encheres.bll.UserMgr;
-import fr.eni.encheres.bo.User;
+import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.DALException;
 
 /**
@@ -45,7 +45,7 @@ public class AfficherProfilVendeurServlet extends HttpServlet {
 		String pseudo = request.getParameter("name");
 		
 		try {			
-			User user = userMgr.profilVendeur(pseudo);
+			Utilisateur user = userMgr.profilVendeur(pseudo);
 			request.setAttribute("user", user);			
 		} catch (DALException e) {
 			e.printStackTrace();

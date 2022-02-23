@@ -15,7 +15,7 @@ import fr.eni.encheres.bll.CategorieMgr;
 import fr.eni.encheres.bll.UserMgr;
 import fr.eni.encheres.bll.VenteMgr;
 import fr.eni.encheres.bo.Categorie;
-import fr.eni.encheres.bo.Vente;
+import fr.eni.encheres.bo.Articles_vendus;
 import fr.eni.encheres.dal.DALException;
 
 /**
@@ -66,7 +66,7 @@ public class BackAccueilServlet extends HttpServlet {
 		}
 		//fin list des categories
 		//Creation de la liste des encheres
-		List<Vente> listeEnchere = null;		
+		List<Articles_vendus> listeEnchere = null;		
 		try {
 			try {
 				listeEnchere = venteMgr.selectEnchere();

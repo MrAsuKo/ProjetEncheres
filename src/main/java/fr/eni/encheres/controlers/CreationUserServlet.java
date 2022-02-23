@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.encheres.bll.UserMgr;
 import fr.eni.encheres.bll.VenteMgr;
-import fr.eni.encheres.bo.User;
-import fr.eni.encheres.bo.Vente;
+import fr.eni.encheres.bo.Utilisateur;
+import fr.eni.encheres.bo.Articles_vendus;
 import fr.eni.encheres.dal.DALException;
 
 /**
@@ -52,7 +52,7 @@ public class CreationUserServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Creation de la liste des encheres
-		List<Vente> listeEnchere = null;		
+		List<Articles_vendus> listeEnchere = null;		
 		try {
 			try {
 				listeEnchere = venteMgr.selectEnchere();
@@ -86,7 +86,7 @@ public class CreationUserServlet extends HttpServlet {
 			rd.forward(request, response);
 			}
 			if(mdpconf.equals(mdp) && use == false) {
-			User user = userMgr.ajouterUser(pseudo, nom, prenom, email, telephone, rue, cp, ville, mdpconf);
+			Utilisateur user = userMgr.ajouterUser(pseudo, nom, prenom, email, telephone, rue, cp, ville, mdpconf);
 			HttpSession session = request.getSession();
 			
 			session.setAttribute("id", user.getId());

@@ -1,6 +1,6 @@
 package fr.eni.encheres.bo;
 
-public class User {
+public class Utilisateur {
 
 	private int id;
 	private String pseudo;
@@ -27,7 +27,7 @@ public class User {
 	 * @param ville
 	 * @param mdp
 	 */
-	public User(String pseudo, String nom, String prenom, String email, String telephone, String rue, String cp,
+	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue, String cp,
 			String ville, String mdp) {
 		this.pseudo = pseudo;
 		this.nom = nom;
@@ -40,18 +40,18 @@ public class User {
 		this.mdp = mdp;
 	}
 	
-	public User(String pseudo, String email, String mdp) {
+	public Utilisateur(String pseudo, String email, String mdp) {
 		this.pseudo = pseudo;
 		this.email = email;
 		this.mdp = mdp;
 	}
 	
-	public User(String pseudo, String mdp) {
+	public Utilisateur(String pseudo, String mdp) {
 		this.pseudo = pseudo;
 		this.mdp = mdp;
 	}
 	
-	public User(String pseudo, String nom, String prenom, String email, String telephone, String rue, String cp,
+	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue, String cp,
 			String ville, String mdp, int credit, boolean administrateur) {
 		this.pseudo = pseudo;
 		this.nom = nom;
@@ -66,7 +66,7 @@ public class User {
 		this.administrateur = administrateur;
 	}
 	
-	public User(String pseudo, String nom, String prenom, String email, String telephone, String rue, String cp,
+	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue, String cp,
 			String ville, String mdp, int credit, boolean administrateur, boolean trouve) {
 		this.pseudo = pseudo;
 		this.nom = nom;
@@ -84,11 +84,11 @@ public class User {
 	
 	
 
-	public User(String pseudo) {
+	public Utilisateur(String pseudo) {
 		this.pseudo = pseudo;
 	}
 
-	public User(String pseudo, String nom, String prenom, String email, String telephone, String rue, String cp,
+	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue, String cp,
 			String ville) {
 		this.pseudo = pseudo;
 		this.nom = nom;
@@ -100,7 +100,11 @@ public class User {
 		this.ville = ville;
 	}
 
-	public User() {
+	public Utilisateur() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Utilisateur(int no_utilisateur, String pseudo2, String telephone2) {
 		// TODO Auto-generated constructor stub
 	}
 

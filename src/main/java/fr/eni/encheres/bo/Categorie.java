@@ -2,27 +2,30 @@ package fr.eni.encheres.bo;
 
 public class Categorie {
 
-	private int numcatego;
+	private int no_categorie;
 	private String libelle;
 	/**
-	 * @param numcatego
+	 * @param numCatego
 	 * @param libelle
 	 */
-	public Categorie(int numcatego, String libelle) {
-		this.numcatego = numcatego;
+	public Categorie(int numCatego, String libelle) {
+		this.no_categorie = numCatego;
 		this.libelle = libelle;
+	}
+	public Categorie(int no_categorie) {
+		this.no_categorie = no_categorie;
 	}
 	/**
 	 * @return the numcatego
 	 */
 	public int getNumcatego() {
-		return numcatego;
+		return no_categorie;
 	}
 	/**
 	 * @param numcatego the numcatego to set
 	 */
 	public void setNumcatego(int numcatego) {
-		this.numcatego = numcatego;
+		this.no_categorie = numcatego;
 	}
 	/**
 	 * @return the libelle
@@ -38,7 +41,7 @@ public class Categorie {
 	}
 	@Override
 	public String toString() {
-		return String.format("Categorie [numcatego=%s, libelle=%s]", numcatego, libelle);
+		return String.format("Categorie [numcatego=%s, libelle=%s]", no_categorie, libelle);
 	}
 	
 	

@@ -2,7 +2,7 @@
 <%@page import="java.time.LocalDate"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="fr.eni.encheres.bo.Vente" %>
+<%@ page import="fr.eni.encheres.bo.Articles_vendus" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.time.LocalDateTime" %>
@@ -13,18 +13,21 @@
 		<meta charset="UTF-8">
 		<title>Détails Vente</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-		<link href="<%=request.getContextPath() %>/css/style.css" rel="stylesheet"> 
+		<link href="<%=t(request.getContextPath(%>/css/style.css" rel="stylesheet"> 
 	</head>
 	<body>
 		<%@include file="fragments/header.jspf" %>
 		<h3>Détail vente</h3>
 
-			<% List<Vente> list = (List<Vente>)request.getAttribute("listeEnchere");
-	   		for (Vente art : list){ 
-	    	if (list !=null) {
-	    	String noArticleStr = (String)request.getAttribute("noArticleStr");
-	    	int noArticle = Integer.parseInt(noArticleStr);   		
-	    	if (noArticle==art.getIdEnchere()) {%>    			
+			<%
+			p
+			 List<Articles_vendus> list = (List<Articles_vendus>)request.getAttribute("listeEnchere");
+				   		for (Articles_vendus art : list){ 
+				    	if (list !=null) {
+				    	String noArticleStr = (String)request.getAttribute("noArticleStr");
+				    	int noArticle = Integer.parseInt(noArticleStr);   		
+				    	if (noArticle==art.getIdEnchere())
+			%>    			
 				<p>Nom de l'article : <%=art.getArticle()%></p>
 				<p>Description : <%=art.getDescription()%></p>
 				<p>Catégorie : <%=art.getLibellecatego()%> </p>
@@ -45,18 +48,19 @@
 					<form action="<%=request.getContextPath()%>/NouvelleEnchere" method="post">
 					<%
 					// regarde le mini prix
-					int prixdepart = Integer.parseInt(art.getPrixdepart());
-					int min = prixdepart;
-					int meilleurPrix = meilleurOffre.getMontantEnchere;
-						if (meilleurPrix > prixdepart) {
-							min = meilleurPrix;	
-						}
-						// rendre les enchere possible si dans les date d'encheres
-						LocalDate datedebut = LocalDate.parse(art.getDebutenchere());
-						LocalDate datefin = LocalDate.parse(art.getFinenchere());
-						Boolean flag = false;
-						if(LocalDate.now().isBefore(datefin) && LocalDate.now().isAfter(datedebut)){
-							flag = true;%>
+								int prixdepart = Integer.parseInt(art.getPrixdepart());
+								int min = prixDepart;
+								int meilleurPrix = meilleurOffre.getMontantEnchere;
+									if (meilleurPrix > prixdepart) {
+										min = meilleurPrix;	
+									}
+									// rendre les enchere possible si dans les date d'encheres
+									LocalDate datedebut = LocalDate.parse(art.getDebutenchere());
+									LocalDate datefin = LocalDate.parse(art.getFinenchere());
+									Boolean flag = false;
+									if(LocalDate.now().isBefore(datefin) && LocalDate.now().isAfter(datedebut)){
+										flag = true;
+					%>
 							<p>Offre : 	<input type="number" id="offre" name="offre" min="<%=min%>" ></p>
 						<% } else {
 						flag = false;%>

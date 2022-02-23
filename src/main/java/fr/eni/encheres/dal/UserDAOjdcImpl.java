@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import fr.eni.encheres.bo.User;
+import fr.eni.encheres.bo.Utilisateur;
 
 public class UserDAOjdcImpl implements UserDAO {
 
@@ -17,7 +17,7 @@ public class UserDAOjdcImpl implements UserDAO {
 	private static final String UPDATE_USER = "UPDATE UTILISATEURS SET  nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mdp=? WHERE pseudo=?";
 	private static final String SELECT_VENDEUR = "SELECT pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit FROM UTILISATEURS WHERE pseudo=?";
 
-	public boolean verif(User user) throws DALException {
+	public boolean verif(Utilisateur user) throws DALException {
 		Connection cnx = null;
 		boolean use = false;
 		try {
@@ -40,7 +40,7 @@ public class UserDAOjdcImpl implements UserDAO {
 		return use;
 	}
 
-	public void insert(User user) throws DALException {
+	public void insert(Utilisateur user) throws DALException {
 		Connection cnx = null;
 		try {
 			cnx = ConnectionProvider.getConnection();
@@ -66,7 +66,7 @@ public class UserDAOjdcImpl implements UserDAO {
 		}
 	}
 
-	public User select(User user) throws DALException {
+	public Utilisateur select(Utilisateur user) throws DALException {
 		Connection cnx = null;
 		boolean trouve = false;
 		try {
@@ -97,7 +97,7 @@ public class UserDAOjdcImpl implements UserDAO {
 		return user;
 	}
 
-	public void delete(User user) throws DALException {
+	public void delete(Utilisateur user) throws DALException {
 		Connection cnx = null;
 		try {
 			cnx = ConnectionProvider.getConnection();
@@ -109,7 +109,7 @@ public class UserDAOjdcImpl implements UserDAO {
 		}
 	}
 
-	public void modif(User user) throws DALException {
+	public void modif(Utilisateur user) throws DALException {
 		Connection cnx = null;
 		try {
 			cnx = ConnectionProvider.getConnection();
@@ -130,8 +130,8 @@ public class UserDAOjdcImpl implements UserDAO {
 		}
 	}
 
-	public User profilVendeur(String pseudo) throws DALException {
-		User user = new User();
+	public Utilisateur profilVendeur(String pseudo) throws DALException {
+		Utilisateur user = new Utilisateur();
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement rqt = cnx.prepareStatement(SELECT_VENDEUR);
 			rqt.setString(1, pseudo);

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.encheres.bll.CategorieMgr;
 import fr.eni.encheres.bll.VenteMgr;
 import fr.eni.encheres.bo.Categorie;
-import fr.eni.encheres.bo.Vente;
+import fr.eni.encheres.bo.Articles_vendus;
 import fr.eni.encheres.dal.DALException;
 
 /**
@@ -48,11 +48,7 @@ public class FiltreRechercheCategoriesServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String categStr = request.getParameter("categorie");
-		String contient = request.getParameter("contient");
-		int categ = Integer.parseInt(categStr);
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 			//liste des categoeries
 				List<Categorie> listeCategorie = null;
 				try {
@@ -69,24 +65,26 @@ public class FiltreRechercheCategoriesServlet extends HttpServlet {
 				}
 				//fin list des categories
 				
+				String categStr = request.getParameter("categorie");
+				String contient = request.getParameter("contient");
+				int no_categorie = Integer.parseInt(categStr);
 				if (!categStr.equals("0") ) {
 				//Creation de la liste des encheres par categoeries choisi
-				List<Vente> listeEnchere = null;		
+				List<Articles_vendus> listeEnchere = null;		
 				try {
-					listeEnchere = venteMgr.selectencherecateg(categ);
+					listeEnchere = venteMgr.selectencherecateg(no_categorie);
 				} catch (fr.eni.encheres.dal.DALException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				request.setAttribute("listeEnchere", listeEnchere);
 				//fin de la creation de la liste des encheres
 				} else {
 				//Creation de la liste des encheres par mot choisi
-					List<Vente> listeEnchere = null;		
+					List<Articles_vendus> listeEnchere = null;		
 				try {
 					listeEnchere = venteMgr.selectEnchereContient(contient);
 				} catch (fr.eni.encheres.dal.DALException e) {
-					// TODO Auto-generated catch block
+
 					e.printStackTrace();
 				}
 				request.setAttribute("listeEnchere", listeEnchere);
