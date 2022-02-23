@@ -28,10 +28,13 @@
 				<p>Nom de l'article : <%=art.getArticle()%></p>
 				<p>Description : <%=art.getDescription()%></p>
 				<p>Catégorie : <%=art.getLibellecatego()%> </p>
-				<%	String message = null;
+				<%	Enchere meilleurOffre = null;
 				if (request.getAttribute("meilleurOffre") != null) {
-					message = request.getAttribute("meilleurOffre").toString(); %>
-					<p>Meilleure offre : <%=message %></p>
+					meilleurOffre = (Enchere)request.getAttribute("meilleurOffre");
+					}
+					if (meilleurOffre != null) {
+					int meilleurPrix = meilleurOffre.getMontantEnchere;%>
+					<p>Meilleure offre : <%=meilleurPrix %></p>
 				<% 	} %>
 				
 				<p>Mise à prix : <%=art.getPrixdepart()%></p>
@@ -44,9 +47,9 @@
 					// regarde le mini prix
 					int prixdepart = Integer.parseInt(art.getPrixdepart());
 					int min = prixdepart;
-					int meilleurOffre = Integer.parseInt(message);
-						if (meilleurOffre > prixdepart) {
-							min = meilleurOffre;	
+					int meilleurPrix = meilleurOffre.getMontantEnchere;
+						if (meilleurPrix > prixdepart) {
+							min = meilleurPrix;	
 						}
 						// rendre les enchere possible si dans les date d'encheres
 						LocalDate datedebut = LocalDate.parse(art.getDebutenchere());

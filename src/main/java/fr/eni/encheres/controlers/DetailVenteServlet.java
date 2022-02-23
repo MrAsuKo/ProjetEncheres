@@ -25,26 +25,29 @@ import fr.eni.encheres.dal.DALException;
 @WebServlet("/DetailVente")
 public class DetailVenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-      
+
 	private VenteMgr venteMgr;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DetailVenteServlet() {
-        super();
-        venteMgr = new VenteMgr();
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public DetailVenteServlet() {
+		super();
+		venteMgr = new VenteMgr();
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String noArticleStr = request.getParameter("name");
 		String datefin = request.getParameter("datefin");
 		int noArticle = Integer.parseInt(noArticleStr);
 		request.setAttribute("noArticleStr", noArticleStr);
-		//Creation de la liste des encheres
-		List<Vente> listeEnchere = null;		
+		// Creation de la liste des encheres
+		List<Vente> listeEnchere = null;
 		try {
 			try {
 				listeEnchere = venteMgr.selectEnchere();
@@ -57,26 +60,23 @@ public class DetailVenteServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		request.setAttribute("listeEnchere", listeEnchere);
-		//fin de la creation de la liste des encheres
-		//recuperer la meilleur offre
+		// fin de la creation de la liste des encheres
+		// recuperer la meilleur offre
 		Enchere enchere = null;
 		try {
 			enchere = venteMgr.meilleurOffre(noArticle);
-			request.setAttribute("meilleurOffre", enchere.getMontantEnchere());
-			request.setAttribute("id", enchere.getId());
-			request.setAttribute("pseudo", enchere.getPseudo());
+
 		} catch (fr.eni.encheres.dal.DALException e) {
 			e.printStackTrace();
-
 		}
+		request.setAttribute("meilleurOffre", enchere);
 
-		
-		//remporter enchrere si date fin est depassé
+		// remporter enchrere si date fin est depassé
 		LocalDate datefinDate = LocalDate.parse(datefin);
-		if(datefinDate.isBefore(LocalDate.now())) {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/EnchereFini.jsp");
-		rd.forward(request, response);
-		// va sur la page d'enchere
+		if (datefinDate.isBefore(LocalDate.now())) {
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/EnchereFini.jsp");
+			rd.forward(request, response);
+			// va sur la page d'enchere
 		} else {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/DetailVente.jsp");
 			rd.forward(request, response);
@@ -84,12 +84,12 @@ public class DetailVenteServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 	}
 
 }

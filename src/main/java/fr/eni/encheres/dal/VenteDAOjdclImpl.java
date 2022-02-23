@@ -20,7 +20,6 @@ public class VenteDAOjdclImpl {
 	private static final String INSERT_ENCHERE = "INSERT INTO ARTICLES_VENDUS(nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie)VALUES(?,?,?,?,?,?,?,?)";
 
 	public int insert(Vente vente) throws DALException {
-
 		try(Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement rqt = cnx.prepareStatement(INSERT_ENCHERE, PreparedStatement.RETURN_GENERATED_KEYS);
 			rqt.setString(1, vente.getArticle());
