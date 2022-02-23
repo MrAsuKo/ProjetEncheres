@@ -68,8 +68,8 @@
 									LocalDate datedebut = art.getDateDebutEncheres();
 									LocalDate datefin = art.getDateFinEncheres();
 									Boolean flag = false;
-									if(LocalDate.now().isBefore(datefin) && LocalDate.now().isAfter(datedebut)){
-										flag = true;
+									if(LocalDate.now().isAfter(datedebut) || LocalDate.now().isEqual(datedebut)){ 
+										flag = true	;
 					%>
 							<p>Offre : 	<input type="number" id="offre" name="offre" min="<%=min%>" ></p>
 						<% } else {
