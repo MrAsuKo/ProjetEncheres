@@ -16,8 +16,7 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
-<link href="<%=t(request.getContextPath(%>/css/style.css"
-	rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
 </head>
 <body>
 	<%@include file="fragments/header.jspf"%>
@@ -33,7 +32,7 @@
 			}				
 			int idSession = (int)request.getSession(false).getAttribute("id");
 
-			if (id == idSession)
+			if (id == idSession){
 	%>
 				<h2 style="color: green">YOU WIN !</h2>
 				<h3>VOUS AVEZ REMPORTÉ L'ENCHÈRE</h3>
@@ -104,11 +103,8 @@
 			name="id" type="hidden" value="${sessionScope.id}">
 	</form>
 
-	<%} %>
-
-
 	<%}
-		    }
-		    %>
+	}
+	}%>
 </body>
 </html>
