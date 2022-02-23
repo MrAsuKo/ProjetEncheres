@@ -41,7 +41,7 @@
 						if(meilleureOffre != null) {
 			%>
 						<h2 style="color: red">YOU LOSE !</h2>
-						<h3><%=meilleureOffre%> A REMPORTÉ L'ENCHÈRE </h3>
+						<h3><%=meilleureOffre.getUtilisateur().getPseudo()%> A REMPORTÉ L'ENCHÈRE </h3>
 				<%
 
 
@@ -58,7 +58,7 @@
 		    	if (list !=null) {
 		    	String noArticleStr = (String)request.getAttribute("noArticleStr");
 		    	int noArticle = Integer.parseInt(noArticleStr);   		
-		    	if (noArticle==art.getNoArticle())
+		    	if (noArticle==art.getNoArticle()){
 	%>
 	<p>
 		Nom de l'article :
@@ -70,15 +70,13 @@
 		Catégorie :
 		<%=art.getCategorie().getLibelle()%>
 	</p>
-	<%	String message = null;
-				if (request.getAttribute("meilleurOffre") != null) {
-					message = request.getAttribute("meilleurOffre").toString(); %>
+
 	<p>
 		Meilleure offre :
-		<%=message %>
+		<%=meilleureOffre.getMontantEnchere() %>
 		par
 		<%=meilleureOffre.getUtilisateur().getPseudo() %></p>
-	<% 	} %>
+
 
 	<p>
 		Mise à prix :
@@ -104,6 +102,7 @@
 	</form>
 
 	<%}
+	}
 	}
 	}%>
 </body>

@@ -17,6 +17,7 @@ import fr.eni.encheres.bll.VenteMgr;
 import fr.eni.encheres.bo.Enchere;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.bo.Articles_vendus;
+import fr.eni.encheres.bo.Categorie;
 import fr.eni.encheres.dal.DALException;
 
 /**
@@ -49,7 +50,7 @@ public class NouvelleEnchereServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String offreStr = request.getParameter("offre");
 		String noArticleStr = request.getParameter("noArticle");
-		int noArticle = Integer.parseInt(noArticleStr);
+
 		request.setAttribute("noArticleStr", noArticleStr);
 				//Creation de la liste des encheres
 				List<Articles_vendus> listeEnchere = null;		
@@ -69,16 +70,19 @@ public class NouvelleEnchereServlet extends HttpServlet {
 		int offre = Integer.parseInt(offreStr);
 		String idStr = request.getParameter("id");
 		int id = Integer.parseInt(idStr);
-		venteMgr.offreEnchere(offre,noArticle,id);
+		Utilisateur utilisateur = new Utilisateur(Integer.parseInt(idStr));
+		Articles_vendus articlesVendus = new Articles_vendus(Integer.parseInt(noArticleStr));
+		venteMgr.offreEnchere(offre,articlesVendus,utilisateur);
 		//recuperer la meilleur offre
 		Enchere enchere = null;
 		try {
+			int noArticle = Integer.parseInt(noArticleStr);
 			enchere = venteMgr.meilleurOffre(noArticle);
 		} catch (fr.eni.encheres.dal.DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		request.setAttribute("meilleurOffre", enchere.getMontantEnchere());
+		request.setAttribute("meilleurOffre", enchere);
 		doGet(request, response);
 	}
 

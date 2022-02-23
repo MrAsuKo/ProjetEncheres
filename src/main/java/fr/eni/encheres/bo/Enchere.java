@@ -31,6 +31,12 @@ public class Enchere {
 		this.montantEnchere=montantEnchere;
 	}
 
+	public Enchere(int offre, Articles_vendus articlesVendus, Utilisateur utilisateur) {
+		this.montantEnchere=offre;
+		this.articlesVendus=articlesVendus;
+		this.utilisateur=utilisateur;
+	}
+
 	/**
 	 * @return the noEnchere
 	 */

@@ -37,7 +37,8 @@
 					meilleurOffre = (Enchere)request.getAttribute("meilleurOffre");
 					}
 					if (meilleurOffre != null) {
-					int meilleurPrix = meilleurOffre.getMontantEnchere();%>
+					int meilleurPrix = meilleurOffre.getMontantEnchere();
+					%>
 					<p>Meilleure offre : <%=meilleurPrix %></p>
 				<% 	} %>
 				
@@ -48,12 +49,19 @@
 				<p>Vendeur : <%=art.getUtilisateur().getPseudo()%></p>	
 					<form action="<%=request.getContextPath()%>/NouvelleEnchere" method="post">
 					<%
-					// regarde le mini prix
-								int prixdepart = art.getPrixDepart();
-								int min = prixdepart;
-								int meilleurPrix = 100;
+									// regarde le mini prix
+									int prixdepart = art.getPrixDepart();
+									int min = prixdepart;
+									int meilleurPrix =0;
+									Enchere meilleurOffre2 = null;
+									if (request.getAttribute("meilleurOffre") != null) {
+										meilleurOffre2 = (Enchere)request.getAttribute("meilleurOffre");
+										}
+										if (meilleurOffre2 != null) {
+										meilleurPrix = meilleurOffre2.getMontantEnchere();
+										}
 									if (meilleurPrix > prixdepart) {
-										min = meilleurPrix;	
+										min = meilleurPrix;								
 									}
 									// rendre les enchere possible si dans les date d'encheres
 									LocalDate datedebut = art.getDateDebutEncheres();
@@ -77,6 +85,7 @@
 							if (art.getUtilisateur().getPseudo().equals(pseudo) && flag==false ) {%>
 								<input type="submit" id="Annuler" name ="Annuler" value="Annuler vente">
 							<%}
+							
 							}
 							}
 				   		}
