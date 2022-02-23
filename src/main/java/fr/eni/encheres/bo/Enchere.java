@@ -7,53 +7,56 @@ public class Enchere {
 	private int noEnchere;
 	private Date dateEnchere;
 	private int montantEnchere;
-	private int noArticle;
-	private int noUtilisateur;
-	private String pseudo;
-
-	/**
-	 * @param offre
-	 */
-	public Enchere(int idEnchere, int montantEnchere) {
-		this.noEnchere=idEnchere;
-		this.montantEnchere = montantEnchere;
-	}
+	private Articles_vendus articlesVendus;
+	private Utilisateur utilisateur;
 	
 	/**
-	 * @return the pseudo
+	 * @param noEnchere
+	 * @param dateEnchere
+	 * @param montantEnchere
+	 * @param articlesVendus
+	 * @param utilisateur
 	 */
-	public String getPseudo() {
-		return pseudo;
+	public Enchere(int noEnchere, Date dateEnchere, int montantEnchere, Articles_vendus articlesVendus,
+			Utilisateur utilisateur) {
+		this.noEnchere = noEnchere;
+		this.dateEnchere = dateEnchere;
+		this.montantEnchere = montantEnchere;
+		this.articlesVendus = articlesVendus;
+		this.utilisateur = utilisateur;
+	}
+
+	public Enchere(Utilisateur utilisateur, int montantEnchere) {
+		this.utilisateur=utilisateur;
+		this.montantEnchere=montantEnchere;
 	}
 
 	/**
-	 * @param pseudo the pseudo to set
+	 * @return the noEnchere
 	 */
-	public void setPseudo(String pseudo) {
-		this.pseudo = pseudo;
-	}
-
-	public Enchere(int idEnchere, int montantEnchere, String pseudo) {
-		this.noEnchere=idEnchere;
-		this.montantEnchere = montantEnchere;
-		this.pseudo = pseudo;
-	}
-
-	public Enchere(int montantEnchere, int noArticle, int id) {
-		this.montantEnchere = montantEnchere;
-		this.noArticle = noArticle;
-		this.noUtilisateur = id;
+	public int getNoEnchere() {
+		return noEnchere;
 	}
 
 	/**
-	 * @param noArticle
+	 * @param noEnchere the noEnchere to set
 	 */
-	public Enchere(int noArticle) {
-		this.noArticle = noArticle;
+	public void setNoEnchere(int noEnchere) {
+		this.noEnchere = noEnchere;
 	}
 
-	public Enchere(int id, String pseudo, int montantEnchere) {
-		// TODO Auto-generated constructor stub
+	/**
+	 * @return the dateEnchere
+	 */
+	public Date getDateEnchere() {
+		return dateEnchere;
+	}
+
+	/**
+	 * @param dateEnchere the dateEnchere to set
+	 */
+	public void setDateEnchere(Date dateEnchere) {
+		this.dateEnchere = dateEnchere;
 	}
 
 	/**
@@ -64,58 +67,41 @@ public class Enchere {
 	}
 
 	/**
-	 * @return the noArticle
-	 */
-	public int getNoArticle() {
-		return noArticle;
-	}
-
-	/**
-	 * @param noArticle the noArticle to set
-	 */
-	public void setNoArticle(int noArticle) {
-		this.noArticle = noArticle;
-	}
-
-	/**
-	 * @return the id
-	 */
-	public int getId() {
-		return noUtilisateur;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
-		this.noUtilisateur = id;
-	}
-
-	/**
-	 * @param offre the offre to set
+	 * @param montantEnchere the montantEnchere to set
 	 */
 	public void setMontantEnchere(int montantEnchere) {
 		this.montantEnchere = montantEnchere;
 	}
 
 	/**
-	 * @return the idEnchere
+	 * @return the articlesVendus
 	 */
-	public int getIdEnchere() {
-		return noEnchere;
+	public Articles_vendus getArticlesVendus() {
+		return articlesVendus;
 	}
 
 	/**
-	 * @param idEnchere the idEnchere to set
+	 * @param articlesVendus the articlesVendus to set
 	 */
-	public void setIdEnchere(int idEnchere) {
-		this.noEnchere = idEnchere;
+	public void setArticlesVendus(Articles_vendus articlesVendus) {
+		this.articlesVendus = articlesVendus;
 	}
 
-	@Override
-	public String toString() {
-		return String.format("Enchere [idEnchere=%s, montantEnchere=%s, noArticle=%s, id=%s, pseudo=%s]", noEnchere,
-				montantEnchere, noArticle, noUtilisateur, pseudo);
+	/**
+	 * @return the utilisateur
+	 */
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
 	}
+
+	/**
+	 * @param utilisateur the utilisateur to set
+	 */
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
+
+
+
 	
 }

@@ -1,3 +1,4 @@
+<%@page import="fr.eni.encheres.bo.Enchere"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.time.LocalDate"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -35,7 +36,7 @@
 					meilleurOffre = (Enchere)request.getAttribute("meilleurOffre");
 					}
 					if (meilleurOffre != null) {
-					int meilleurPrix = meilleurOffre.getMontantEnchere;%>
+					int meilleurPrix = meilleurOffre.getMontantEnchere();%>
 					<p>Meilleure offre : <%=meilleurPrix %></p>
 				<% 	} %>
 				
@@ -49,7 +50,7 @@
 					// regarde le mini prix
 								int prixdepart = art.getPrixDepart();
 								int min = prixdepart;
-								int meilleurPrix = meilleurOffre.getMontantEnchere;
+								int meilleurPrix = meilleurOffre.getMontantEnchere();
 									if (meilleurPrix > prixdepart) {
 										min = meilleurPrix;	
 									}
