@@ -17,8 +17,9 @@
 				value = (String)request.getAttribute("pseudo");
 			}
 			%>
+			<br>
 		<h3>Se connecter</h3>
-		<p>${sessionScope.pseudo}</p>
+		<br>
 		<form action="<%=request.getContextPath()%>/AccueilConnect" method="post">
 			<p>Pseudo : <input type="text" id="pseudo" name="pseudo" value="<%=value%>" required></p>
 			<p>Mot de passe : <input type="password" id="mdp" name="mdp" required></p>

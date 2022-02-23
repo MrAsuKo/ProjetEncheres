@@ -1,9 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <header>
-	<div>
+<div class="d-inline">
+	<div class="row">
+	<div class="col-2">
 		<a class="navbar-brand" href="<%=request.getContextPath() %>/Accueil">
 			<img alt="logo" src="<%=request.getContextPath() %>/images/logo.png" height="80px" width="200px">
     	</a>
 	</div>
+	<div class="col-5" style="padding-top: 25px;">
+		<h4>Bienvenue ${sessionScope.pseudo}</h4>
+	</div>
+	<div class="col" style="padding-top: 25px;">
+	<form action="" method="post">
+	<input class="btn btn-outline-warning" type="submit" id="encheres" name ="encheres" value="Enchères">
+	</form>
+	</div>
+	<div class="col" style="padding-top: 25px;">
+	<form action="<%=request.getContextPath()%>/NouvelleVente" method="post">
+	<input class="btn btn-outline-warning" type="submit" id="vendre" name ="vendre" value="Vendre un article">
+	</form>
+	</div>
+	<div class="col" style="padding-top: 25px;">
+	<form action="<%=request.getContextPath()%>/AfficherProfil" method="post">
+	<input class="btn btn-outline-warning" type="submit" id="profil" name ="profil" value="Mon profil">
+	</form>
+	</div>
+	<div class="col" style="padding-top: 25px;">
+	<form action="<%=request.getContextPath()%>/SeConnecter" method="post">
+	<input class="btn btn-outline-warning" type="submit" id="compte" name ="compte" value="S'inscrire - Se connecter">
+	</form>
+	</div>
+	<div class="col" style="padding-top: 25px;">
+	<form action="<%=request.getContextPath()%>/Accueil" method="post">
+	<input class="btn btn-outline-warning" type="submit" id="deconnexion" name ="deconnexion" value="Déconnexion">
+	</form>
+	</div>
+	</div>
+	</div>
+
+	
 </header>

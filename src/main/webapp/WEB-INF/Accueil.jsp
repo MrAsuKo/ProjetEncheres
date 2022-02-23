@@ -13,21 +13,31 @@
 	</head>
 	<body>
 		<%@include file="fragments/header.jspf" %>
-		<a href="<%=request.getContextPath()%>/SeConnecter">S'inscrire - Se connecter</a>
+		<br>
 		<h3> Liste des enchères</h3>
-
+<br>
 	<form action="<%=request.getContextPath()%>/FiltreRecherche" method="post">
-	<input type="text" id="contient" name ="contient" placeholder="Rechercher sur Bidhub">
-	<p>Catégorie : <select name="categorie" id="categorie">
-    <option  value="0">---- Choisir une categorie ----</option>
+	<div class="row justify-content-start">
+	<div class="col-2">
+	<input class="form-control me-2" type="text" id="contient" name ="contient" placeholder="Le nom de l'article contient">
+	</div>
+	<div class="col-2">
+	<select class="form-select" name="categorie" id="categorie">
+    <option  value="0">Choisir une categorie</option>
     <% List<Categorie> list2 = (List<Categorie>)request.getAttribute("listecategorie");
     for (Categorie cat : list2){ %>
     	<option  value="<%=cat.getNumcatego()%>"><%=cat.getLibelle()%></option>
     <%}
     %>
     </select>
-		<input type="submit" id="recherche" name ="recherche" value="Rechercher">
+    </div>
+    <div class="col-2">
+		<input class="btn btn-outline-warning" type="submit" id="recherche" name ="recherche" value="Rechercher">
+		</div>
+		</div>
 	</form>
+	<br>
+	<br>
 
 	<div class="row row-cols-xxl-6 row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2">	
     <% List<Vente> list = (List<Vente>)request.getAttribute("listeEnchere");

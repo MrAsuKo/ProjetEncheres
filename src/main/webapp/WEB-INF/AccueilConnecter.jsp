@@ -12,45 +12,54 @@
 		<link href="<%=request.getContextPath() %>/css/style.css" rel="stylesheet"> 
 	</head>
 	<body>
-	<div>
-		<%@include file="fragments/header.jspf" %>
-		<h4>Bienvenue ${sessionScope.pseudo} - ${sessionScope.id}</h4>
-		<a href="">Encheres</a>
-		<a href="<%=request.getContextPath()%>/NouvelleVente">Vendre un article</a>
-		<a href="<%=request.getContextPath()%>/AfficherProfil">Mon profil</a>
-		<a href="<%=request.getContextPath()%>/Accueil">Deconnexion</a>
-	</div>
+	<%@include file="fragments/header.jspf" %>
+	<br>
 	<h3> Liste des enchères</h3>
-	
+	<br>
 	<form action="<%=request.getContextPath()%>/FiltreRecherche" method="post">
-	<input type="text" id="contient" name ="contient" placeholder="Rechercher sur Bidhub">
-	<p>Catégorie : <select name="categorie" id="categorie">
-    <option  value="0">---- Choisir une categorie ----</option>
+	<div class="row justify-content-start">
+	<div class="col-2">
+	<input class="form-control me-2" type="text" id="contient" name ="contient" placeholder="Le nom de l'article contient">
+	</div>
+	<div class="col-2">
+	<select class="form-select" name="categorie" id="categorie">
+    <option  value="0">Choisir une categorie</option>
     <% List<Categorie> list2 = (List<Categorie>)request.getAttribute("listecategorie");
     for (Categorie cat : list2){ %>
     	<option  value="<%=cat.getNumcatego()%>"><%=cat.getLibelle()%></option>
     <%}
     %>
     </select>
+    </div>
+    </div>
+    <br>
     <!-- Filtre checkbox -->
-    			<div>
-				<input type="radio" id="achat" name="achat">
+    <div class="row justify-content-start">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    			<div class="col-2 form-check form-switch">
+				<input class="form-check-input" role="switch" type="radio" id="achat" name="achat">
 				<label for="achats">Achats</label>
 					<ul style="list-style: none;">
-						<li><input type="checkbox" id="enchères ouvertes" name="enchères ouvertes"><label for="enchères ouvertes">Enchères ouvertes</label></li>
-						<li><input type="checkbox" id="mesencheres" name="mesencheres"><label for="mesencheres">Mes enchères</label></li>
-						<li><input type="checkbox" id="mesemcheresremportees" name="mesemcheresremportees"><label for="mesemcheresremportees">Mes enchères remportées</label></li>
+						<li><input class="form-check-input" type="checkbox" id="encheresouvertes" name="encheresouvertes"><label class="form-check-label" for="encheresouvertes">Enchères ouvertes</label></li>
+						<li><input class="form-check-input" type="checkbox" id="mesencheres" name="mesencheres"><label class="form-check-label" for="mesencheres">Mes enchères</label></li>
+						<li><input class="form-check-input" type="checkbox" id="mesemcheresremportees" name="mesemcheresremportees"><label class="form-check-label" for="mesemcheresremportees">Mes enchères remportées</label></li>
 					</ul>
-				<input type="radio" id="vente" name="achat">
+					</div>
+					<div class="col-2 form-check form-switch">
+				<input class="form-check-input" role="switch" type="radio" id="vente" name="achat">
 				<label for="achats">Mes ventes</label>
 					<ul style="list-style: none;">
-						<li><input type="checkbox" id="checkbox" name="checkbox" value="mesventesencours"><label for="mesventesencours">Mes ventes en cours</label></li>
-						<li><input type="checkbox" id="checkbox" name="checkbox" value="ventesnondebutees"><label for="ventesnondebutees">Ventes non debutées</label></li>
-						<li><input type="checkbox" id="checkbox" name="checkbox" value ="ventesterminees"><label for="ventesterminees">Ventes terminées</label></li>
+						<li><input class="form-check-input" type="checkbox" id="mesventesencours" name="mesventesencours"><label class="form-check-label" for="mesventesencours">Mes ventes en cours</label></li>
+						<li><input class="form-check-input" type="checkbox" id="ventesnondebutees" name="ventesnondebutees"><label class="form-check-label" for="ventesnondebutees">Ventes non debutées</label></li>
+						<li><input class="form-check-input" type="checkbox" id="ventesterminees" name="ventesterminees"><label class="form-check-label" for="ventesterminees">Ventes terminées</label></li>
 					</ul>
-			</div>
-		<input type="submit" id="recherche" name ="recherche" value="Rechercher">
+					</div>
+		<div class="col-2">
+		<input class="btn btn-outline-warning" type="submit" id="recherche" name ="recherche" value="Rechercher">
+		</div>
+		</div>
 	</form>
+	<br>
 
 	<div class="row row-cols-xxl-6 row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2">	
     <% List<Vente> list = (List<Vente>)request.getAttribute("listeEnchere");
