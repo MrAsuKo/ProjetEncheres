@@ -19,7 +19,7 @@
 	<body>
 		<%@include file="fragments/header.jspf" %>
 		<br>
-		<h3>Détail vente</h3>
+		<h3>Détails vente</h3>
 <br>
 			<%
 			 List<Articles_vendus> list = (List<Articles_vendus>)request.getAttribute("listeEnchere");
