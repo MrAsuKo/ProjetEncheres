@@ -17,15 +17,7 @@
 		<h3> Liste des enchères</h3>
 <br>
 	<form action="<%=request.getContextPath()%>/FiltreRecherche" method="post">
-<<<<<<< HEAD
-	<input type="text" id="contient" name ="contient" placeholder="Rechercher sur Bidhub">
-	<p>Catégorie : <select name="categorie" id="categorie">
-    <option  value="0">---- Choisir une categorie ----</option>
-    <%
-    List<Categorie> list2 = (List<Categorie>)request.getAttribute("listecategorie");
-        for (Categorie cat : list2){
-    %>
-=======
+
 	<div class="row justify-content-start">
 	<div class="col-2">
 	<input class="form-control me-2" type="text" id="contient" name ="contient" placeholder="Le nom de l'article contient">
@@ -35,7 +27,6 @@
     <option  value="0">Choisir une categorie</option>
     <% List<Categorie> list2 = (List<Categorie>)request.getAttribute("listecategorie");
     for (Categorie cat : list2){ %>
->>>>>>> branch 'main' of https://github.com/MrAsuKo/ProjetEncheres.git
     	<option  value="<%=cat.getNumcatego()%>"><%=cat.getLibelle()%></option>
     <%
     }
