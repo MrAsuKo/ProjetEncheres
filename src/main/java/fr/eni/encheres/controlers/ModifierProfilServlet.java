@@ -39,6 +39,8 @@ public class ModifierProfilServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("doPost");
+		
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
@@ -47,7 +49,7 @@ public class ModifierProfilServlet extends HttpServlet {
 		String rue = request.getParameter("rue");
 		String cp = request.getParameter("cp");
 		String ville = request.getParameter("ville");
-		String mdp = request.getParameter("mdp");
+		String mdp = request.getParameter("nouveau_mdp");
 		
 		try {
 			userMgr.modifUser(pseudo, nom, prenom, email, telephone, rue, cp, ville, mdp);
