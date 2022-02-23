@@ -9,7 +9,7 @@
 		<link href="<%=request.getContextPath() %>/css/style.css" rel="stylesheet"> 
 	<body>
 		<%@include file="fragments/header.jspf" %>
-		<br>
+
 		<h3>Mon profil</h3>
 		<br>
 		<form action="" method="post">
@@ -22,7 +22,7 @@
 			<p>Code postal : <input type="text" id="cp" name="cp" placeholder="${sessionScope.cp}"></p>
 			<p>Ville : <input type="text" id="ville" name="ville" placeholder="${sessionScope.ville}"></p>
 			<p>Mot de passe actuel : <input type="password" id="mdp" name="mdp"></p>
-			<p>Nouveau mot de passe : <input type="password" id="mdp" name="mdp"></p>
+			<p>Nouveau mot de passe : <input type="password" id="nouveau_mdp" name="nouveau_mdp"></p>
 			<p>Confirmer mot de passe : <input type="password" id="mdp_conf" name="mdp_conf"></p>
 			<input type="submit" id="enregistrer" name ="enregistrer" value="Enregistrer">
 		</form>
