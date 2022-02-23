@@ -59,7 +59,6 @@ public class VenteDAOjdclImpl {
 				listeCategorie.add(categorie);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			throw new DALException(" erreur selectCategorie -");
 		}
 
