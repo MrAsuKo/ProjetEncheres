@@ -30,4 +30,4 @@
 			<input type="submit" id="supprimer" name ="supprimer" value="Supprimer mon compte">
 		</form>
 	</body>
-</html>
+</html> 
