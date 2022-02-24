@@ -3,6 +3,9 @@
 <%@ page import="fr.eni.encheres.bo.Articles_vendus" %>
 <%@ page import="fr.eni.encheres.bo.Categorie" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.time.LocalDate" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -74,17 +77,17 @@
 				<label for="achats">Achats</label>
 					<ul style="list-style: none;">
 						<li><input class="form-check-input" type="checkbox" id="1" name="e1" disabled="disabled"><label class="form-check-label" for="encheresouvertes">Enchères ouvertes</label></li>
-						<li><input class="form-check-input" type="checkbox" id="2" name="e1" disabled="disabled"><label class="form-check-label" for="mesencheres">Mes enchères</label></li>
-						<li><input class="form-check-input" type="checkbox" id="3" name="e1" disabled="disabled"><label class="form-check-label" for="mesemcheresremportees">Mes enchères remportées</label></li>
+						<li><input class="form-check-input" type="checkbox" id="2" name="e2" disabled="disabled"><label class="form-check-label" for="mesencheres">Mes enchères</label></li>
+						<li><input class="form-check-input" type="checkbox" id="3" name="e3" disabled="disabled"><label class="form-check-label" for="mesemcheresremportees">Mes enchères remportées</label></li>
 					</ul>
 					</div>
 					<div class="col-2 form-check form-switch">
 				<input class="form-check-input" role="switch" type="radio" id="vente" name="achat" onchange="setGhost();">
 				<label for="achats">Mes ventes</label>
 					<ul style="list-style: none;">
-						<li><input class="form-check-input" type="checkbox" id="4" name="e2" disabled="disabled"><label class="form-check-label" for="mesventesencours">Mes ventes en cours</label></li>
-						<li><input class="form-check-input" type="checkbox" id="5" name="e2" disabled="disabled"><label class="form-check-label" for="ventesnondebutees">Ventes non debutées</label></li>
-						<li><input class="form-check-input" type="checkbox" id="6" name="e2" disabled="disabled"><label class="form-check-label" for="ventesterminees">Ventes terminées</label></li>
+						<li><input class="form-check-input" type="checkbox" id="4" name="e4" disabled="disabled"><label class="form-check-label" for="mesventesencours">Mes ventes en cours</label></li>
+						<li><input class="form-check-input" type="checkbox" id="5" name="e5" disabled="disabled"><label class="form-check-label" for="ventesnondebutees">Ventes non debutées</label></li>
+						<li><input class="form-check-input" type="checkbox" id="6" name="e6" disabled="disabled"><label class="form-check-label" for="ventesterminees">Ventes terminées</label></li>
 					</ul>
 					</div>
 		<div class="col-2">

@@ -64,4 +64,12 @@ public class VenteMgr {
 		Articles_vendus vente = new Articles_vendus(noArticle);
 		venteDAO.delete(vente);
 	}
+
+	public List<Articles_vendus> selectEnchereUtilisateur(int noUtilisateur) throws DALException {
+		return this.venteDAO.selectEnchereUtilisateur(noUtilisateur);
+	}
+
+	public List<Articles_vendus> selectEnchereEnCours() throws DALException {
+		return this.venteDAO.selectEnchereEnCours();
+	}
 }

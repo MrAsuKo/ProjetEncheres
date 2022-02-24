@@ -53,12 +53,12 @@ public class VerificationUserServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//liste des categoeries
+		//liste des categories
 		List<Categorie> listeCategorie = null;
 		try {
 			try {
 				listeCategorie = categorieMgr.selectcategorie();
-			} catch (fr.eni.encheres.dal.DALException e) {
+			} catch (DALException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -73,7 +73,7 @@ public class VerificationUserServlet extends HttpServlet {
 		try {
 			try {
 				listeEnchere = venteMgr.selectEnchere();
-			} catch (fr.eni.encheres.dal.DALException e) {
+			} catch (DALException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

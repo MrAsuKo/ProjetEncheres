@@ -239,4 +239,70 @@ public class VenteDAOjdclImpl {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	private static final String SELECT_ENCHERE_UTLISATEUR = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,av.no_categorie, pseudo, libelle FROM ARTICLES_VENDUS as av INNER JOIN UTILISATEURS as u ON u.no_utilisateur = av.no_utilisateur INNER JOIN CATEGORIES as c ON c.no_categorie=av.no_categorie WHERE u.no_utilisateur = ?";
+	
+	public List<Articles_vendus> selectEnchereUtilisateur(int noUtilisateur) throws DALException {
+		List<Articles_vendus> listeEnchere = new ArrayList<Articles_vendus>();
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			PreparedStatement rqt = cnx.prepareStatement(SELECT_ENCHERE_UTLISATEUR);
+			rqt.setInt(1, noUtilisateur );
+			ResultSet rs = rqt.executeQuery();
+			while (rs.next()) {
+				int no_article = (rs.getInt("no_article"));
+				String nom_article = (rs.getString("nom_article"));
+				String description = (rs.getString("description"));
+				LocalDate date_debut_encheres = rs.getDate("date_debut_encheres").toLocalDate();
+				LocalDate date_fin_encheres = rs.getDate("date_fin_encheres").toLocalDate();
+				int prixDepart = (rs.getInt("prix_initial"));
+				int prixVente = (rs.getInt("prix_vente"));
+				int no_utilisateur = (rs.getInt("no_utilisateur"));
+				int no_categorie = (rs.getInt("no_categorie"));
+				String pseudo = rs.getString("pseudo");
+				String libellecatego = (rs.getString("libelle"));
+				Utilisateur utilisateur = new Utilisateur (no_utilisateur, pseudo);
+				Categorie categorie = new Categorie(no_categorie,libellecatego);
+				Articles_vendus vente = new Articles_vendus(no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prixDepart,
+						prixVente, categorie, utilisateur);
+				listeEnchere.add(vente);
+
+			}
+		} catch (SQLException e) {
+			throw new DALException(" select vente utilisateur -");
+		}
+		return listeEnchere;
+	}
+	
+	private static final String SELECT_ENCHERE_ENCOURS = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,av.no_categorie, pseudo, libelle FROM ARTICLES_VENDUS as av INNER JOIN UTILISATEURS as u ON u.no_utilisateur = av.no_utilisateur INNER JOIN CATEGORIES as c ON c.no_categorie=av.no_categorie WHERE date_fin_encheres > GETDATE()";
+
+	public List<Articles_vendus> selectEnchereEnCours() throws DALException {
+		List<Articles_vendus> listeEnchere = new ArrayList<Articles_vendus>();
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			PreparedStatement rqt = cnx.prepareStatement(SELECT_ENCHERE_ENCOURS);
+			ResultSet rs = rqt.executeQuery();
+			while (rs.next()) {
+				int no_article = (rs.getInt("no_article"));
+				String nom_article = (rs.getString("nom_article"));
+				String description = (rs.getString("description"));
+				LocalDate date_debut_encheres = rs.getDate("date_debut_encheres").toLocalDate();
+				LocalDate date_fin_encheres = rs.getDate("date_fin_encheres").toLocalDate();
+				int prixDepart = (rs.getInt("prix_initial"));
+				int prixVente = (rs.getInt("prix_vente"));
+				int no_utilisateur = (rs.getInt("no_utilisateur"));
+				int no_categorie = (rs.getInt("no_categorie"));
+				String pseudo = rs.getString("pseudo");
+				String libellecatego = (rs.getString("libelle"));
+				Utilisateur utilisateur = new Utilisateur (no_utilisateur, pseudo);
+				Categorie categorie = new Categorie(no_categorie,libellecatego);
+				Articles_vendus vente = new Articles_vendus(no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prixDepart,
+						prixVente, categorie, utilisateur);
+				listeEnchere.add(vente);
+
+			}
+		} catch (SQLException e) {
+			throw new DALException(" select vente en cours -");
+		}
+		return listeEnchere;
+	}
 }
