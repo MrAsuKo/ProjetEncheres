@@ -38,6 +38,7 @@
 						if(meilleureOffre != null) {
 			%>
 						<h2 style="color: red">YOU LOSE !</h2>
+						<br>
 						<h3><%=meilleureOffre.getUtilisateur().getPseudo()%> A REMPORTÉ L'ENCHÈRE </h3>
 				<%
 
@@ -59,7 +60,7 @@
 		    	int noArticle = Integer.parseInt(noArticleStr);   		
  		    	if (noArticle==art.getNoArticle()){
 	%>
-	<p><%=art.getNomArticle()%> - <%=noArticle%></p>
+<div class="p-3 card border-warning bg-dark mb-4" style="max-width: 20rem;">
 	<p>
 		Nom de l'article :
 		<%=art.getNomArticle()%></p>
@@ -94,8 +95,9 @@
 	<p>
 		Tel :
 		<%=art.getUtilisateur().getTelephone()%></p>
+		</div>
 	<form action="<%=request.getContextPath()%>/BackAccueil" method="post">
-		<input type="submit" id="back" name="back" value="Retour"> <input
+		<input class="btn btn-outline-warning" type="submit" id="back" name="back" value="Retour"> <input
 			id="prodId" name="noArticle" type="hidden"
 			value="<%=art.getNoArticle() %>"> <input id="prodId"
 			name="id" type="hidden" value="${sessionScope.id}">

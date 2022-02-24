@@ -21,6 +21,7 @@
 		<br>
 		<h3>Détails vente</h3>
 <br>
+<div class="p-3 card border-warning bg-dark mb-4" style="max-width: 20rem;">
 			<%
 			 List<Articles_vendus> list = (List<Articles_vendus>)request.getAttribute("listeEnchere");
 				   		for (Articles_vendus art : list){ 
@@ -48,6 +49,8 @@
 				<p>Fin de l'enchère : <%=art.getDateFinEncheres()%></p>
 				<p>Retrait :</p>
 				<p>Vendeur : <%=art.getUtilisateur().getPseudo()%></p>	
+				</div>	
+				<div class="col-2">
 					<% if (!art.getUtilisateur().getPseudo().equals(request.getSession(false).getAttribute("pseudo"))){ %>
 					<form action="<%=request.getContextPath()%>/NouvelleEnchere" method="post">
 					<%
@@ -72,18 +75,18 @@
 									if(LocalDate.now().isAfter(datedebut) || LocalDate.now().isEqual(datedebut)){ 
 										flag = true	;
 					%>
-							<p>Offre : 	<input type="number" id="offre" name="offre" min="<%=min%>" value="<%=min%>" ></p>
+							<p>Offre : 	<input class="form-control me-2" type="number" id="offre" name="offre" min="<%=min%>" value="<%=min%>" ></p>
 						<% } else {
 						flag = false;%>
-							<p>Offre : 	<input type="number" id="offre" name="offre" min="<%=min%>" value="<%=min%>" disabled="disabled"></p>
+							<p>Offre : 	<input class="form-control me-2" type="number" id="offre" name="offre" min="<%=min%>" value="<%=min%>" disabled="disabled"></p>
 						<%}
-							%>										
+							%>									
 							<input id="prodId" name="noArticle" type="hidden" value="<%=art.getNoArticle() %>">
 							<input id="prodId" name="id" type="hidden" value="${sessionScope.id}">
-							<input type="submit" id="encherir" name ="encherir" value="Enchérir">
+							<input class="btn btn-outline-warning" type="submit" id="encherir" name ="encherir" value="Enchérir">
 							</form>
-
 							<%} %>
+							</div>
 							<form action="<%=request.getContextPath()%>/CancelBackAccueil" method="post">
 							<input id="prodId" name="noArticle" type="hidden" value="<%=art.getNoArticle() %>">
 							<%boolean flag = false;
@@ -94,7 +97,7 @@
 							}
 							String pseudo = (String)request.getSession(false).getAttribute("pseudo");
 							if (art.getUtilisateur().getPseudo().equals(pseudo) && flag==false ) {%>
-								<input type="submit" id="Annuler" name ="Annuler" value="Annuler vente">
+								<input class="btn btn-outline-warning" type="submit" id="Annuler" name ="Annuler" value="Annuler vente">
 							<%} %>
 							</form>
 							<% }

@@ -17,11 +17,11 @@
 		<h3>Profil vendeur</h3>
 		<br>
 		<div class="p-3 card border-warning bg-dark mb-4" style="max-width: 20rem;">
-		<p class="fs-5">Pseudo : ${user.pseudo}</p>
-		<p class="fs-5">Nom : ${user.nom}</p>
-		<p class="fs-5">Prénom : ${user.prenom}</p>
-		<p class="fs-5">Email : ${user.email}</p>
-		<p class="fs-5">Téléphone : ${user.telephone}</p>
+		<p>Pseudo : ${user.pseudo}</p>
+		<p>Nom : ${user.nom}</p>
+		<p>Prénom : ${user.prenom}</p>
+		<p>Email : ${user.email}</p>
+		<p>Téléphone : ${user.telephone}</p>
 		</div>
 	</body>
 </html>
