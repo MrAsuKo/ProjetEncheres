@@ -104,12 +104,12 @@
 	        	int noArticle = art.getNoArticle();
 	    %>
     	<div class="col">
-    		<div class="p-4 card border-warning bg-dark mb-4" style="max-width: 18rem;">
-  				<div class="card-header">Vendeur : <a href="./Show/Vendeur?name=<%=art.getUtilisateur().getPseudo()%>"><%=art.getUtilisateur().getPseudo()%></a></div>
+    		<div class="p-4 card border-warning bg-dark mb-3" style="max-width: 18rem;">
+  				<div class="card-header">Vendeur : <a style="text-decoration: none; font-weight: bold; color: #FFD700" href="./Show/Vendeur?name=<%=art.getUtilisateur().getPseudo()%>"><%=art.getUtilisateur().getPseudo()%></a></div>
   					<div class="card-body">
-    					<h5 class="card-title"><a href="<%=request.getContextPath()%>/DetailVente?name=<%=art.getNoArticle()%>&datefin=<%=art.getDateFinEncheres()%>"><%=art.getNomArticle()%></a></h5>
+    					<h5 class="card-title"><a style="text-decoration: none; font-weight: bold; color: #FFD700" href="<%=request.getContextPath()%>/DetailVente?name=<%=art.getNoArticle()%>&datefin=<%=art.getDateFinEncheres()%>"><%=art.getNomArticle()%></a></h5>
 						    <p class="card-text">Prix : <%=art.getPrixDepart()%></p>
-						    <p class="card-text">Fin de l'enchère : <%=art.getDateFinEncheres()%></p>
+						    <p class="card-text">Fin de l'enchère : <%=art.getDateFinEncheres().getDayOfMonth() %>/<%=art.getDateFinEncheres().getMonthValue() %>/<%=art.getDateFinEncheres().getYear() %></p>
   					</div>
 				</div>
 			</div>

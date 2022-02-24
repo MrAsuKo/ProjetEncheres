@@ -102,7 +102,6 @@
 			value="<%=art.getNoArticle() %>"> <input id="prodId"
 			name="id" type="hidden" value="${sessionScope.id}">
 	</form>
-
 	<%}
    	}
   	}
