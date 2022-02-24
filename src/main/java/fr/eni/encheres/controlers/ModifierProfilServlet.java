@@ -49,7 +49,8 @@ public class ModifierProfilServlet extends HttpServlet {
 		String rue = request.getParameter("rue");
 		String cp = request.getParameter("cp");
 		String ville = request.getParameter("ville");
-		String mdp = request.getParameter("nouveau_mdp");
+		String nouveau_mdp = request.getParameter("nouveau_mdp");
+		String mdp_conf = request.getParameter("mdp_conf");
 		
 //		if("nouveau_mdp".equals("mdp_conf")) {
 //			
@@ -77,7 +78,7 @@ try {
 	userMgr.modifUser(pseudo, nom, prenom, email, telephone, rue, cp, ville, mdp);
 	RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/ModifierProfil.jsp");
 	
-	if("nouveau_mdp".equals("mdp_conf")) {
+	if(nouveau_mdp.equals(mdp_conf)) {
 	
 	
 	rd.forward(request, response);
