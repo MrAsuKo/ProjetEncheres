@@ -13,16 +13,17 @@
 		<br>
 		<h3>Mon profil</h3>
 		<br>
-		<p>Pseudo : ${sessionScope.pseudo}</p>
-		<p>Nom : ${sessionScope.nom}</p>
-		<p>Prénom : ${sessionScope.prenom}</p>
-		<p>Email : ${sessionScope.email}</p>
-		<p>Téléphone : ${sessionScope.telephone}</p>
-		<p>Rue : ${sessionScope.rue}</p>
-		<p>Code postal : ${sessionScope.cp}</p>
-		<p>Ville : ${sessionScope.ville}</p>
-		<p>Crédit : ${sessionScope.credit}</p>
-		<br>
+		<div class="p-3 card border-warning bg-dark mb-4" style="max-width: 20rem;">
+		<p class="fs-5">Pseudo : ${sessionScope.pseudo}</p>
+		<p class="fs-5">Nom : ${sessionScope.nom}</p>
+		<p class="fs-5">Prénom : ${sessionScope.prenom}</p>
+		<p class="fs-5">Email : ${sessionScope.email}</p>
+		<p class="fs-5">Téléphone : ${sessionScope.telephone}</p>
+		<p class="fs-5">Rue : ${sessionScope.rue}</p>
+		<p class="fs-5">Code postal : ${sessionScope.cp}</p>
+		<p class="fs-5">Ville : ${sessionScope.ville}</p>
+		<p class="fs-5">Crédit : ${sessionScope.credit}</p>
+		</div>
 		<form action="<%=request.getContextPath()%>/ModifierProfil" method="post">
 			<input class="btn btn-outline-warning" type="submit" id="modifier" name ="modifier" value="Modifier">
 		</form>
