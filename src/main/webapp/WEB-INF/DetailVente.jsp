@@ -81,13 +81,14 @@
 							<input id="prodId" name="id" type="hidden" value="${sessionScope.id}">
 							<input type="submit" id="encherir" name ="encherir" value="Enchérir">
 							</form>
-							
+							<form action="<%=request.getContextPath()%>/CancelBackAccueil" method="post">
+							<input id="prodId" name="noArticle" type="hidden" value="<%=art.getNoArticle() %>">
 							<%String pseudo = (String)request.getSession(false).getAttribute("pseudo");
 							if (art.getUtilisateur().getPseudo().equals(pseudo) && flag==false ) {%>
 								<input type="submit" id="Annuler" name ="Annuler" value="Annuler vente">
-							<%}
-							
-							}
+							<%} %>
+							</form>
+							<% }
 							}
 				   		}
 							%>
