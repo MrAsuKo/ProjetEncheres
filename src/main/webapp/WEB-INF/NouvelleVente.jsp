@@ -1,8 +1,8 @@
-<%@page import="java.time.LocalDate"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="fr.eni.encheres.bo.Categorie" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.time.LocalDateTime" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,34 +17,39 @@
 	<h3>Nouvelle vente</h3>	
 <br>
 <form action="<%=request.getContextPath()%>/EnregistrerNouvelleVente" method="post">
-		<p>Article : <input type="text" id="name" name="article" required>	</p>	
-		<p>Description : <input type="text" id="name" name="description" required>	</p>
+<div class="row">
+<div class="col-2">
+		<p>Article : <input class="form-control me-2" type="text" id="name" name="article" required>	</p>	
+		<p>Description : <input class="form-control me-2" type="text" id="name" name="description" required>	</p>
 
-<p>Catégorie : <select name="categorie" id="categorie" required>
+<p>Catégorie : <select class="form-select" name="categorie" id="categorie" required>
     <option  value="0">---- Choisir une categorie ----</option>
     <% List<Categorie> list = (List<Categorie>)request.getAttribute("listecategorie");
     for (Categorie cat : list){ %>
-    	<option  value="<%=cat.getNumcatego()%>"><%=cat.getLibelle()%></option>
+    	<option value="<%=cat.getNumcatego()%>"><%=cat.getLibelle()%></option>
     <%}
     %>
-</select></p>			
-		<p>Photo de l'article : <input type="file" id="name" name="photo"></p>	
-		<p>Mise à prix : <input type="number" id="number" name="prixdepart" required></p>	
-		<p>Début de l'enchère : <input type="date" id="date" name="debutenchere" required>	</p>	
-		<p>Fin de l'enchère : <input type="date" id="date" name="finenchere" required></p>
+</select></p>
+</div>
+<div class="col-2">		
+		<!-- <p>Photo de l'article : <input class="form-control me-2" type="file" id="name" name="photo"></p> -->	
+		<p>Mise à prix : <input class="form-control me-2" type="number" id="number" name="prixdepart" min="1" required></p>	
+		<p>Début de l'enchère : <input class="form-control me-2" type="date" id="date" name="debutenchere" min="<%=LocalDateTime.now().toLocalDate() %>" value="<%=LocalDateTime.now().toLocalDate() %>" required>	</p>	
+		<p>Fin de l'enchère : <input class="form-control me-2" type="date" id="date" name="finenchere" min="<%=LocalDateTime.now().plusDays(1).toLocalDate() %>"required></p>
 
-    
-    <table>
+    </div>
+    </div>
+    <table class="p-3 card border-warning bg-dark mb-4" style="max-width: 770px;">
     	<tr>
-    		<th>Retrait</th>    
+    		<th>Retrait :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
     		<td><p>Rue :</p>
-				<input type="text" id="name" name="rue" placeholder=${sessionScope.rue} value=${sessionScope.rue}>
+				<input class="form-control me-2" type="text" id="name" name="rue" placeholder=${sessionScope.rue} value=${sessionScope.rue}>
 			</td>			
 			<td><p>Code Postal :</p>
-				<input type="text" id="name" name="cp" placeholder=${sessionScope.cp} value=${sessionScope.cp}>
+				<input class="form-control me-2" type="text" id="name" name="cp" placeholder=${sessionScope.cp} value=${sessionScope.cp}>
 			</td>			
 			<td><p>Ville :</p>
-				<input type="text" id="name" name="ville" placeholder=${sessionScope.ville} value=${sessionScope.ville}>
+				<input class="form-control me-2" type="text" id="name" name="ville" placeholder=${sessionScope.ville} value=${sessionScope.ville}>
 			</td>    		
     	</tr>
     </table>
@@ -56,10 +61,10 @@
 			<p style="color:red"><%=message %></p>
 			<%} %>
 			
-		<input type="submit" id="enregistrer" name ="enregistrer" value="Enregistrer">
+		<input class="btn btn-outline-warning position-absolute" type="submit" id="enregistrer" name ="enregistrer" value="Enregistrer">
 	</form>	
-	<form action="<%=request.getContextPath()%>/BackAccueil" method="post">
-		<input type="submit" id="annuler" name ="annuler" value="Annuler">
+	<form style="padding-left: 115px;" action="<%=request.getContextPath()%>/BackAccueil" method="post">
+		<input class="btn btn-outline-warning" type="submit" id="annuler" name ="annuler" value="Annuler">
 	</form>
 </body>
 </html>
