@@ -10,6 +10,28 @@
 		<title>Accueil Connecté</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 		<link href="<%=request.getContextPath() %>/css/style.css" rel="stylesheet"> 
+		<script>
+	function setGhost(){
+    	var e1 = document.getElementById("achat");
+    	var e2 = document.getElementById("vente");
+    	if(e1.checked)
+      		document.getElementById("1").disabled = false;
+    		document.getElementById("2").disabled = false;
+    		document.getElementById("3").disabled = false;
+		else
+     		document.getElementById("1").disabled = true;
+    		document.getElementById("2").disabled = true;
+    		document.getElementById("3").disabled = true;
+    	if(e2.checked)
+	    	document.getElementById("4").disabled = false;
+			document.getElementById("5").disabled = false;
+			document.getElementById("6").disabled = false;
+		else
+			document.getElementById("4").disabled = true;
+			document.getElementById("5").disabled = true;
+			document.getElementById("6").disabled = true;  
+  	}  
+</script>
 	</head>
 	<body>
 	<%@include file="fragments/header.jspf" %>
@@ -38,22 +60,28 @@
     <!-- Filtre checkbox -->
     <div class="row justify-content-start">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    
+    
+    
+    
+    
+    
     			<div class="col-2 form-check form-switch">
-				<input class="form-check-input" role="switch" type="radio" id="achat" name="achat" checked>
+				<input class="form-check-input" role="switch" type="radio" id="achat" name="achat" onchange="setGhost();">
 				<label for="achats">Achats</label>
 					<ul style="list-style: none;">
-						<li><input class="form-check-input" type="checkbox" id="encheresouvertes" name="encheresouvertes"><label class="form-check-label" for="encheresouvertes">Enchères ouvertes</label></li>
-						<li><input class="form-check-input" type="checkbox" id="mesencheres" name="mesencheres"><label class="form-check-label" for="mesencheres">Mes enchères</label></li>
-						<li><input class="form-check-input" type="checkbox" id="mesemcheresremportees" name="mesemcheresremportees"><label class="form-check-label" for="mesemcheresremportees">Mes enchères remportées</label></li>
+						<li><input class="form-check-input" type="checkbox" id="1" name="e1" disabled="disabled"><label class="form-check-label" for="encheresouvertes">Enchères ouvertes</label></li>
+						<li><input class="form-check-input" type="checkbox" id="2" name="e1" disabled="disabled"><label class="form-check-label" for="mesencheres">Mes enchères</label></li>
+						<li><input class="form-check-input" type="checkbox" id="3" name="e1" disabled="disabled"><label class="form-check-label" for="mesemcheresremportees">Mes enchères remportées</label></li>
 					</ul>
 					</div>
 					<div class="col-2 form-check form-switch">
-				<input class="form-check-input" role="switch" type="radio" id="vente" name="achat">
+				<input class="form-check-input" role="switch" type="radio" id="vente" name="achat" onchange="setGhost();">
 				<label for="achats">Mes ventes</label>
 					<ul style="list-style: none;">
-						<li><input class="form-check-input" type="checkbox" id="mesventesencours" name="mesventesencours"><label class="form-check-label" for="mesventesencours">Mes ventes en cours</label></li>
-						<li><input class="form-check-input" type="checkbox" id="ventesnondebutees" name="ventesnondebutees"><label class="form-check-label" for="ventesnondebutees">Ventes non debutées</label></li>
-						<li><input class="form-check-input" type="checkbox" id="ventesterminees" name="ventesterminees"><label class="form-check-label" for="ventesterminees">Ventes terminées</label></li>
+						<li><input class="form-check-input" type="checkbox" id="4" name="e2" disabled="disabled"><label class="form-check-label" for="mesventesencours">Mes ventes en cours</label></li>
+						<li><input class="form-check-input" type="checkbox" id="5" name="e2" disabled="disabled"><label class="form-check-label" for="ventesnondebutees">Ventes non debutées</label></li>
+						<li><input class="form-check-input" type="checkbox" id="6" name="e2" disabled="disabled"><label class="form-check-label" for="ventesterminees">Ventes terminées</label></li>
 					</ul>
 					</div>
 		<div class="col-2">
