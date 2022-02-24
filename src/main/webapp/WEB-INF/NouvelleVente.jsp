@@ -19,7 +19,7 @@
 		<p>Article : <input type="text" id="name" name="article" required>	</p>	
 		<p>Description : <input type="text" id="name" name="description" required>	</p>
 
-<p>Catégorie : <select name="categorie" id="categorie">
+<p>Catégorie : <select name="categorie" id="categorie" required>
     <option  value="0">---- Choisir une categorie ----</option>
     <% List<Categorie> list = (List<Categorie>)request.getAttribute("listecategorie");
     for (Categorie cat : list){ %>
