@@ -75,7 +75,6 @@ public class UserMgr {
 	}
 	
 	public void modifUser(String pseudo, String nom, String prenom, String email, String telephone, String rue, String cp, String ville, String mdp) throws Exception {
-		System.out.println("modifUser");
 		Utilisateur user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, cp, ville, mdp);
 		userDAO.modif(user);
 	}

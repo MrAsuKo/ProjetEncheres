@@ -13,6 +13,7 @@
 		<br>
 		<h3>Mon profil</h3>
 		<br>
+		<div class="p-3 card border-warning bg-dark mb-4" style="max-width: 20rem;">
 		<p>Pseudo : ${sessionScope.pseudo}</p>
 		<p>Nom : ${sessionScope.nom}</p>
 		<p>Prénom : ${sessionScope.prenom}</p>
@@ -22,7 +23,7 @@
 		<p>Code postal : ${sessionScope.cp}</p>
 		<p>Ville : ${sessionScope.ville}</p>
 		<p>Crédit : ${sessionScope.credit}</p>
-		<br>
+		</div>
 		<form action="<%=request.getContextPath()%>/ModifierProfil" method="post">
 			<input class="btn btn-outline-warning" type="submit" id="modifier" name ="modifier" value="Modifier">
 		</form>

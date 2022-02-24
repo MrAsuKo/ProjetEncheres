@@ -104,7 +104,7 @@
 	        	int noArticle = art.getNoArticle();
 	    %>
     	<div class="col">
-    		<div class="p-4 card border-warning bg-dark mb-3" style="max-width: 18rem;">
+    		<div class="p-4 card border-warning bg-dark mb-4" style="max-width: 18rem;">
   				<div class="card-header">Vendeur : <a href="./Show/Vendeur?name=<%=art.getUtilisateur().getPseudo()%>"><%=art.getUtilisateur().getPseudo()%></a></div>
   					<div class="card-body">
     					<h5 class="card-title"><a href="<%=request.getContextPath()%>/DetailVente?name=<%=art.getNoArticle()%>&datefin=<%=art.getDateFinEncheres()%>"><%=art.getNomArticle()%></a></h5>

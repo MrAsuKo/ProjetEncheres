@@ -75,7 +75,6 @@ public class EnregistrerNouvelleVenteServlet extends HttpServlet {
 				flag=true;
 			} else {
 		int noArticle = venteMgr.ajoutEnchere(nom_article, description, date_debut_encheres, date_fin_encheres, prixdepart,utilisateur,categorie);
-		System.out.println(noArticle);
 		venteMgr.insertRetrait(noArticle,rue,cp,ville);
 			}
 		} catch (Exception e) {

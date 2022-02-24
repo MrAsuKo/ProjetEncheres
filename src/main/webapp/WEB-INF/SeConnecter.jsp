@@ -21,19 +21,21 @@
 		<h3>Se connecter</h3>
 		<br>
 		<form action="<%=request.getContextPath()%>/AccueilConnect" method="post">
-			<p>Pseudo : <input type="text" id="pseudo" name="pseudo" value="<%=value%>" required></p>
-			<p>Mot de passe : <input type="password" id="mdp" name="mdp" required></p>
-			<p><input type="checkbox" id="memoriser" name="memoriser">
-				<label for="memoriser">Se souvenir</label></p>
+		<div class="col-2">
+			<p>Pseudo : <input class="form-control me-2" type="text" id="pseudo" name="pseudo" value="<%=value%>" required></p>
+			<p>Mot de passe : <input class="form-control me-2" type="password" id="mdp" name="mdp" required></p>
+			<p><input class="form-check-input" type="checkbox" id="memoriser" name="memoriser">
+				<label class="form-check-label" for="memoriser">Se souvenir</label></p>
+				</div>
 			<%	String message = null; 
 				if (request.getAttribute("message") != null) {
 					message = (String)request.getAttribute("message"); %>
 					<p style="color: red;"><%=message %></p>
 			<% 	}; %>
-			<input type="submit" id="valider" name ="valider" value="Valider">
+			<input class="btn btn-outline-warning position-absolute" type="submit" id="valider" name ="valider" value="Valider">
 		</form>	
-		<form action="<%=request.getContextPath()%>/Inscription" method="post">	
-			<input type="submit" id="inscription" name ="inscription" value="S'inscrire">
+		<form style="padding-left: 90px;" action="<%=request.getContextPath()%>/Inscription" method="post">	
+			<input class="btn btn-outline-warning" type="submit" id="inscription" name ="inscription" value="S'inscrire">
 		</form>	
 	</body>
 </html>
