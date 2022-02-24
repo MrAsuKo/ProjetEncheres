@@ -76,6 +76,7 @@
 										flag = true	;
 					%>
 							<p>Offre : 	<input class="form-control me-2" type="number" id="offre" name="offre" min="<%=min%>" value="<%=min%>" ></p>
+							<input class="btn btn-outline-warning" type="submit" id="encherir" name ="encherir" value="Enchérir">	
 						<% } else {
 						flag = false;%>
 							<p>Offre : 	<input class="form-control me-2" type="number" id="offre" name="offre" min="<%=min%>" value="<%=min%>" disabled="disabled"></p>
@@ -83,7 +84,7 @@
 							%>									
 							<input id="prodId" name="noArticle" type="hidden" value="<%=art.getNoArticle() %>">
 							<input id="prodId" name="id" type="hidden" value="${sessionScope.id}">
-							<input class="btn btn-outline-warning" type="submit" id="encherir" name ="encherir" value="Enchérir">
+							
 							</form>
 							<%} %>
 							</div>
