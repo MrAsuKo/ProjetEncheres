@@ -14,13 +14,13 @@
 		<h3>Créer mon Profil</h3>
 		<br>
 		<form action="<%=request.getContextPath()%>/AccueilInscr" method="post">
-			<p>Pseudo : <input type="text" id="pseudo" name="pseudo" required pattern="[a-zA-Z0-9]+" required></p>
+			<p>Pseudo : <input type="text" id="pseudo" name="pseudo" pattern="[a-zA-Z0-9]+" required></p>
 			<p>Nom : <input type="text" id="nom" name="nom" required></p>
 			<p>Prenom : <input type="text" id="prenom" name="prenom" required></p>
-			<p>Email : <input type="text" id="email" name="email" required></p>
-			<p>Téléphone : <input type="text" id="telephone" name="telephone" required></p>
+			<p>Email : <input type="email" id="email" name="email" required></p>
+			<p>Téléphone : <input type="tel" id="telephone" name="telephone" pattern="[0-9]{10}" required></p>
 			<p>Rue : <input type="text" id="rue" name="rue" required></p>
-			<p>Code postal : <input type="text" id="cp" name="cp" required></p>
+			<p>Code postal : <input type="text" id="cp" name="cp" pattern="[0-9]{5}" required></p>
 			<p>Ville : <input type="text" id="ville" name="ville" required></p>
 			<p>Mot de passe : <input type="password" id="mdp" name="mdp" required></p>
 			<p>Confirmer mot de passe : <input type="password" id="mdp_conf" name="mdp_conf" required></p>
