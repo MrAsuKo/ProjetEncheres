@@ -45,8 +45,8 @@
 				<% 	} %>
 				
 				<p>Mise à prix : <%=art.getPrixDepart()%></p>
-				<p>Debut de l'enchère : <%=art.getDateDebutEncheres()%></p>
-				<p>Fin de l'enchère : <%=art.getDateFinEncheres()%></p>
+				<p>Debut de l'enchère : <%=art.getDateDebutEncheres().getDayOfMonth() %>/<%=art.getDateDebutEncheres().getMonthValue() %>/<%=art.getDateDebutEncheres().getYear() %></p>
+				<p>Fin de l'enchère : <%=art.getDateFinEncheres().getDayOfMonth() %>/<%=art.getDateFinEncheres().getMonthValue() %>/<%=art.getDateFinEncheres().getYear() %></p>
 				<p>Retrait :</p>
 				<p>Vendeur : <%=art.getUtilisateur().getPseudo()%></p>	
 				</div>	

@@ -74,7 +74,6 @@ public class FiltreRechercheCategoriesNonConnecterServlet extends HttpServlet {
 		int no_categorie = Integer.parseInt(categStr);
 		
 		if (!categStr.equals("0")) {
-			System.out.println(no_categorie);
 			// Creation de la liste des encheres par categoeries choisi
 			List<Articles_vendus> listeEnchere = null;
 			try {

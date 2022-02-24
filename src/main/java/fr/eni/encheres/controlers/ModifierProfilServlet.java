@@ -39,8 +39,6 @@ public class ModifierProfilServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doPost");
-		
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
@@ -61,8 +59,7 @@ public class ModifierProfilServlet extends HttpServlet {
 //		request.setAttribute("message", message);
 //		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/ModifierProfil.jsp");
 //		rd.forward(request, response);
-//		System.out.println("Else");
-//		 //throw new Exception("Problème d'authentification de mot de passe");
+//		 //throw new Exception("Problï¿½me d'authentification de mot de passe");
 //		}		
 	try {
 		userMgr.modifUser(pseudo, nom, prenom, email, telephone, rue, cp, ville, mdp);
@@ -89,7 +86,6 @@ public class ModifierProfilServlet extends HttpServlet {
 //		request.setAttribute("message", message);
 //		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/ModifierProfil.jsp");
 //		rd.forward(request, response);
-//		System.out.println("Else");}
 //	}
 //}
 

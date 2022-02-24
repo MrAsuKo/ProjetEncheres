@@ -84,10 +84,10 @@
 		<%=art.getPrixDepart()%></p>
 	<p>
 		Debut de l'enchère :
-		<%=art.getDateDebutEncheres()%></p>
+		<%=art.getDateDebutEncheres().getDayOfMonth() %>/<%=art.getDateDebutEncheres().getMonthValue() %>/<%=art.getDateDebutEncheres().getYear() %></p>
 	<p>
 		Fin de l'enchère :
-		<%=art.getDateFinEncheres()%></p>
+		<%=art.getDateFinEncheres().getDayOfMonth() %>/<%=art.getDateFinEncheres().getMonthValue() %>/<%=art.getDateFinEncheres().getYear() %></p>
 	<p>Retrait :</p>
 	<p>
 		Vendeur :
