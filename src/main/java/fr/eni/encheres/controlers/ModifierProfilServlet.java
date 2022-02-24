@@ -49,18 +49,20 @@ public class ModifierProfilServlet extends HttpServlet {
 		String rue = request.getParameter("rue");
 		String cp = request.getParameter("cp");
 		String ville = request.getParameter("ville");
-		String mdp = request.getParameter("nouveau_mdp");
+		String mdp = request.getParameter("mdp");
+		String nouveau_mdp = request.getParameter("nouveau_mdp");
+		String mdp_conf = request.getParameter("mdp_conf");
 		
-//		if("nouveau_mdp".equals("mdp_conf")) {
+//		if(mdp.equals(mdp_conf)) {
 //			
 //		}else {
 //			String message = "Les mots de passes ne correspondent pas !";
-//			request.setAttribute("message", message);
-//			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/ModifierProfil.jsp");
-//			rd.forward(request, response);
-//		}
-//		
-//		
+//		request.setAttribute("message", message);
+//		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/ModifierProfil.jsp");
+//		rd.forward(request, response);
+//		System.out.println("Else");
+//		 //throw new Exception("Problème d'authentification de mot de passe");
+//		}		
 //		try {
 //			userMgr.modifUser(pseudo, nom, prenom, email, telephone, rue, cp, ville, mdp);
 //			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/ModifierProfil.jsp");
@@ -70,31 +72,24 @@ public class ModifierProfilServlet extends HttpServlet {
 //		}
 //	}
 //}
-
-
-try {
-	
-	userMgr.modifUser(pseudo, nom, prenom, email, telephone, rue, cp, ville, mdp);
-	RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/ModifierProfil.jsp");
-	
-	if(("nouveau_mdp".equals("mdp_conf")) {
-	
-	//y
-	rd.forward(request, response);
-	System.out.println("If");
-	
-	}else {
-		String message = "Les mots de passes ne correspondent pas !";
+		
+		
+		
+		if(nouveau_mdp.equals(mdp_conf)) {
+			
+		try {
+			userMgr.modifUser(pseudo, nom, prenom, email, telephone, rue, cp, ville, mdp);
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/ModifierProfil.jsp");
+			rd.forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}}else {
+			String message = "Les mots de passes ne correspondent pas !";
 		request.setAttribute("message", message);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/ModifierProfil.jsp");
 		rd.forward(request, response);
-		System.out.println("Else");
-		 throw new Exception("Problème d'authentification de mot de passe");
+		System.out.println("Else");}
 	}
-	
-} catch (Exception e) {
-	e.printStackTrace();
-	System.out.println("Catch");
 }
-}
-}
+
+
