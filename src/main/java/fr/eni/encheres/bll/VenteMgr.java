@@ -60,4 +60,8 @@ public class VenteMgr {
 		venteDAO.insertRetrait(noArticle,rue,cp,ville);	
 	}	
 	
+	public void supprimerVente(int noArticle) throws Exception {
+		Articles_vendus vente = new Articles_vendus(noArticle);
+		venteDAO.delete(vente);
+	}
 }

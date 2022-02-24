@@ -25,9 +25,10 @@
 	<select class="form-select" name="categorie" id="categorie">
     <option  value="0">Choisir une categorie</option>
     <% List<Categorie> list2 = (List<Categorie>)request.getAttribute("listecategorie");
-    for (Categorie cat : list2){ %>
+    for (Categorie cat : list2){ 
+    if(list2 != null) {%>
     	<option  value="<%=cat.getNumcatego()%>"><%=cat.getLibelle()%></option>
-    <%
+    <%}
     }
     %>
     </select>

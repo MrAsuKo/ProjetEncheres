@@ -79,7 +79,6 @@ public class NouvelleEnchereServlet extends HttpServlet {
 			int noArticle = Integer.parseInt(noArticleStr);
 			enchere = venteMgr.meilleurOffre(noArticle);
 		} catch (fr.eni.encheres.dal.DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		request.setAttribute("meilleurOffre", enchere);

@@ -228,4 +228,15 @@ public class VenteDAOjdclImpl {
 	}
 }
 	
+	private static final String DELETE_VENTE = "DELETE FROM ARTICLES_VENDUS WHERE no_article=?";
+	
+	public void delete(Articles_vendus vente) throws DALException {
+		try(Connection cnx = ConnectionProvider.getConnection()) {
+			PreparedStatement rqt = cnx.prepareStatement(DELETE_VENTE);
+			rqt.setInt(1, vente.getNoArticle());
+			rqt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
