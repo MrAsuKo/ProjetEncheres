@@ -52,7 +52,7 @@
 					<%
 									// regarde le mini prix
 									int prixdepart = art.getPrixDepart();
-									int min = prixdepart;
+									int min = prixdepart+1;
 									int meilleurPrix =0;
 									Enchere meilleurOffre2 = null;
 									if (request.getAttribute("meilleurOffre") != null) {
@@ -62,7 +62,7 @@
 										meilleurPrix = meilleurOffre2.getMontantEnchere();
 										}
 									if (meilleurPrix > prixdepart) {
-										min = meilleurPrix;								
+										min = meilleurPrix+1;								
 									}
 									// rendre les enchere possible si dans les date d'encheres
 									LocalDate datedebut = art.getDateDebutEncheres();
@@ -71,10 +71,10 @@
 									if(LocalDate.now().isAfter(datedebut) || LocalDate.now().isEqual(datedebut)){ 
 										flag = true	;
 					%>
-							<p>Offre : 	<input type="number" id="offre" name="offre" min="<%=min%>" ></p>
+							<p>Offre : 	<input type="number" id="offre" name="offre" min="<%=min%>" value="<%=min%>" ></p>
 						<% } else {
 						flag = false;%>
-							<p>Offre : 	<input type="number" id="offre" name="offre" min="<%=min%>" disabled="disabled"></p>
+							<p>Offre : 	<input type="number" id="offre" name="offre" min="<%=min%>" value="<%=min%>" disabled="disabled"></p>
 						<%}
 							%>										
 							<input id="prodId" name="noArticle" type="hidden" value="<%=art.getNoArticle() %>">
