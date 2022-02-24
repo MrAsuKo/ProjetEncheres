@@ -48,6 +48,7 @@
 				<p>Fin de l'enchère : <%=art.getDateFinEncheres()%></p>
 				<p>Retrait :</p>
 				<p>Vendeur : <%=art.getUtilisateur().getPseudo()%></p>	
+					<% if (!art.getUtilisateur().getPseudo().equals(request.getSession(false).getAttribute("pseudo"))){ %>
 					<form action="<%=request.getContextPath()%>/NouvelleEnchere" method="post">
 					<%
 									// regarde le mini prix
@@ -81,12 +82,17 @@
 							<input id="prodId" name="id" type="hidden" value="${sessionScope.id}">
 							<input type="submit" id="encherir" name ="encherir" value="Enchérir">
 							</form>
-							
-							<%String pseudo = (String)request.getSession(false).getAttribute("pseudo");
+							<%} %>
+							<%boolean flag = false;
+							LocalDate datedebut = art.getDateDebutEncheres();
+							LocalDate datefin = art.getDateFinEncheres();
+							if(LocalDate.now().isAfter(datedebut) || LocalDate.now().isEqual(datedebut)){ 
+								flag = true	;
+							}
+							String pseudo = (String)request.getSession(false).getAttribute("pseudo");
 							if (art.getUtilisateur().getPseudo().equals(pseudo) && flag==false ) {%>
 								<input type="submit" id="Annuler" name ="Annuler" value="Annuler vente">
 							<%}
-							
 							}
 							}
 				   		}
