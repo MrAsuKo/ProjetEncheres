@@ -13,7 +13,7 @@
 		<h3>Mon profil</h3>
 		<br>
 
-		<form action="" method="post" onsubmit="">>
+		<form action="" method="post" onsubmit="">
 			<p>Pseudo : <input type="text" id="pseudo" name="pseudo" pattern="[a-zA-Z0-9]+" value="${sessionScope.pseudo}" required></p>
 			<p>Nom : <input type="text" id="nom" name="nom" value="${sessionScope.nom}" required></p>
 			<p>Prenom : <input type="text" id="prenom" name="prenom" value="${sessionScope.prenom}" required></p>
