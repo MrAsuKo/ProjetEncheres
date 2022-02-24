@@ -47,10 +47,18 @@
 			</td>    		
     	</tr>
     </table>
+   			 <%
+			String message = "";
+			if (request.getAttribute("message") != null) {
+				message = (String)request.getAttribute("message");
+			%>
+			<p style="color:red"><%=message %></p>
+			<%} %>
+			
 		<input type="submit" id="enregistrer" name ="enregistrer" value="Enregistrer">
 	</form>	
 	<form action="<%=request.getContextPath()%>/BackAccueil" method="post">
 		<input type="submit" id="annuler" name ="annuler" value="Annuler">
-	</form>	
+	</form>
 </body>
 </html>

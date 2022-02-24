@@ -16,7 +16,7 @@
 		<br>
 		<h3> Liste des enchères</h3>
 <br>
-	<form action="<%=request.getContextPath()%>/FiltreRecherche" method="post">
+	<form action="<%=request.getContextPath()%>/FiltreRechercheNonConnect" method="post">
 
 	<div class="row justify-content-start">
 	<div class="col-2">

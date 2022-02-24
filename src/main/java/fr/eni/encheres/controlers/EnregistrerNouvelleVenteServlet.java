@@ -50,36 +50,7 @@ public class EnregistrerNouvelleVenteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-				//Creation de la liste des encheres
-				List<Articles_vendus> listeEnchere = null;		
-				try {
-					try {
-						listeEnchere = venteMgr.selectEnchere();
-					} catch (fr.eni.encheres.dal.DALException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				request.setAttribute("listeEnchere", listeEnchere);
-				//fin de la creation de la liste des encheres
-				//liste des categories
-				List<Categorie> listeCategorie = null;
-				try {
-					try {
-						listeCategorie = categorieMgr.selectcategorie();
-					} catch (fr.eni.encheres.dal.DALException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					request.setAttribute("listecategorie", listeCategorie);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				//fin list des categories
+
 				
 		String nom_article = request.getParameter("article");
 		String description = request.getParameter("description");
@@ -98,18 +69,58 @@ public class EnregistrerNouvelleVenteServlet extends HttpServlet {
 		LocalDate date_debut_encheres = LocalDate.parse(debutenchereStr);
 		LocalDate date_fin_encheres = LocalDate.parse(finenchereStr);
 		int prixdepart = Integer.parseInt(prixdepartStr);
-		
+		boolean flag = false;
 		try {
+			if (numcategorie == 0) {				
+				flag=true;
+			} else {
 		int noArticle = venteMgr.ajoutEnchere(nom_article, description, date_debut_encheres, date_fin_encheres, prixdepart,utilisateur,categorie);
 		System.out.println(noArticle);
 		venteMgr.insertRetrait(noArticle,rue,cp,ville);
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+		//Creation de la liste des encheres
+		List<Articles_vendus> listeEnchere = null;		
+			try {
+				try {
+					listeEnchere = venteMgr.selectEnchere();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} catch (fr.eni.encheres.dal.DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		request.setAttribute("listeEnchere", listeEnchere);
+		//fin de la creation de la liste des encheres
+		//liste des categories
+		List<Categorie> listeCategorie = null;
+		try {
+			try {
+				listeCategorie = categorieMgr.selectcategorie();
+			} catch (fr.eni.encheres.dal.DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			request.setAttribute("listecategorie", listeCategorie);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//fin list des categories
+		if (flag==false) {
 		doGet(request, response);
+		} else {
+			String message = "Veuillez selectionner une categorie";
+			request.setAttribute("message", message);
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/NouvelleVente.jsp");
+			rd.forward(request, response);
+		}
+		
 	}
 
 }

@@ -18,10 +18,8 @@ public class UserDAOjdcImpl implements UserDAO {
 	private static final String UPDATE_PASSWORD = "UPDATE UTILISATEURS SET mdp=? WHERE pseudo=?";
 	private static final String SELECT_VENDEUR = "SELECT pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit FROM UTILISATEURS WHERE pseudo=?";
 	public boolean verif(Utilisateur user) throws DALException {
-		Connection cnx = null;
 		boolean use = false;
-		try {
-			cnx = ConnectionProvider.getConnection();
+		try (Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement rqt2 = cnx.prepareStatement(SELECT_USERPSEUDO);
 			rqt2.setString(1, user.getPseudo());
 			ResultSet rs2 = rqt2.executeQuery();
@@ -41,9 +39,7 @@ public class UserDAOjdcImpl implements UserDAO {
 	}
 
 	public void insert(Utilisateur user) throws DALException {
-		Connection cnx = null;
-		try {
-			cnx = ConnectionProvider.getConnection();
+		try(Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement rqt = cnx.prepareStatement(INSERT_USER, PreparedStatement.RETURN_GENERATED_KEYS);
 			rqt.setString(1, user.getPseudo());
 			rqt.setString(2, user.getNom());
@@ -67,10 +63,8 @@ public class UserDAOjdcImpl implements UserDAO {
 	}
 
 	public Utilisateur select(Utilisateur user) throws DALException {
-		Connection cnx = null;
 		boolean trouve = false;
-		try {
-			cnx = ConnectionProvider.getConnection();
+		try (Connection cnx = ConnectionProvider.getConnection()){
 			PreparedStatement rqt = cnx.prepareStatement(SELECT_USER);
 			rqt.setString(1, user.getPseudo());
 			rqt.setString(2, user.getMdp());
@@ -98,9 +92,7 @@ public class UserDAOjdcImpl implements UserDAO {
 	}
 
 	public void delete(Utilisateur user) throws DALException {
-		Connection cnx = null;
-		try {
-			cnx = ConnectionProvider.getConnection();
+		try (Connection cnx = ConnectionProvider.getConnection()){
 			PreparedStatement rqt = cnx.prepareStatement(DELETE_USER);
 			rqt.setString(1, user.getPseudo());
 			rqt.executeUpdate();
@@ -110,9 +102,7 @@ public class UserDAOjdcImpl implements UserDAO {
 	}
 
 	public void modif(Utilisateur user) throws DALException {
-		Connection cnx = null;
-		try {
-			cnx = ConnectionProvider.getConnection();
+		try (Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement rqt = cnx.prepareStatement(UPDATE_USER);
 			rqt.setString(1, user.getNom());
 			rqt.setString(2, user.getPrenom());
