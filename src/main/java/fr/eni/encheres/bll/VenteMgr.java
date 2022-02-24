@@ -72,4 +72,6 @@ public class VenteMgr {
 	public List<Articles_vendus> selectEnchereEnCours() throws DALException {
 		return this.venteDAO.selectEnchereEnCours();
 	}
+	
+	
 }

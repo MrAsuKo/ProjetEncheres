@@ -68,11 +68,42 @@ public class FiltreRechercheCategoriesServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		// fin list des categories
-
+		boolean flag1 = false;
+		boolean flag4 = false;
 		String categStr = request.getParameter("categorie");
 		String contient = request.getParameter("contient");
 		int no_categorie = Integer.parseInt(categStr);
-		if (!categStr.equals("0")) {
+		if (request.getParameter("e1") != null) {
+			flag1 = true;
+		}
+		if (request.getParameter("e4") != null) {
+			flag4 = true;
+		}
+		
+		if (flag1==true) {
+			// Creation de la liste des encheres par categoeries choisi
+						List<Articles_vendus> listeEnchere = null;
+						try {
+							listeEnchere = venteMgr.selectEnchereEnCours();
+						} catch (fr.eni.encheres.dal.DALException e) {
+							e.printStackTrace();
+						}
+						request.setAttribute("listeEnchere", listeEnchere);
+						// fin de la creation de la liste des encheres
+		} 
+		if (flag4==true) {
+			// Creation de la liste des encheres par categoeries choisi
+						List<Articles_vendus> listeEnchere = null;
+						try {
+							int noUtilisateur = (int)request.getSession(false).getAttribute("id");
+							listeEnchere = venteMgr.selectEnchereUtilisateur(noUtilisateur);
+						} catch (fr.eni.encheres.dal.DALException e) {
+							e.printStackTrace();
+						}
+						request.setAttribute("listeEnchere", listeEnchere);
+						// fin de la creation de la liste des encheres
+		} 
+		else if (!categStr.equals("0")) {
 			// Creation de la liste des encheres par categoeries choisi
 			List<Articles_vendus> listeEnchere = null;
 			try {
