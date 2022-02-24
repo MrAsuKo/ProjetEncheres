@@ -14,25 +14,31 @@
 		<h3>Créer mon Profil</h3>
 		<br>
 		<form action="<%=request.getContextPath()%>/AccueilInscr" method="post">
-			<p>Pseudo : <input type="text" id="pseudo" name="pseudo" required pattern="[a-zA-Z0-9]+" required></p>
-			<p>Nom : <input type="text" id="nom" name="nom" required></p>
-			<p>Prenom : <input type="text" id="prenom" name="prenom" required></p>
-			<p>Email : <input type="text" id="email" name="email" required></p>
-			<p>Téléphone : <input type="text" id="telephone" name="telephone" required></p>
-			<p>Rue : <input type="text" id="rue" name="rue" required></p>
-			<p>Code postal : <input type="text" id="cp" name="cp" required></p>
-			<p>Ville : <input type="text" id="ville" name="ville" required></p>
-			<p>Mot de passe : <input type="password" id="mdp" name="mdp" required></p>
-			<p>Confirmer mot de passe : <input type="password" id="mdp_conf" name="mdp_conf" required></p>
+		<div class="row">
+		<div class="col-2">
+			<p>Pseudo : <input class="form-control me-2" type="text" id="pseudo" name="pseudo" pattern="[a-zA-Z0-9]+" required></p>
+			<p>Nom : <input class="form-control me-2" type="text" id="nom" name="nom" required></p>
+			<p>Prenom : <input class="form-control me-2" type="text" id="prenom" name="prenom" required></p>
+			<p>Email : <input class="form-control me-2" type="email" id="email" name="email" required></p>
+			<p>Téléphone : <input class="form-control me-2" type="tel" id="telephone" name="telephone" pattern="[0-9]{10}" required></p>
+			</div>
+			<div class="col-2">
+			<p>Rue : <input class="form-control me-2" type="text" id="rue" name="rue" required></p>
+			<p>Code postal : <input class="form-control me-2" type="text" id="cp" name="cp" pattern="[0-9]{5}" required></p>
+			<p>Ville : <input class="form-control me-2" type="text" id="ville" name="ville" required></p>
+			<p>Mot de passe : <input class="form-control me-2" type="password" id="mdp" name="mdp" required></p>
+			<p>Confirmer mot de passe : <input class="form-control me-2" type="password" id="mdp_conf" name="mdp_conf" required></p>
+			</div>
+			</div>
 			<%	String message = null;
 				if (request.getAttribute("message") != null) {
 					message = (String)request.getAttribute("message"); %>
 					<p style="color: red;"><%=message %></p>
 			<% 	}; %>
-			<input type="submit" id="créer" name ="créer" value="Créer">
+			<input class="btn btn-outline-warning position-absolute" type="submit" id="créer" name ="créer" value="Créer">
 		</form>
-		<form action="<%=request.getContextPath()%>/SeConnecter" method="post">
-			<input type="submit" id="annuler" name ="annuler" value="Annuler">
+		<form style="padding-left: 80px;" action="<%=request.getContextPath()%>/SeConnecter" method="post">
+			<input class="btn btn-outline-warning" type="submit" id="annuler" name ="annuler" value="Annuler">
 		</form>
 	</body>
 </html>

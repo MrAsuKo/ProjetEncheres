@@ -12,15 +12,16 @@
 
 		<h3>Mon profil</h3>
 		<br>
-		<form action="" method="post" onsubmit="">
-			<p>Pseudo : <input type="text" id="pseudo" name="pseudo" value="${sessionScope.pseudo}" required></p>
-			<p>Nom : <input type="text" id="nom" name="nom" value="${sessionScope.nom}"></p>
-			<p>Prenom : <input type="text" id="prenom" name="prenom" value="${sessionScope.prenom}"></p>
-			<p>Email : <input type="text" id="email" name="email" value="${sessionScope.email}"></p>
-			<p>Téléphone : <input type="text" id="telephone" name="telephone" value="${sessionScope.telephone}"></p>
-			<p>Rue : <input type="text" id="rue" name="rue" value="${sessionScope.rue}"></p>
-			<p>Code postal : <input type="text" id="cp" name="cp" value="${sessionScope.cp}"></p>
-			<p>Ville : <input type="text" id="ville" name="ville" value="${sessionScope.ville}"></p>
+
+		<form action="" method="post" onsubmit="">>
+			<p>Pseudo : <input type="text" id="pseudo" name="pseudo" pattern="[a-zA-Z0-9]+" value="${sessionScope.pseudo}" required></p>
+			<p>Nom : <input type="text" id="nom" name="nom" value="${sessionScope.nom}" required></p>
+			<p>Prenom : <input type="text" id="prenom" name="prenom" value="${sessionScope.prenom}" required></p>
+			<p>Email : <input type="email" id="email" name="email" value="${sessionScope.email}"></p>
+			<p>Téléphone : <input type="tel" id="telephone" name="telephone" pattern="[0-9]{10}" value="${sessionScope.telephone}" required></p>
+			<p>Rue : <input type="text" id="rue" name="rue" value="${sessionScope.rue}" required></p>
+			<p>Code postal : <input type="text" id="cp" name="cp" pattern="[0-9]{5}" value="${sessionScope.cp}" required></p>
+			<p>Ville : <input type="text" id="ville" name="ville" value="${sessionScope.ville}" required></p>
 			<p>Mot de passe actuel : <input type="password" id="mdp" name="mdp"></p>
 			<p>Nouveau mot de passe : <input type="password" id="nouveau_mdp" name="nouveau_mdp" required></p>
 			<p>Confirmer mot de passe : <input type="password" id="mdp_conf" name="mdp_conf" required></p>
@@ -30,4 +31,4 @@
 			<input type="submit" id="supprimer" name ="supprimer" value="Supprimer mon compte">
 		</form>
 	</body>
-</html>
+</html> 

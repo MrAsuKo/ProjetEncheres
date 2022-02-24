@@ -10,28 +10,6 @@
 		<title>Accueil Connecté</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 		<link href="<%=request.getContextPath() %>/css/style.css" rel="stylesheet"> 
-		<script>
-	function setGhost(){
-    	var e1 = document.getElementById("achat");
-    	var e2 = document.getElementById("vente");
-    	if(e1.checked)
-      		document.getElementById("1").disabled = false;
-    		document.getElementById("2").disabled = false;
-    		document.getElementById("3").disabled = false;
-		else
-     		document.getElementById("1").disabled = true;
-    		document.getElementById("2").disabled = true;
-    		document.getElementById("3").disabled = true;
-    	if(e2.checked)
-	    	document.getElementById("4").disabled = false;
-			document.getElementById("5").disabled = false;
-			document.getElementById("6").disabled = false;
-		else
-			document.getElementById("4").disabled = true;
-			document.getElementById("5").disabled = true;
-			document.getElementById("6").disabled = true;  
-  	}  
-</script>
 	</head>
 	<body>
 	<%@include file="fragments/header.jspf" %>
@@ -60,12 +38,37 @@
     <!-- Filtre checkbox -->
     <div class="row justify-content-start">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    
-   
-    
-    
-    
-    
+    <script>
+			function setGhost(){
+				console.log("fonction");
+		    	var e1 = document.getElementById("achat");
+		    	var e2 = document.getElementById("vente");
+		    	if(e1.checked) {
+		      		document.getElementById("1").disabled = false;
+		    		document.getElementById("2").disabled = false;
+		    		document.getElementById("3").disabled = false;
+		    	} else {
+		     		document.getElementById("1").disabled = true;
+		    		document.getElementById("2").disabled = true;
+		    		document.getElementById("3").disabled = true;
+		    		document.getElementById("1").checked = false;
+		    		document.getElementById("2").checked = false;
+		    		document.getElementById("3").checked = false;
+		    	}
+		    	if(e2.checked) {
+			    	document.getElementById("4").disabled = false;
+					document.getElementById("5").disabled = false;
+					document.getElementById("6").disabled = false;
+		    	} else {
+					document.getElementById("4").disabled = true;
+					document.getElementById("5").disabled = true;
+					document.getElementById("6").disabled = true;
+					document.getElementById("4").checked = false;
+		    		document.getElementById("5").checked = false;
+		    		document.getElementById("6").checked = false;
+			    }
+			}  
+		</script>
     			<div class="col-2 form-check form-switch">
 				<input class="form-check-input" role="switch" type="radio" id="achat" name="achat" onchange="setGhost();">
 				<label for="achats">Achats</label>
@@ -90,7 +93,6 @@
 		</div>
 	</form>
 	<br>
-
 	<div class="row row-cols-xxl-6 row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2">	
     <%
 	    List<Articles_vendus> list = (List<Articles_vendus>)request.getAttribute("listeEnchere");
