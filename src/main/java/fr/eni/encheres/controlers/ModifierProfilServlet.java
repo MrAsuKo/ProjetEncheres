@@ -8,8 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.encheres.bll.UserMgr;
+import fr.eni.encheres.bo.Utilisateur;
 
 /**
  * Servlet implementation class ModifierProfilServlet
@@ -63,6 +65,25 @@ public class ModifierProfilServlet extends HttpServlet {
 //		}		
 	try {
 		userMgr.modifUser(pseudo, nom, prenom, email, telephone, rue, cp, ville, mdp);
+
+			Utilisateur user = userMgr.selectUser(pseudo, mdp);
+			if(user.isTrouve()) {
+				HttpSession session = request.getSession();
+				session.setAttribute("pseudo", pseudo);
+				session.setAttribute("id", user.getId());
+				session.setAttribute("nom", user.getNom());
+				session.setAttribute("prenom", user.getPrenom());
+				session.setAttribute("email", user.getEmail());
+				session.setAttribute("telephone", user.getTelephone());
+				session.setAttribute("rue", user.getRue());
+				session.setAttribute("cp", user.getCp());
+				session.setAttribute("ville", user.getVille());
+				session.setAttribute("mdp", user.getMdp());
+				session.setAttribute("credit", user.getCredit());
+				session.setAttribute("administrateur", user.isAdministrateur());
+				
+				session.setAttribute("utilisateurConnecte", user);
+			}
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/ModifierProfil.jsp");
 		rd.forward(request, response);
 	} catch (Exception e) {

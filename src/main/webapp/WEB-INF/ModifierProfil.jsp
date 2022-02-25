@@ -13,7 +13,7 @@
 		<h3>Mon profil</h3>
 		<br>
 
-		<form action="" method="post" onsubmit="">
+		<form action="<%=request.getContextPath() %>/ModifierProfil" method="post">
 		<div class="row">
 		<div class="col-2">
 			<p>Pseudo : <input class="form-control me-2" type="text" id="pseudo" name="pseudo" pattern="[a-zA-Z0-9]+" value="${sessionScope.pseudo}" required></p>
