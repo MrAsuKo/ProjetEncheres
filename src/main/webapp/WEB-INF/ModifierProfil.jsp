@@ -31,6 +31,7 @@
 			<!-- <p>Confirmer mot de passe : <input class="form-control me-2" type="password" id="mdp_conf" name="mdp_conf"></p> -->
 			</div>
 			</div>
+			<br>
 			<input class="btn btn-outline-warning position-absolute" type="submit" id="enregistrer" name ="enregistrer" value="Enregistrer" >
 		</form>
 		<form style="padding-left: 120px;" action="<%=request.getContextPath()%>/Home" method="post">
