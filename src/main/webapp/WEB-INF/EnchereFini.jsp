@@ -88,7 +88,7 @@
 	<p>
 		Fin de l'enchère :
 		<%=art.getDateFinEncheres().getDayOfMonth() %>/<%=art.getDateFinEncheres().getMonthValue() %>/<%=art.getDateFinEncheres().getYear() %></p>
-	<p>Retrait :</p>
+	<!-- <p>Retrait :</p> -->
 	<p>
 		Vendeur :
 		<%=art.getUtilisateur().getPseudo()%></p>
