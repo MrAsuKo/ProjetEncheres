@@ -9,7 +9,7 @@
 		<link href="<%=request.getContextPath() %>/css/style.css" rel="stylesheet"> 
 	<body>
 		<%@include file="fragments/header.jspf" %>
-
+<br>
 		<h3>Mon profil</h3>
 		<br>
 
